@@ -1,18 +1,22 @@
 <template>
   <div class="navigator">
-    <n-button v-for="button in buttons" :key="button" @click="navigate(button)" class="btn">
-      {{ button }}
+    <n-button v-for="buttonText in buttonLabels" :key="buttonText" @click="navigate(buttonText)" class="btn">
+      {{ buttonText }}
     </n-button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits } from "vue";
+import { defineProps, defineEmits } from "vue";
 
-const buttons = ["内容1", "内容2", "内容3", "内容4", "内容5", "内容6"];
+// 定义接收外部传入的按钮文本数组的 props
+const props = defineProps({
+  buttonLabels: Array
+});
+
 const emit = defineEmits(["navigate"]);
 
-const navigate = (button: string) => {
+const navigate = (button: any) => {
   emit("navigate", button);
 };
 </script>

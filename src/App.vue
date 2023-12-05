@@ -3,8 +3,8 @@
     <div class="left-container">
       <textarea v-model="text" class="text" />
     </div>
-    <div class="right-container">
-      <Navigator @navigate="handleNavigation" :buttons="buttons"/>
+    <div class="right-container"> 
+      <Navigator @navigate="handleNavigation" :buttonLabels="categoryNames"/>
       <div class="card-container">
         <Card v-for="item in contentItems" :key="item.button" :text="item.text" v-show="activeButton === item.button" @click="addText(item.text)"></Card>
       </div>
@@ -13,21 +13,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed  } from 'vue';
 import Card from './components/Card.vue';
 import PromptWork from './components/PromptWork.vue'
 import Navigator from './components/Navigator.vue';
-
+import { data } from './data/data'
+console.log(data.categories[0])
 // 使用 ref 来创建响应式数据
 const text = ref('');
-const buttons = ["内容1", "内容2", "内容3", "内容4", "内容5", "内容6"];
+const categoryNames = computed(() => data.categories.map((category: { name: string; }) => category.name));
 const contentItems = [
   { button: '内容1', text: '自定义内容1' },
   { button: '内容2', text: '自定义内容2' },
-  { button: '内容3', text: '自定义内容3' },
-  { button: '内容4', text: '自定义内容4' },
-  { button: '内容5', text: '自定义内容5' },
-  { button: '内容6', text: '自定义内容6' },
   // ... 更多内容
 ];
 const activeButton = ref('');
