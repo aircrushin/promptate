@@ -11,10 +11,6 @@ export const data: DataType = {
   ],
   tables: [
     {
-      category: "收藏",
-      minorCategories: [],
-    },
-    {
       category: "背景",
       minorCategories: [
         {

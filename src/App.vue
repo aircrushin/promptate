@@ -6,7 +6,7 @@
     <div class="right-container"> 
       <Navigator @navigate="handleNavigation" :buttonLabels="categoryNames"/>
       <div class="card-container">
-        <Card v-for="item in contentItems" :key="item.button" :text="item.text" v-show="activeButton === item.button" @click="addText(item.text)"></Card>
+        <Card v-for="card in cardItems" :key="card.button" :text="card.text" v-show="activeButton === card.button" @click="addText(card.detail)"></Card>
       </div>
     </div>
   </div>
@@ -15,16 +15,21 @@
 <script setup lang="ts">
 import { ref, computed  } from 'vue';
 import Card from './components/Card.vue';
-import PromptWork from './components/PromptWork.vue'
 import Navigator from './components/Navigator.vue';
 import { data } from './data/data'
-console.log(data.categories[0])
+//console.log(data.categories)
 // 使用 ref 来创建响应式数据
 const text = ref('');
-const categoryNames = computed(() => data.categories.map((category: { name: string; }) => category.name));
-const contentItems = [
-  { button: '内容1', text: '自定义内容1' },
-  { button: '内容2', text: '自定义内容2' },
+const categoryNames = computed(() => data.categories!.map((category) => category.name));
+console.log(categoryNames)
+interface cardItemsType {
+  button: string | undefined;
+  text: string;
+  detail: string;
+}
+const cardItems: cardItemsType[] = [
+  { button: categoryNames.value[0], text: '我在哪', detail:'我在{文本}'},
+  { button: categoryNames.value[1], text: '自定义内容2', detail:'我在{文本}'},
   // ... 更多内容
 ];
 const activeButton = ref('');
@@ -69,6 +74,4 @@ const addText = (cardText: string) => {
 .text {
   height: 300px;
 }
-
-/* 其他组件样式 */
 </style>

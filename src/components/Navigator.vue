@@ -26,7 +26,6 @@ const navigate = (button: any) => {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  /* 可以添加更多样式来美化按钮 */
 }
 
 .btn {
