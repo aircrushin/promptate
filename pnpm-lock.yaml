@@ -1,13 +1,12 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   sass:
     specifier: ^1.69.5
     version: 1.69.5
+  vicons:
+    specifier: ^0.0.1
+    version: 0.0.1(typescript@4.9.5)
   vitest:
     specifier: ^1.0.1
     version: 1.0.1(sass@1.69.5)
@@ -1434,6 +1433,14 @@ packages:
       vue: 3.3.9(typescript@4.9.5)
     dev: true
 
+  /vicons@0.0.1(typescript@4.9.5):
+    resolution: {integrity: sha512-suYeiVqw/q+ijWBlsGP5vhTUphRqLzCLZKqBHK4iuzlOmP1omKWDWQd+da7rDZU7dyPD5TTV9MXTLCxQt3d7zQ==}
+    dependencies:
+      vue: 3.3.9(typescript@4.9.5)
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /vite-node@1.0.1(sass@1.69.5):
     resolution: {integrity: sha512-Y2Jnz4cr2azsOMMYuVPrQkp3KMnS/0WV8ezZjCy4hU7O5mUHCAVOnFmoEvs1nvix/4mYm74Len8bYRWZJMNP6g==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -1666,3 +1673,7 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

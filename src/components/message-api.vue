@@ -9,6 +9,7 @@
    
   export default defineComponent({
     setup() {
+      //@ts-ignore
       window.onmessage = useMessage();
     },
   });

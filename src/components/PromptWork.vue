@@ -1,8 +1,14 @@
 <template>
   <div class="PromptWork">
     <h2>工作区</h2>
-    <div class="input"> 
-      <textarea class="input" v-model="inputValue" placeholder="输入您的提示词" rows='6' spellcheck="false"></textarea>
+    <div class="input">
+      <textarea
+        class="input"
+        v-model="inputValue"
+        placeholder="输入您的提示词"
+        rows="6"
+        spellcheck="false"
+      ></textarea>
     </div>
     <div class="editor">
       <n-message-provider>
@@ -10,16 +16,16 @@
         <n-button class="btn" @click="inputValue = ''">清空</n-button>
       </n-message-provider>
     </div>
+
+    <!-- <h3>优化区</h3>
+    <div class="raw-prompt">
+      <input type="text" placeholder="输入您的提示词" spellcheck="false" />
+    </div> -->
   </div>
 </template>
 
-
 <script setup lang="ts">
-import { ref, computed, watch, defineEmits, h } from 'vue';
-
-
-
-//const message = useMessage()
+import { ref, computed, watch, defineEmits } from "vue";
 
 const props = defineProps({
   modelValue: String,
@@ -28,36 +34,39 @@ const props = defineProps({
 
 const inputTitle = computed({
   get: () => props.title,
-  set: (val) => emit('update:title', val)
+  set: (val) => emit("update:title", val),
 });
 
 const inputValue = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+  set: (val) => emit("update:modelValue", val),
 });
 
-const emit = defineEmits(['update:modelValue', 'update:title']);
+const emit = defineEmits(["update:modelValue", "update:title"]);
 
 watch(inputTitle, (newValue) => {
-  emit('update:title', newValue);
+  emit("update:title", newValue);
 });
 watch(inputValue, (newValue) => {
-  emit('update:modelValue', newValue);
+  emit("update:modelValue", newValue);
 });
 
 //methods
 const copyToClipboard = () => {
   // 检查inputValue是否定义且不为空或仅包含空白字符
   if (inputValue && inputValue.value && inputValue.value.trim()) {
-    navigator.clipboard.writeText(inputValue.value).then(() => {
-    //@ts-ignore
-    window.onmessage!.success("复制成功");
-      // 复制成功后的操作，如显示通知或更改按钮状态
-      console.log("复制成功！");
-    }).catch(err => {
-      // 处理复制失败的情况
-      console.error("复制失败: ", err);
-    });
+    navigator.clipboard
+      .writeText(inputValue.value)
+      .then(() => {
+        //@ts-ignore
+        window.onmessage!.success("复制成功");
+        // 复制成功后的操作，如显示通知或更改按钮状态
+        console.log("复制成功！");
+      })
+      .catch((err) => {
+        // 处理复制失败的情况
+        console.error("复制失败: ", err);
+      });
   }
 };
 </script>
@@ -69,15 +78,15 @@ const copyToClipboard = () => {
   align-items: center;
   justify-content: center;
   width: auto;
- }
- 
- .input {
+}
+
+.input {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
- }
- 
- .input textarea {
+}
+
+.input textarea {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc; /* 灰色边框 */
@@ -90,12 +99,21 @@ const copyToClipboard = () => {
   transition: border-color 0.3s, box-shadow 0.3s; /* 平滑的过渡效果 */
 }
 
+h2 {
+  letter-spacing: 2px;
+  font-family: "Helvetica Neue", sans-serif; /* Instagram uses a clean, sans-serif font */
+  font-size: 20px; /* A sizeable font for visibility */
+  text-align: center; /* Center align the title */
+  color: white; /* White color for the text */
+  background: -webkit-linear-gradient(left, #a8c0ff 0%, #3f2b96 100%); /* Cooler gradient with lighter start and darker end for contrast */
+  background: linear-gradient(to right, #a8c0ff 0%, #3f2b96 100%); /* Standard syntax for gradient */
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23); /* Slight shadow for depth */
+}
 
- h2 {
-  font-family: "JetBrains Mono";
- }
-
- .editor {
+.editor {
   display: flex; /* 使用flex布局 */
   justify-content: center; /* 水平居中 */
   gap: 10px; /* 按钮之间的间隙 */
@@ -110,4 +128,30 @@ const copyToClipboard = () => {
   cursor: pointer; /* 鼠标悬停时显示指针 */
   transition: background-color 0.3s, transform 0.3s; /* 平滑的过渡效果 */
 }
+
+/* Styling the container */
+.raw-prompt {
+  width: 300px;
+  text-align: center; /* Center the input field */
+  margin: 0px;
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23); /* Subtle shadow for depth */
+}
+
+/* Styling the input field */
+.raw-prompt input[type="text"] {
+  font-family: 'Helvetica Neue', sans-serif; /* Clean, sans-serif font */
+  font-size: 16px; /* Appropriate size for input text */
+  color: black; /* Black text color */
+  border: none; /* Remove default border */
+  outline: none; /* Remove focus outline */
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background for readability */
+  padding: 10px 15px; /* Padding inside the input field */
+  border-radius: 5px; /* Rounded corners */
+  width: 80%; /* Width relative to parent container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
 </style>

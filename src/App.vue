@@ -55,7 +55,7 @@ const handleNavigation = (button: string) => {
 // 创建过滤后的 cardItems 计算属性
 const filteredCardItems = computed(() => {
   if (!activeButton.value) {
-    return cardItems;
+    return;
   }
   return cardItems.filter(card => card.button === activeButton.value);
 });
@@ -74,7 +74,6 @@ const handleUpdateModelValue = (value: string) => {
 const handleUpdateTitle = (value: string) => {
   title.value = value;
 };
-
 </script>
 
 <style>
@@ -95,8 +94,9 @@ const handleUpdateTitle = (value: string) => {
 
 .card-container {
   width: 100%;
-  display: flex;
+  display: flex;  
   flex-wrap: wrap;
+
   /* 其他样式保持不变 */
 }
 
