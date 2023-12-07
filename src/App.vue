@@ -1,4 +1,5 @@
 <template>
+  <PHeader></PHeader>
   <div class="app">
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" @update:modelValue="handleUpdateModelValue" @update:title="handleUpdateTitle"></PromptWork>
@@ -6,7 +7,7 @@
     <div class="right-container">
       <Navigator @navigate="handleNavigation" :buttonLabels="categoryNames" />
       <div class="card-container">
-        <Card v-for="card in cardItems" :key="card.button" :text="card.text" v-show="activeButton === card.button"
+        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" v-show="activeButton === card.button"
           @click="addText(card.detail)">
         </Card>
       </div>
@@ -19,32 +20,43 @@ import { ref, computed, watch } from 'vue';
 import Card from './components/Card.vue';
 import Navigator from './components/Navigator.vue';
 import PromptWork from './components/PromptWork.vue';
-import { data } from './data/data'
+import PHeader from './components/PHeader.vue';
+import { data, background } from './data/data'
+
 
 const text = ref('');
 const title = ref('');
 const categoryNames = computed(() => data.categories!.map((category) => category.name));
 
 interface cardItemsType {
-  button: string | undefined;
-  text: string;
-  detail: string;
+  button: string;
+  text: string | undefined;
+  detail: string | undefined;
 }
-const cardItems: cardItemsType[] = [
-  { button: categoryNames.value[0], text: '我在哪', detail: '我在{文本}' },
-  { button: categoryNames.value[1], text: '自定义内容2', detail: '我在{文本}' },
-  // ... 更多内容
-];
-const activeButton = ref('');
 
+const cardItems: cardItemsType[] = background.data.map((item, index) => ({
+  button: item.type,
+  text: item.keyWord,
+  detail: item.detail
+}));
+
+const activeButton = ref('');
 
 // 方法
 const handleNavigation = (button: string) => {
   activeButton.value = button;
 };
 
+// 创建过滤后的 cardItems 计算属性
+const filteredCardItems = computed(() => {
+  if (!activeButton.value) {
+    return cardItems;
+  }
+  return cardItems.filter(card => card.button === activeButton.value);
+});
+
 //实现addText函数
-const addText = (cardText: string) => {
+const addText = (cardText?: string) => {
   text.value += cardText;
   console.log(text.value);
 };

@@ -1,11 +1,11 @@
 <template>
-  <div class="AddArea Area">
-    <div class="WorkInfoArea Area">
-        <div class="title">
-          <input type="text" v-model="inputTitle" placeholder=""/>
-        </div>
+  <div class="PromptWork">
+    <div class="title">
+      <input type="text" v-model="inputTitle" placeholder="" />
     </div>
-    <textarea class="input" v-model="inputValue" placeholder="" rows="8" spellcheck="false"></textarea>
+    <div class="input"> 
+      <textarea class="input" v-model="inputValue" placeholder="" rows='6' spellcheck="false"></textarea>
+    </div>
   </div>
 </template>
 
@@ -39,19 +39,42 @@ watch(inputValue, (newValue) => {
 </script>
 
 <style scoped>
-
-.title {
-  width: 100%;
+.PromptWork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+ }
+ 
+ .title {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
-}
-.input {
-  width: 100%;
-  height: 150px; /* 或者根据需要调整 */
-  padding: 10px;
+ }
+ 
+ .title input {
+  padding: 5px 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px; /* 调整为适合的字体大小 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  resize: vertical; /* 允许垂直调整大小 */
-}
+  border-radius: 5px;
+  outline: none;
+ }
+ 
+ .input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+ }
+ 
+ .input textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+  width: 100%;
+  height: 200px;
+ }
 </style>
