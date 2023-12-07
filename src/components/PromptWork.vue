@@ -1,25 +1,50 @@
 <template>
-  <textarea v-model="inputValue" class="text-area"></textarea>
+  <div class="AddArea Area">
+    <div class="WorkInfoArea Area">
+        <div class="title">
+          <input type="text" v-model="inputTitle" placeholder=""/>
+        </div>
+    </div>
+    <textarea class="input" v-model="inputValue" placeholder="" rows="8" spellcheck="false"></textarea>
+  </div>
 </template>
 
+
 <script setup lang="ts">
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, computed, watch, defineEmits } from 'vue';
 
 const props = defineProps({
   modelValue: String,
+  title: String,
 });
 
-const inputValue = ref(props.modelValue);
+const inputTitle = computed({
+  get: () => props.title,
+  set: (val) => emit('update:title', val)
+});
 
-const emit = defineEmits(['update:modelValue']);
+const inputValue = computed({
+  get: () => props.modelValue,
+  set: (val) => emit('update:modelValue', val)
+});
 
+const emit = defineEmits(['update:modelValue', 'update:title']);
+
+watch(inputTitle, (newValue) => {
+  emit('update:title', newValue);
+});
 watch(inputValue, (newValue) => {
   emit('update:modelValue', newValue);
 });
 </script>
 
-<style>
-.styled-textarea {
+<style scoped>
+
+.title {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.input {
   width: 100%;
   height: 150px; /* 或者根据需要调整 */
   padding: 10px;
