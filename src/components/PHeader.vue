@@ -4,7 +4,7 @@
   </n-page-header> -->
   <div class="IndexPage">
     <nav>
-        <a class="logo" href="https://massive-morocco-51b.notion.site/Prompt-Engineering-0035a4020f924fd1b6ea6ef263875df8?pvs=4"><b>PROMPTATE</b>/GitHub</a>
+        <a class="logo" href="https://gitee.com/ultrav/promptate"><b>PROMPTATE</b>/GitHub</a>
     </nav>
 </div>
   </template>

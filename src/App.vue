@@ -1,4 +1,7 @@
 <template>
+  <n-message-provider>
+    <MessageApi />
+  </n-message-provider>
   <PHeader></PHeader>
   <div class="app">
     <div class="left-container">
@@ -7,12 +10,13 @@
     <div class="right-container">
       <Navigator @navigate="handleNavigation" :buttonLabels="categoryNames" />
       <div class="card-container">
-        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" v-show="activeButton === card.button"
+        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail" v-show="activeButton === card.button"
           @click="addText(card.detail)">
         </Card>
       </div>
     </div>
   </div>
+  <PFooter></PFooter>
 </template>
 
 <script setup lang="ts">
@@ -22,7 +26,8 @@ import Navigator from './components/Navigator.vue';
 import PromptWork from './components/PromptWork.vue';
 import PHeader from './components/PHeader.vue';
 import { data, background } from './data/data'
-
+import PFooter from './components/PFooter.vue';
+import MessageApi from './components/message-api.vue';
 
 const text = ref('');
 const title = ref('');
@@ -89,6 +94,7 @@ const handleUpdateTitle = (value: string) => {
 }
 
 .card-container {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   /* 其他样式保持不变 */
