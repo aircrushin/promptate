@@ -12,7 +12,7 @@
     </div>
     <div class="editor">
       <n-message-provider>
-        <n-button class="btn" @click="copyToClipboard">复制</n-button>
+        <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
         <n-button class="btn" @click="inputValue = ''">清空</n-button>
       </n-message-provider>
     </div>
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, defineEmits } from "vue";
+import copyToClipboard from "../utils/copy"
 
 const props = defineProps({
   modelValue: String,
@@ -50,25 +51,6 @@ watch(inputTitle, (newValue) => {
 watch(inputValue, (newValue) => {
   emit("update:modelValue", newValue);
 });
-
-//methods
-const copyToClipboard = () => {
-  // 检查inputValue是否定义且不为空或仅包含空白字符
-  if (inputValue && inputValue.value && inputValue.value.trim()) {
-    navigator.clipboard
-      .writeText(inputValue.value)
-      .then(() => {
-        //@ts-ignore
-        window.onmessage!.success("复制成功");
-        // 复制成功后的操作，如显示通知或更改按钮状态
-        console.log("复制成功！");
-      })
-      .catch((err) => {
-        // 处理复制失败的情况
-        console.error("复制失败: ", err);
-      });
-  }
-};
 </script>
 
 <style scoped>

@@ -10,6 +10,8 @@
     <div class="right-container">
       <Navigator @navigate="handleNavigation" :buttonLabels="categoryNames" />
       <div class="card-container">
+        <!-- <PTransfer v-show="activeButton === myFav"></PTransfer> -->
+        <Action v-if="activeButton === '行动任务'"></Action> <!-- 添加这一行 -->
         <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail" v-show="activeButton === card.button"
           @click="addText(card.detail)">
         </Card>
@@ -27,22 +29,27 @@ import PromptWork from './components/PromptWork.vue';
 import PHeader from './components/PHeader.vue';
 import { data, background } from './data/data'
 import PFooter from './components/PFooter.vue';
+import  PTransfer  from './components/PTransfer.vue';
+import Action from './components/Action.vue';
 import MessageApi from './components/message-api.vue';
 
 const text = ref('');
 const title = ref('');
+const myFav:string = "收藏"
 const categoryNames = computed(() => data.categories!.map((category) => category.name));
 
 interface cardItemsType {
   button: string;
   text: string | undefined;
   detail: string | undefined;
+  color: string | undefined;
 }
 
 const cardItems: cardItemsType[] = background.data.map((item, index) => ({
   button: item.type,
   text: item.keyWord,
-  detail: item.detail
+  detail: item.detail,
+  color: item.color
 }));
 
 const activeButton = ref('');
@@ -88,7 +95,7 @@ const handleUpdateTitle = (value: string) => {
 }
 
 .right-container {
-  width: 30%;
+  width: 40%;
   /* 或根据需要调整 */
 }
 

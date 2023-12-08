@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false">
+  <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false" :style="{ backgroundColor: color }">
     {{ text }}
     <div v-if="showDetail" class="detail">
       {{ detail }}
@@ -15,6 +15,7 @@ import { defineProps, defineEmits } from 'vue';
 const props = defineProps({
   text: String,
   detail: String,
+  color: String
 });
 
 // 定义可以发出的事件
@@ -47,6 +48,7 @@ const showDetail = ref(false);
 .card:hover {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* 悬停时增加阴影 */
   transform: translateY(-5px); /* 轻微向上移动 */
+  background-color: aliceblue;
 }
 
 .detail {

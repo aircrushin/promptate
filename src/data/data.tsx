@@ -41,6 +41,38 @@ export const background: backgroundType = {
       varNum: 1,
     },
     {
+      keyWord: "我的爱好",
+      type: "背景",
+      detail: "我的爱好包括{文本}",
+      useTime: 22,
+      color: "yellow",
+      varNum: 1
+    },
+    {
+      keyWord: "工作经历",
+      type: "背景",
+      detail: "我在{文本}公司工作，担任{文本}职位",
+      useTime: 22,
+      color: "yellow",
+      varNum: 2
+    },
+    {
+      keyWord: "我擅长的语言",
+      type: "背景",
+      detail: "我可以流利地说{文本}语言",
+      useTime: 22,
+      color: "yellow",
+      varNum: 1
+    },
+    {
+      keyWord: "旅行经历",
+      type: "背景",
+      detail: "我曾经去过{文本}旅行",
+      useTime: 22,
+      color: "yellow",
+      varNum: 1
+    },    
+    {
       keyWord: "精通",
       detail: "把你想象成一个精通{文本}的专家",
       useTime: 32,
@@ -137,265 +169,258 @@ export const background: backgroundType = {
       color: "green",
       type: "角色设定"
     },
+
     {
-      keyWord: "行动任务",
-      detail: "{文本}",
-      useTime: 33,
-      color: "cyan",
+      keyWord: "100字以下",
+      detail: "请你把输出字数限制在100字以下",
+      useTime: 24,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "300字以下",
+      detail: "请你把输出字数限制在300字以下",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "500字以下",
+      detail: "请你把输出字数限制在500字以下",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "格式模仿",
+      detail: "请你模仿我给出的例子来输出正确的恢复。例子1:{文本}例子2:{文本}",
+      useTime: 22,
+      color: "blue",
+      varNum: 2,
+      type: "输出要求"
+    },
+    {
+      keyWord: "小样本提示",
+      detail: "参考以下格式，但不要照抄。例子1:{文本}例子2:{文本}。",
+      useTime: 22,
+      color: "blue",
+      varNum: 2,
+      type: "输出要求"
+    },
+    {
+      keyWord: "点状",
+      detail: "请以bullet points的格式输出",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "Markdown语法",
+      detail: "Always use Markdown with nice formatting to make it easier to follow.",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "LaTeX格式",
+      detail: "Please output as latex format.",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "Json格式",
+      detail: "请你以json格式输出",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "比喻",
+      detail: "你一切的回答都要用比喻的方式来回答",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "输出独特性",
+      detail: "Please output it more imaginative, engaging, and unique.",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "10岁小朋友能听懂",
+      detail: "将输出用10岁小朋友也能听懂的话输出出来",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "简单易懂",
+      detail: "你会将输出调整为易于小学、初中文化程度的人理解的形式。如有需要，你会向我了解更多细节，以便我们共同创造出符合需求的完美输出文案。",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "润色输出",
+      detail: "请润色并改进输出，确保语言流畅，观点表达清晰，整体质量得到提升。",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "输出成故事",
+      detail: "Please transform output into compelling stories",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "提升输出吸引力",
+      detail: "Add emotional language and sensory details to make output more relatable and engaging.",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "强调急迫感",
+      detail: "Add a sense of urgency and emphasizing the need for immediate action.",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "简洁",
+      detail: "Remove unnecessary information and making output more concise and to-the-point.",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
+    },
+    {
+      keyWord: "第一人称",
+      detail: "请使用第一人称，并尽可能地使用{文本}的语言和口吻。",
+      useTime: 22,
+      color: "blue",
       varNum: 1,
-      type: "行动任务"
+      type: "输出要求"
     },
     {
-      "keyWord": "100字以下",
-      "detail": "请你把输出字数限制在100字以下",
-      "useTime": 24,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "语法检查",
+      detail: "Could you point out how you improve my answer on grammar, cohesion, coherence and vocabulary, and explain the main problems of this sentence, and suggest improvements?",
+      useTime: 22,
+      color: "blue",
+      type: "输出要求"
     },
     {
-      "keyWord": "300字以下",
-      "detail": "请你把输出字数限制在300字以下",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "_个例子",
+      detail: "请你给我{文本}个不同的例子",
+      useTime: 22,
+      color: "blue",
+      varNum: 1,
+      type: "输出要求"
     },
     {
-      "keyWord": "500字以下",
-      "detail": "请你把输出字数限制在500字以下",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "_个答案",
+      detail: "请你给我{文本}个不同的答案",
+      useTime: 22,
+      color: "blue",
+      varNum: 1,
+      type: "输出要求"
     },
     {
-      "keyWord": "格式模仿",
-      "detail": "请你模仿我给出的例子来输出正确的恢复。例子1:{文本}例子2:{文本}",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 2,
-      "type": "输出要求"
+      keyWord: "_个现实案例",
+      detail: "请你给我{文本}个不同的现实案例",
+      useTime: 22,
+      color: "blue",
+      varNum: 1,
+      type: "输出要求"
     },
     {
-      "keyWord": "小样本提示",
-      "detail": "参考以下格式，但不要照抄。例子1:{文本}例子2:{文本}。",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 2,
-      "type": "输出要求"
+      keyWord: "_个解决方案",
+      detail: "要求给出一个问题的{文本}个解决方案，最后综合考虑几个方案，得出最终的答案",
+      useTime: 22,
+      color: "blue",
+      varNum: 1,
+      type: "输出要求"
     },
     {
-      "keyWord": "点状",
-      "detail": "请以bullet points的格式输出",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "采访",
+      detail: "不要一次写出所有的问题。我希望你只对我进行采访。问我问题，等待我的回答。不要写解释。",
+      useTime: 77,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "Markdown语法",
-      "detail": "Always use Markdown with nice formatting to make it easier to follow.",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "对话",
+      detail: "我会输入我的回答与你交流，不要一次性问所有问题，你问一个问题，我回答一个，你再问下一个。",
+      useTime: 342,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "LaTeX格式",
-      "detail": "Please output as latex format.",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "思维链",
+      detail: "Let's work this out in a step by step way to be sure we have the right answer.",
+      useTime: 2289,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "Json格式",
-      "detail": "请你以json格式输出",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "忽略无关信息",
+      detail: "feel free to ignore irrelevant information",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "比喻",
-      "detail": "你一切的回答都要用比喻的方式来回答",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "没有偏见",
+      detail: "Please ensure that your answer is unbiased and does not rely on stereotyping.",
+      useTime: 252,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "输出独特性",
-      "detail": "Please output it more imaginative, engaging, and unique.",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "包含现实世界案例",
+      detail: "Include case studies or real-world examples to make concepts more relatable.",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "10岁小朋友能听懂",
-      "detail": "将输出用10岁小朋友也能听懂的话输出出来",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "引导GPT提问",
+      detail: "如果我输入的信息不够充分，你无法做出判断，你可以向我继续提问。请注意，你只需要输出基于我问题的建议，不需要输出其他无关内容",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "简单易懂",
-      "detail": "你会将输出调整为易于小学、初中文化程度的人理解的形式。如有需要，你会向我了解更多细节，以便我们共同创造出符合需求的完美输出文案。",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "翻译成英文再去回答",
+      detail: "此外，即使我向你提出的问题是中文，我也希望你将其翻译为英文再去寻找答案，最终再将答案翻译为中文回答。",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "润色输出",
-      "detail": "请润色并改进输出，确保语言流畅，观点表达清晰，整体质量得到提升。",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "OK确认",
+      detail: "如果你理解了，回复“OK”以确认，我会给我的要求",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "输出成故事",
-      "detail": "Please transform output into compelling stories",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
+      keyWord: "我知道了",
+      detail: "如果你听懂了请回复：我知道了。我将给你发送第一段内容。",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     },
     {
-      "keyWord": "提升输出吸引力",
-      "detail": "Add emotional language and sensory details to make output more relatable and engaging.",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "强调急迫感",
-      "detail": "Add a sense of urgency and emphasizing the need for immediate action.",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "简洁",
-      "detail": "Remove unnecessary information and making output more concise and to-the-point.",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "第一人称",
-      "detail": "请使用第一人称，并尽可能地使用{文本}的语言和口吻。",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 1,
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "语法检查",
-      "detail": "Could you point out how you improve my answer on grammar, cohesion, coherence and vocabulary, and explain the main problems of this sentence, and suggest improvements?",
-      "useTime": 22,
-      "color": "blue",
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "_个例子",
-      "detail": "请你给我{文本}个不同的例子",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 1,
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "_个答案",
-      "detail": "请你给我{文本}个不同的答案",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 1,
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "_个现实案例",
-      "detail": "请你给我{文本}个不同的现实案例",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 1,
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "_个解决方案",
-      "detail": "要求给出一个问题的{文本}个解决方案，最后综合考虑几个方案，得出最终的答案",
-      "useTime": 22,
-      "color": "blue",
-      "varNum": 1,
-      "type": "输出要求"
-    },
-    {
-      "keyWord": "采访",
-      "detail": "不要一次写出所有的问题。我希望你只对我进行采访。问我问题，等待我的回答。不要写解释。",
-      "useTime": 77,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "对话",
-      "detail": "我会输入我的回答与你交流，不要一次性问所有问题，你问一个问题，我回答一个，你再问下一个。",
-      "useTime": 342,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "思维链",
-      "detail": "Let's work this out in a step by step way to be sure we have the right answer.",
-      "useTime": 2289,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "忽略无关信息",
-      "detail": "feel free to ignore irrelevant information",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "没有偏见",
-      "detail": "Please ensure that your answer is unbiased and does not rely on stereotyping.",
-      "useTime": 252,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "包含现实世界案例",
-      "detail": "Include case studies or real-world examples to make concepts more relatable.",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "引导GPT提问",
-      "detail": "如果我输入的信息不够充分，你无法做出判断，你可以向我继续提问。请注意，你只需要输出基于我问题的建议，不需要输出其他无关内容",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "翻译成英文再去回答",
-      "detail": "此外，即使我向你提出的问题是中文，我也希望你将其翻译为英文再去寻找答案，最终再将答案翻译为中文回答。",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "OK确认",
-      "detail": "如果你理解了，回复“OK”以确认，我会给我的要求",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "我知道了",
-      "detail": "如果你听懂了请回复：我知道了。我将给你发送第一段内容。",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
-    },
-    {
-      "keyWord": "类比/比喻解释复杂问题",
-      "detail": "Explain complex ideas using analogies or comparisons.",
-      "useTime": 22,
-      "color": "purple",
-      "type": "其他要求"
+      keyWord: "类比/比喻解释复杂问题",
+      detail: "Explain complex ideas using analogies or comparisons.",
+      useTime: 22,
+      color: "purple",
+      type: "其他要求"
     }
   ]
 
