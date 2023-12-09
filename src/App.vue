@@ -18,6 +18,7 @@
       </div>
     </div>
   </div>
+  <Prompt></Prompt>
   <PFooter></PFooter>
 </template>
 
@@ -32,6 +33,7 @@ import PFooter from './components/PFooter.vue';
 import  PTransfer  from './components/PTransfer.vue';
 import Action from './components/Action.vue';
 import MessageApi from './components/message-api.vue';
+import Prompt from './components/Prompt.vue'
 
 const text = ref('');
 const title = ref('');
