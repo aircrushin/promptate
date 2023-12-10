@@ -6,6 +6,7 @@
   <div class="app">
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" @update:modelValue="handleUpdateModelValue" @update:title="handleUpdateTitle"></PromptWork>
+      <Prompt></Prompt>
     </div>
     <div class="right-container">
       <Navigator @navigate="handleNavigation" :buttonLabels="categoryNames" />
@@ -18,7 +19,6 @@
       </div>
     </div>
   </div>
-  <Prompt></Prompt>
   <PFooter></PFooter>
 </template>
 
@@ -30,7 +30,6 @@ import PromptWork from './components/PromptWork.vue';
 import PHeader from './components/PHeader.vue';
 import { data, background } from './data/data'
 import PFooter from './components/PFooter.vue';
-import  PTransfer  from './components/PTransfer.vue';
 import Action from './components/Action.vue';
 import MessageApi from './components/message-api.vue';
 import Prompt from './components/Prompt.vue'
