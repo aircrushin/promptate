@@ -39,7 +39,6 @@ import Dropdown from './components/Dropdown.vue';
 const text = ref('');
 const title = ref('');
 const selectedKey = ref('');
-const myFav:string = "收藏"
 const chatGPTNames = computed(() => data.categories!.map((category) => category.name));
 const mIdJourneyNames = computed(() => data.midCategories!.map((category) => category.name));
 
@@ -74,7 +73,13 @@ const filteredCardItems = computed(() => {
 
 //实现addText函数
 const addText = (cardText?: string) => {
-  text.value += cardText;
+  if (selectedKey.value === 'ChatGPT') {
+    text.value += cardText;
+  } else if (selectedKey.value === 'MidJourney') {
+    text.value += cardText + ', ';
+  } else {
+    text.value += cardText;
+  }
   console.log(text.value);
 };
 
@@ -117,20 +122,16 @@ const navigatorLabels = computed(() => {
 
 .left-container {
   width: 20%;
-  /* 或根据需要调整 */
 }
 
 .right-container {
   width: 30%;
-  /* 或根据需要调整 */
 }
 
 .card-container {
   width: 100%;
   display: flex;  
   flex-wrap: wrap;
-
-  /* 其他样式保持不变 */
 }
 
 .text {
