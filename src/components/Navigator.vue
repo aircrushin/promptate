@@ -11,7 +11,8 @@ import { defineProps, defineEmits } from "vue";
 
 // 定义接收外部传入的按钮文本数组的 props
 const props = defineProps({
-  buttonLabels: Array
+  buttonLabels: Array,
+  selectedKey: String // 新增接收 selectedKey 的 prop
 });
 
 const emit = defineEmits(["navigate"]);

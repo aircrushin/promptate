@@ -35,7 +35,7 @@ const emit = defineEmits(["update:modelValue", "update:title"]);
 }
 
 .input, .editor {
-    width: 100%; /* 宽度设置为100% */
+    width: 80%; /* 宽度设置为100% */
     max-width: 600px; /* 最大宽度限制 */
     display: flex;
     justify-content: center; /* 水平居中对齐 */
@@ -66,7 +66,7 @@ const emit = defineEmits(["update:modelValue", "update:title"]);
     display: flex;
     margin-left: 20px;
     justify-content: center;
-    padding: 10px 20px;
+    padding: 10px 10px;
     /* 按钮内边距 */
     border: none;
     /* 移除边框 */

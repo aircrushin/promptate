@@ -3,6 +3,10 @@ export type DataType = {
     name?: string;
     color?: string;
   }[];
+  midCategories?: {
+    name?: string;
+    color?: string;
+  }[];
   tables?: {
     category?: string;
     minorCategories?: {

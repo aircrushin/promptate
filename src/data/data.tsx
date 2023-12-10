@@ -489,17 +489,102 @@ export const background: backgroundType = {
       color: "purple",
       type: "其他要求",
     },
+    //image data
+    {
+      keyWord: "超高清",
+      type: "质量",
+      detail: "UHD,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "解刨学正确",
+      type: "质量",
+      detail: "anatomically correct,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "准确",
+      type: "质量",
+      detail: "accurate,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "质感皮肤",
+      type: "质量",
+      detail: "textured skin,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "非常详细",
+      type: "质量",
+      detail: "super detail,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "高细节",
+      type: "质量",
+      detail: "high details,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "屡获殊荣",
+      type: "质量",
+      detail: "award winning,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "最佳质量",
+      type: "质量",
+      detail: "best quality,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "高质量",
+      type: "质量",
+      detail: "high quality,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "视网膜屏",
+      type: "质量",
+      detail: "retina,",
+      useTime: 22,
+      color: "yellow",
+    },
+    {
+      keyWord: "1080P",
+      type: "质量",
+      detail: "1080P,",
+      useTime: 22,
+      color: "yellow",
+    },
   ],
 };
 
 export const data: DataType = {
   categories: [
-    { name: "收藏", color: "pink" },
     { name: "背景", color: "yellow" },
     { name: "角色设定", color: "green" },
     { name: "行动任务", color: "cyan" },
     { name: "输出要求", color: "blue" },
     { name: "其他要求", color: "purple" },
+  ],
+  midCategories: [
+    { name: "质量", color: "yellow" },
+    { name: "绘画", color: "green" },
+    { name: "画面效果", color: "cyan" },
+    { name: "容貌", color: "blue" },
+    { name: "构图", color: "purple" },
+    { name: "命令", color: "pink" },
   ],
   tables: [
     {
