@@ -2,30 +2,35 @@
   <div>
     <input v-model="prompt" placeholder="Enter your prompt" />
     <button @click="generateText">Generate</button>
-    <p>BetterPrompt: {{ responseText }}</p>
+    <p>{{ responseText }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import axios from "axios";
-import { chat } from "../api/model";
+import { generatePrompt,hello } from "../api"
+
 const prompt = ref("");
 const responseText = ref("");
-const messages = [{ role: "system", content: "You are a helpful assistant." }]
 
-const generateText = async () => {
-  try {
-    console.log("start");
-    const response = await chat(messages);
-    console.log(response.json());
-    responseText.value = response as unknown as string;
-    //const data = await response.json();
-    console.log(response.json());
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
+function testApi() {
+  hello().then(({
+    data
+  }) => {
+    console.log(data.response);
+  })
+}
+
+function generateText() {
+  generatePrompt(prompt.value).then(({
+    data
+  }) => {
+    console.log(data.response);
+    responseText.value = data.response;
+  }).catch((err) =>{
+    console.log(err);
+  })
+}
 </script>
 
 <style scoped>
