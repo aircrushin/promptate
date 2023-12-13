@@ -7,6 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" @update:modelValue="handleUpdateModelValue" @update:title="handleUpdateTitle"></PromptWork>
       <Prompt></Prompt>
+      <Help></Help>
     </div>
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
@@ -35,6 +36,7 @@ import Action from './components/Action.vue';
 import MessageApi from './components/message-api.vue';
 import Prompt from './components/Prompt.vue'
 import Dropdown from './components/Dropdown.vue';
+import Help from './components/Help.vue';
 
 const text = ref('');
 const title = ref('');
