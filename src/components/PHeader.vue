@@ -8,14 +8,29 @@
         ><b>PROMPTATE</b>/FYH</a
       >
       <n-breadcrumb class="doc">
-        <n-breadcrumb-item href="https://gitee.com/ultrav/promptate">文档</n-breadcrumb-item>
         <n-breadcrumb-item href="https://gitee.com/ultrav/promptate">GitHub</n-breadcrumb-item>
+        <n-breadcrumb-item @click="goToGenerator">Generate</n-breadcrumb-item>
       </n-breadcrumb>
     </nav>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+const back = ref(false)
+
+const router = useRouter()
+
+function goToGenerator() {
+  router.push('/generator') 
+} 
+
+function handleBack() {
+  router.push('/')
+}
+
+</script>
 
 <style scoped lang="scss">
 .IndexPage {

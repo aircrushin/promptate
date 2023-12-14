@@ -80,4 +80,5 @@ const emit = defineEmits(["update:modelValue", "update:title"]);
     /* 鼠标悬停时显示指针 */
     transition: background-color 0.3s, transform 0.3s;
     /* 平滑的过渡效果 */
-}</style>
+}
+</style>
