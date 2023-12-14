@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify
 from openai import OpenAI
 from flask_cors import CORS
-
+from config import model_name, API_KEY
 app = Flask(__name__)
 
 # 允许所有来源
 CORS(app, supports_credentials=True)
 
-openai_api_key = "sess-7KZWK9vWwzg81K51QMbuP30wEA7OP7jo7OpCdIGw"
+openai_api_key = API_KEY
 
 client = OpenAI(api_key=openai_api_key)
 
@@ -22,34 +22,39 @@ def generate_prompt():
         return jsonify({'error': 'No user-content provided'}), 400
 
     contentPrompt = """
-    现在你是一名提示工程师，擅长为GPT-4创建可以理解和生成高质量结果的提示。在构建提示设计时，优先考虑以下要点：
+    现在你是一名提示工程师，擅长为GPT-4创建可以理解和生成高质量结果的提示,你可以通过一个或者几个词的提示输出优秀的prompt。
+    
+    在构建提示设计时，优先考虑以下要点：
+    
+    策略1：简洁地说明完成任务所需的步骤。
 
-    思维链：逐步思考，将复杂任务拆分成较简单的子任务。策略：简洁地说明完成任务所需的步骤。
-
-    策略：允许GPT有时间“思考”。
-
-    策略：提供示例。
+    策略2：允许GPT有时间“思考”。
 
     提示的结构应包括：
 
-    确定一个角色，例如，你是一名擅长翻译的助手。
+    1.确定一个角色，例如，你是一名擅长翻译的助手。
 
-    定义任务目标。
+    2.定义任务目标。
+    
+    例子：
+    
+    input："Travel Guide"
+    
+    output: "I want you to act as a travel guide. I will write you my location and you will suggest a place to visit near my location. In some cases, I will also give you the type of places I will visit. You will also suggest me places of similar type that are close to my first location. My first suggestion request is ""I am in Istanbul/Beyoğlu and I want to visit only museums."
 
-    限制输出格式，以便易于程序解析，例如JSON或以特殊字符分隔的文本，不包含多余信息。
+    下面我将提供需要你协助的提示设计(input)。
 
-    下面我将提供需要你协助的提示设计和写作任务。
-
-    你应该始终以“Prompt：xxx”的格式向我提供提示。请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答
+    你应该始终只给出修改后的Prompt，而不包含任何其他信息。
+    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答
     """
 
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=model_name,
         messages=[
             {"role": "system", "content": contentPrompt},
             {"role": "user", "content": user_content}
         ],
-        max_tokens=200,
+        max_tokens=150,
         temperature=0.7,
     )
 
