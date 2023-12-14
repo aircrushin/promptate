@@ -1,31 +1,46 @@
 <template>
   <div class="action">
     <div class="action-container">
+      <!-- title space -->
       <div class="title">
-        <h3>Prompt生成器</h3>
-        <!-- <Help class="help"></Help> -->
+        <h2>👨🏻‍🎤 ChatGPT Prompt Generator 👨🏻‍🎤</h2>
+        <p>
+          This app generates ChatGPT prompts, it’s based on a BART model trained
+          on this dataset. 📓 Simply enter a persona that you want the prompt to
+          be generated based on. 🧙🏻🧑🏻‍🚀🧑🏻‍🎨🧑🏻‍🔬🧑🏻‍💻🧑🏼‍🏫
+        </p>
       </div>
-      <input v-model="prompt" placeholder="Enter your action" />
-      <div class="editor">
-          <n-button class="btn" @click="prompt = ''">清空</n-button>
-          <n-button class="btn" @click="generateText">生成</n-button>
+      <!-- input space -->
+      <div class="main-space">
+        <div class="input-container">
+          <p style="float: left">Input a persona, e.g. photographer</p>
+          <input v-model="prompt" placeholder="Enter your action" />
+          <div class="editor">
+            <n-button class="btn" @click="prompt = ''">清空</n-button>
+            <n-button class="btn" @click="generateText">生成</n-button>
+          </div>
+        </div>
+        <div class="output-container">
+          <p>Prompt:</p>
+          <textarea disabled="true">{{ responseText }}</textarea>
+        </div>
       </div>
-      <textarea placeholder="" spellcheck="false" disabled="true"
-        >{{ responseText }}
-    </textarea>
-    <div class="editor">
-      <n-message-provider>
-      </n-message-provider>
+      <!-- <div class="editor">
+        <n-message-provider> 
+
+        </n-message-provider>
+      </div> -->
     </div>
-    </div>
+  </div>
+  <div class="example-container">
+    <Example />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { generatePrompt, hello } from "../api";
-import Help from "./Help.vue";
-import copyToClipboard from "../utils/copy"
+import Example from "./Example.vue";
 
 const prompt = ref("");
 const responseText = ref("");
@@ -63,34 +78,57 @@ function generateText() {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  border: 1px solid #ccc; /* 灰色边框 */
-  border-radius: 5px; /* 圆角边框 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
   transition: border-color 0.3s, box-shadow 0.3s; /* 平滑的过渡效果 */
-  width: 100%;
+  width: 90%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
+.main-space {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.input-container {
+  border: 2px solid #eee;
+  padding: 20px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.output-container {
+  position: relative;
+  border: 2px solid #eee;
+  padding: 20px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.output-container p:first-child {
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
 .title {
   display: inline;
 }
 
 h2 {
   margin-bottom: 10px;
-}
-
-.help {
-  text-align: center;
-  justify-content: center;
+  font-size: 32px;
 }
 
 input {
-  margin-left: 10px;
-  padding: 6px;
-  border: 2px solid #ddd;
+  padding: 10px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  width: 100%;
-  margin-right: 10px;
+  width: 80%;
 }
 
 .editor {
@@ -111,14 +149,20 @@ input {
 }
 
 textarea {
-  margin-top: 10px;
+  position: relative;
+  margin-top: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px; /* 圆角边框 */
-  outline: none; /* 去除默认轮廓 */
-  resize: none; /* 禁止调整大小 */
+  border-radius: 4px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
-  transition: border-color 0.3s, box-shadow 0.3s; /* 平滑的过渡效果 */
+  height: 100%;
   overflow: scroll;
+}
+
+.example-container {
+  margin-top: 10px;
+  width: 90%;
+  display: flex;  
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 </style>
