@@ -7,14 +7,14 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-      <Step v-show="isGPT" @update:step="updateStep"></Step>
+      <Step v-if="isGPT" @update:step="updateStep"></Step>
     </div>
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
+      <!-- <Tabs></Tabs> -->
       <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels" />
       <div class="card-container">
-        <!-- <PTransfer v-show="activeButton === myFav"></PTransfer> -->
-        <Action v-if="activeButton === '行动任务'"></Action> <!-- 添加这一行 -->
+        <Action v-if="activeButton === '行动任务'"></Action>
         <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail"
           v-show="activeButton === card.button" @click="addText(card.detail)">
         </Card>
@@ -36,6 +36,7 @@ import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
 import Step from '../components/Step.vue';
 import Dropdown from '../components/Dropdown.vue';
+import Tabs from '../components/Tabs.vue';
 
 const text = ref('');
 const title = ref('');
@@ -104,7 +105,6 @@ const updateKey = (key: string) => {
     isGPT.value = false;
     activeButton.value = "质量"
   }
-  console.log(selectedKey.value);
 }
 
 const updateStep = (step: number) => {

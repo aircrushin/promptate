@@ -3,7 +3,7 @@
   </template>
    
   <script lang="ts">
-  import { defineComponent, getCurrentInstance } from "vue";
+  import { defineComponent } from "vue";
   //@ts-ignore
   import { useMessage } from "naive-ui";
    

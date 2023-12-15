@@ -18,9 +18,11 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-const back = ref(false)
+import { darkTheme } from "naive-ui"
 
-const router = useRouter()
+const theme = ref(null); //主题变量
+const themebtntit = ref("暗色主题"); //主体按钮title
+const router = useRouter();
 
 function goToGenerator() {
   router.push('/generator') 

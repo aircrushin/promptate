@@ -1,7 +1,7 @@
 <template>
   <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false" :style="{ backgroundColor: color }">
     {{ text }}
-    <div v-if="showDetail" class="detail">
+    <div v-if="showDetail && props.detail !== undefined" class="detail">
       {{ detail }}
     </div>
   </div>

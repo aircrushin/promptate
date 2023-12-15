@@ -22,28 +22,32 @@
         </div>
         <div class="output-container">
           <p>Prompt:</p>
-          <textarea disabled="true">{{ responseText }}</textarea>
+          <textarea disabled="true" v-if="!show">{{ responseText }}</textarea>
+          <n-spin v-if="show" :delay="1000" style="margin-top: 50px;">
+            <span/>
+          </n-spin>
         </div>
       </div>
-      <!-- <div class="editor">
-        <n-message-provider> 
-
-        </n-message-provider>
-      </div> -->
     </div>
   </div>
   <div class="example-container">
-    <Example />
+    <div class="main">
+      <span>Example:</span>
+      <Card v-for="card in exampleCards" :text="card.text" @click="addText(card.text)" :detail="undefined"
+          class="card-container">
+      </Card>
+  </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { generatePrompt, hello } from "../api";
-import Example from "./Example.vue";
+import Card from './Card.vue';
 
 const prompt = ref("");
 const responseText = ref("");
+const show = ref(false);
 //this is just a test to see if the api works
 function testApi() {
   hello().then(({ data }) => {
@@ -52,14 +56,36 @@ function testApi() {
 }
 
 function generateText() {
-  generatePrompt(prompt.value)
-    .then(({ data }) => {
+  show.value = true;
+  generatePrompt(prompt.value).then(
+    ({ data }) => {
       console.log(data.response);
+      show.value = false;
       responseText.value = data.response;
     })
     .catch((err) => {
+      show.value = true;
       console.log(err);
     });
+}
+
+const exampleCards = [
+    {
+    button: '1',
+    text: 'Novelist',
+    }, 
+    {
+    button: '2',
+    text: 'Travel Guide',
+    },
+    {
+    button: '3',
+    text: 'Linux',
+    }
+]
+
+const addText = (text: string) => {
+   prompt.value = text;
 }
 </script>
 
@@ -156,6 +182,7 @@ textarea {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  font-family: 'Roboto', sans-serif; /* or font-family: 'Open Sans', sans-serif; */
 }
 
 .example-container {
@@ -164,5 +191,21 @@ textarea {
   display: flex;  
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.main {
+  display: inline;
+  margin-top: 20px;
+}
+
+span {
+  margin-left: 70px;
+  color: #888;
+}
+
+.card-container {
+  display: inline;
+  width: 60px;
+  height: 20px;
 }
 </style>

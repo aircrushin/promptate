@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref,watch,computed } from 'vue'
+import { ref, watch } from 'vue'
 import { MdArrowRoundBack, MdArrowRoundForward } from '@vicons/ionicons4'
 import { StepsProps } from 'naive-ui'
 
