@@ -3,7 +3,7 @@
     <div class="action-container">
       <!-- title space -->
       <div class="title">
-        <h2>👨🏻‍🎤 ChatGPT Prompt Generator 👨🏻‍🎤</h2>
+        <h2>👨🏻‍🎤 ChatGPT Prompt 生成器 👨🏻‍🎤</h2>
         <p>
           This app generates ChatGPT prompts, it’s based on a BART model trained
           on this dataset. 📓 Simply enter a persona that you want the prompt to
@@ -13,8 +13,8 @@
       <!-- input space -->
       <div class="main-space">
         <div class="input-container">
-          <p style="float: left">Input a persona, e.g. photographer</p>
-          <input v-model="prompt" placeholder="Enter your action" />
+          <p style="float: left">输入一个角色, 例如：photographer</p>
+          <input v-model="prompt" placeholder="Enter..." />
           <div class="editor">
             <n-button class="btn" @click="prompt = ''">清空</n-button>
             <n-button class="btn" @click="generateText">生成</n-button>

@@ -63,7 +63,7 @@ watch(currentRef, (newRef) => {
 
 <style scoped>
 .container {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .arrow {
