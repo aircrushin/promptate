@@ -1,5 +1,10 @@
 
 <template>
+    <div class="IndexPage">
+        <nav>
+            <a class="logo" href="https://gitee.com/ultrav/promptate"><b>PROMPTATE</b>/FYH</a>
+        </nav>
+    </div>
     <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive class="menu" />
 </template>
 
@@ -90,14 +95,36 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.IndexPage {
+    > nav {
+      margin-right: auto;
+      font-size: 14px;
+      place-items: center;
+      padding-top: 11px;
+      padding-bottom: 20px;
+      padding-left: 23px;
+      padding-right: 14px;
+      .logo {
+        font-family: "JetBrains Mono";
+        color: #9f9f9f;
+        text-shadow: 0 1px 1px #ffffff;
+        place-items: center;
+        font-weight: 200;
+        place-content: flex-end;
+        text-decoration: none;
+      }
+    }
+}
 .menu {
+    cursor: pointer;
+    float: right;
     width: 100%;
 }
 
 .menu:hover {
-    transition: all 0.5s ease-out;
+    transition: all 0.1s ease-out;
     transform: scale(1.01);
     box-shadow: 0 1px 2px white
-  }
+}
 </style>

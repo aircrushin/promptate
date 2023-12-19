@@ -186,7 +186,7 @@ textarea {
 }
 
 .example-container {
-  margin-top: 10px;
+  margin-top: 5vh;
   width: 90%;
   display: flex;  
   flex-direction: row;

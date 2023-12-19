@@ -9,7 +9,7 @@
       >
       <n-breadcrumb class="doc">
         <n-breadcrumb-item href="https://gitee.com/ultrav/promptate">GitHub</n-breadcrumb-item>
-        <n-breadcrumb-item @click="goToGenerator">Generate</n-breadcrumb-item>
+        <n-breadcrumb-item @click="goToGenerator">生成器</n-breadcrumb-item>
       </n-breadcrumb>
     </nav>
   </div>

@@ -29,14 +29,15 @@ import { ref, computed } from 'vue';
 import Card from '../components/Card.vue';
 import Navigator from '../components/Navigator.vue';
 import PromptWork from '../components/PromptWork.vue';
-import PHeader from '../components/PHeader.vue';
 import { data, background } from '../data/data'
 import PFooter from '../components/PFooter.vue';
 import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
 import Step from '../components/Step.vue';
 import Dropdown from '../components/Dropdown.vue';
-import Tabs from '../components/Tabs.vue';
+import PHeader from '../components/PHeader.vue';
+import Menu from '../components/Menu.vue';
+
 
 const text = ref('');
 const title = ref('');
