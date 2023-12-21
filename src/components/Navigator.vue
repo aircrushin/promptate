@@ -1,5 +1,7 @@
 <template>
   <div class="navigator">
+    <li class="slide1"></li>
+    <li class="slide2"></li>
     <n-button v-for="buttonText in buttonLabels" :key="buttonText" @click="navigate(buttonText)" class="btn">
       {{ buttonText }}
     </n-button>
@@ -25,27 +27,55 @@ const navigate = (button: any) => {
 <style scoped>
 .navigator {
   margin-top: 20px;
-  margin-bottom: 20px;
-  display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
+  position: relative;
+  border: none;
+  display: flex;
+  list-style: none;
+  margin-bottom: 20px;
 }
 
 .btn {
-  border-radius: 5px; /* 圆角边框 */
-  padding: 10px 20px; /* 内边距 */
-  border: none; /* 移除边框 */
-  text-transform: uppercase; /* 文本转换为大写 */
-  font-weight: bold; /* 字体加粗 */
-  cursor: pointer; /* 鼠标悬停时显示指针 */
-  transition: background-color 0.3s, transform 0.3s; /* 平滑的过渡效果 */
+  position: relative;
+  padding: 15px 20px;
+  font: 500 16px '优设标题黑';
+  border: none;
+  outline: none;
+  color: rgb(70, 100, 180);
+  display: flex;
+  text-decoration: none;
+  z-index: 3;
 }
 
 .btn:hover {
-  transform: translateY(-2px); /* 轻微向上移动 */
+  transform: translateY(-2px);
+  /* 轻微向上移动 */
 }
 
 .btn:active {
-  transform: translateY(1px); /* 轻微向下移动 */
+  transform: translateY(1px);
+  /* 轻微向下移动 */
+}
+
+.slide1,
+.slide2 {
+  position: absolute;
+  display: inline-block;
+  height: 60px;
+  border-radius: 10em;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
+}
+
+.slide1 {
+  background-color: rgb(170, 190, 255);
+  z-index: 2;
+}
+
+.slide2 {
+  opacity: 0;
+  background-color: rgba(170, 190, 255, .5);
+  z-index: 1;
+  box-shadow: 0 0 20px #ffffffaa inset;
 }
 </style>

@@ -155,4 +155,3 @@ const navigatorLabels = computed(() => {
   height: 300px;
 }
 </style>
-  

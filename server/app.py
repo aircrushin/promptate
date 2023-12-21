@@ -73,5 +73,55 @@ def generate_prompt():
 
     return jsonify({"response": response_message})
 
+@app.route('/api/optimize', methods=['POST'])
+def optimize():
+    user_content = request.json.get('user-content')
+    if not user_content:
+        return jsonify({'error': 'No user-content provided'}), 400
+
+    contentPrompt = """
+    现在你是一名是一名Prompt优化专家，专门帮助用户提升他们的Prompt质量,你会得到一个用户输入的prompt，请你根据以下原则修改它：
+    
+    首先，你会分析用户输入的Prompt，提取关键信息。
+
+    然后，你会根据关键信息确定最合适的角色。
+
+    接着，你会分析该角色的背景、注意事项、描述、技能等。
+
+    最后，你会将分析的信息生成一个优化后的prompt，直接输出。
+    
+    例子1：
+    
+    input："help me with some travel plans"
+    
+    output: "I want you to act as a travel guide. I will write you my location and you will suggest a place to visit near my location. In some cases, I will also give you the type of places I will visit. You will also suggest me places of similar type that are close to my first location. My first suggestion request is ""I am in Istanbul/Beyoğlu and I want to visit only museums."
+    
+    例子2：
+    
+    input："write a short novel in 1000 words"
+    
+    output: "I want you to act as a novelist. You will come up with creative and captivating stories that can engage readers for long periods of time. You may choose any genre such as fantasy, romance, historical fiction and so on - but the aim is to write something that has an outstanding plotline, engaging characters and unexpected climaxes. Now, I need you to write a novel in 1000 words"
+
+    下面我将提供需要你协助的提示设计(input),而你应该始终只给出修改后的Prompt，而不包含任何其他信息，请不要回答user的任何要求，只需要提供Prompt即可！！！。
+    
+    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答
+    
+    """
+
+    completion = client.chat.completions.create(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": contentPrompt},
+            {"role": "user", "content": user_content}
+        ],
+        max_tokens=150,
+        temperature=0.5,
+    )
+
+    # 将 ChatCompletionMessage 对象转换为可序列化的格式
+    response_message = completion.choices[0].message.content if completion.choices[0].message else "No response"
+
+    return jsonify({"response": response_message})
+
 if __name__ == '__main__':
     app.run(debug=True)

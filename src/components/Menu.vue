@@ -1,11 +1,11 @@
 
 <template>
-    <div class="IndexPage">
+    <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive class="menu" />
+    <!-- <div class="IndexPage">
         <nav>
             <a class="logo" href="https://gitee.com/ultrav/promptate"><b>PROMPTATE</b>/FYH</a>
         </nav>
-    </div>
-    <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive class="menu" />
+    </div> -->
 </template>
 
   
@@ -97,10 +97,9 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .IndexPage {
+    float: right;
     > nav {
-      margin-right: auto;
       font-size: 14px;
-      place-items: center;
       padding-top: 11px;
       padding-bottom: 20px;
       padding-left: 23px;

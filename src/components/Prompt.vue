@@ -32,8 +32,8 @@
   </div>
   <div class="example-container">
     <div class="main">
-      <span>Example:</span>
-      <Card v-for="card in exampleCards" :text="card.text" @click="addText(card.text)" :detail="undefined"
+      <span>Example:</span> 
+      <Card v-for="card in exampleCards" :text="card.text" @click="addText(card.text)" :detail="card.text"
           class="card-container">
       </Card>
   </div>
@@ -187,15 +187,14 @@ textarea {
 
 .example-container {
   margin-top: 5vh;
-  width: 90%;
+  width: 80%;
   display: flex;  
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .main {
-  display: inline;
-  margin-top: 20px;
+  display: flex; /* 启用Flexbox布局 */
+  justify-content: space-between; /* 子元素之间有空间 */
 }
 
 span {
@@ -205,7 +204,6 @@ span {
 
 .card-container {
   display: inline;
-  width: 60px;
-  height: 20px;
+  width: 200px;
 }
 </style>

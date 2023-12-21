@@ -28,10 +28,6 @@ function goToGenerator() {
   router.push('/generator') 
 } 
 
-function handleBack() {
-  router.push('/')
-}
-
 </script>
 
 <style scoped lang="scss">

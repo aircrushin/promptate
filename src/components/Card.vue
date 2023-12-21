@@ -1,10 +1,20 @@
 <template>
-  <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false" :style="{ backgroundColor: color }">
+  <!-- <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false" :style="{ backgroundColor: color }">
     {{ text }}
     <div v-if="showDetail && props.detail !== undefined" class="detail">
       {{ detail }}
     </div>
-  </div>
+  </div> -->
+  <div>
+  <n-popover trigger="hover">
+    <template #trigger>
+      <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false" :style="{ backgroundColor: color }">
+        {{ text }}
+      </div>
+    </template>
+    <span>{{ detail }}</span>
+  </n-popover>
+</div>
 </template>
 
 <script setup lang="ts">
@@ -49,25 +59,5 @@ const showDetail = ref(false);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* 悬停时增加阴影 */
   transform: translateY(-5px); /* 轻微向上移动 */
   background-color: aliceblue;
-}
-
-.detail {
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  background-color: #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition-delay: 1s; /* 设置过渡延迟为1秒 */
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-  position: absolute;
-  right: 10; /* 从左改为右 */
-  bottom: 20; /* 从顶部改为底部 */
-  min-width: 150px;
-  z-index: 100;
-}
-
-.detail {
-  opacity: 1; /* 移动到这里确保只在悬停时显示 */
 }
 </style>

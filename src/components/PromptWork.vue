@@ -14,6 +14,7 @@
       <n-message-provider>
         <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
         <n-button class="btn" @click="inputValue = ''">清空</n-button>
+        <n-button class="btn" @click="betterPrompt">优化</n-button>
       </n-message-provider>
     </div>
 
@@ -27,11 +28,24 @@
 <script setup lang="ts">
 import { ref, computed, watch, defineEmits } from "vue";
 import copyToClipboard from "../utils/copy"
+import { optimizePrompt } from "../api";
 
 const props = defineProps({
   modelValue: String,
   title: String,
 });
+
+function betterPrompt(){
+  let titleString: string = inputValue.value || "wrire a poem";
+  console.log(titleString)
+  optimizePrompt(titleString).then(
+    ({ data }) => {
+      console.log(data.response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 const inputTitle = computed({
   get: () => props.title,
