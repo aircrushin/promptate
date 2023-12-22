@@ -3,7 +3,7 @@
       <Menu class="app-menu"></Menu>
       <div class="app-loading">
           <div class="app-loading-wrap">
-            <img src="public\logo.png" class="app-loading-logo" alt="Logo" />
+            <img src="/logo.png" class="app-loading-logo" alt="Logo" />
             <n-button class="app-button" size="large" color="#a5d8ff" @click="changeSpin">开始</n-button>
             <div class="app-loading-dots">
               <span class="dot dot-spin" v-if="isSpin"><i></i><i></i><i></i><i></i></span>

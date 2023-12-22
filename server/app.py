@@ -20,6 +20,10 @@ client = OpenAI(api_key=openai_api_key)
 def hello():
     return 'Hello World!'
 
+#查询所有数据
+
+    
+
 @app.route('/api/prompt', methods=['POST'])
 def generate_prompt():
     user_content = request.json.get('user-content')
