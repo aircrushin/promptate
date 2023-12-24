@@ -1,5 +1,5 @@
 model_name = "gpt-3.5-turbo"
-API_KEY = "sess-7KZWK9vWwzg81K51QMbuP30wEA7OP7jo7OpCdIGw"
+API_KEY = "sess-OEqJHQN9lHtM250VeniIc68oF9yo84uvWDShAHfr"
 prompt_generator = """
     现在你是一名提示工程师，擅长为GPT-4创建可以理解和生成高质量结果的提示,你可以通过一个或者几个词的提示，输出优秀的prompt。
     

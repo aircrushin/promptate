@@ -12,10 +12,10 @@
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
       <!-- <Tabs></Tabs> -->
-      <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels" />
+      <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels.map((label) => label.name)"/>
       <div class="card-container">
         <Action v-if="activeButton === '行动任务'"></Action>
-        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail"
+        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail" :color="card.color"
           v-show="activeButton === card.button" @click="addText(card.detail)">
         </Card>
       </div>
@@ -42,8 +42,14 @@ import Menu from '../components/Menu.vue';
 const text = ref('');
 const title = ref('');
 const selectedKey = ref('');
-const chatGPTNames = computed(() => data.categories!.map((category) => category.name));
-const mIdJourneyNames = computed(() => data.midCategories!.map((category) => category.name));
+const chatGPTNames = computed(() => data.categories!.map((category) => ({
+  name: category.name,
+  color: category.color
+})));
+const mIdJourneyNames = computed(() => data.midCategories!.map((category) => ({
+  name: category.name,
+  color: category.color
+})));
 const isGPT = ref(true);
 
 interface cardItemsType {
@@ -135,23 +141,33 @@ const navigatorLabels = computed(() => {
 .app {
   display: flex;
   justify-content: space-around;
+  padding: 20px;
 }
 
-.left-container {
+.left-container, .right-container {
   width: 30%;
-}
-
-.right-container {
-  width: 30%;
+  border: 2px solid #d0d0d0; /* Slightly darker grey */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .card-container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding: 20px;
 }
 
 .text {
   height: 300px;
 }
+
+@media (max-width: 768px) {
+  .app, .left-container, .right-container, .card-container {
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+
 </style>
