@@ -14,6 +14,12 @@ export function generatePrompt(message: string) {
   })
 }
 
+export function generatePromptMid(message: string) {
+  return axios.post("/api/promptMid", {
+    "user-content": message
+  })
+}
+
 export function optimizePrompt(message: string) {
   return axios.post("/api/optimize", {
     "user-content": message

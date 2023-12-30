@@ -5,9 +5,7 @@
       <div class="title">
         <h2>👨🏻‍🎤 ChatGPT Prompt 生成器 👨🏻‍🎤</h2>
         <p>
-          This app generates ChatGPT prompts, it’s based on a BART model trained
-          on this dataset. 📓 Simply enter a persona that you want the prompt to
-          be generated based on. 🧙🏻🧑🏻‍🚀🧑🏻‍🎨🧑🏻‍🔬🧑🏻‍💻🧑🏼‍🏫
+          这是一个基于GPT模型训练微调和处理后的ChatGPT提示词生成器。📓 只需输入你希望生成提示语的角色即可 🧙🏻🧑🏻‍🚀🧑🏻‍🎨🧑🏻‍🔬🧑🏻‍💻🧑🏼‍🏫
         </p>
       </div>
       <!-- input space -->
@@ -33,7 +31,7 @@
   <div class="example-container">
     <div class="main">
       <span>Example:</span> 
-      <Card v-for="card in exampleCards" :text="card.text" @click="addText(card.text)" :detail="card.text"
+      <Card v-for="card in exampleCards" :text="card.text" @click="addText(card.text)" :detail="card.text" color="green"
           class="card-container">
       </Card>
   </div>
@@ -175,6 +173,7 @@ input {
 }
 
 textarea {
+  font-size: 12px;
   position: relative;
   margin-top: 20px;
   border: 1px solid #ddd;
@@ -194,7 +193,8 @@ textarea {
 
 .main {
   display: flex; /* 启用Flexbox布局 */
-  justify-content: space-between; /* 子元素之间有空间 */
+  justify-content: center;
+  align-items: center;
 }
 
 span {
@@ -203,6 +203,7 @@ span {
 }
 
 .card-container {
+  width: auto;
   display: inline;
 }
 </style>

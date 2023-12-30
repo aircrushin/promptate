@@ -3,11 +3,13 @@
       <h1>404</h1>
       <p>Oops! The page you're looking for doesn't exist.</p>
       <router-link to="/">Go back home</router-link>
+      <PFooter></PFooter>
     </div>
   </template>
   
   <script lang="ts" setup>;
-  
+  import PHeader from '../components/PHeader.vue';
+  import PFooter from '../components/PFooter.vue';
   </script>
   
   <style scoped>

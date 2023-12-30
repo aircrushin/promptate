@@ -3,7 +3,7 @@ from openai import OpenAI
 from flask_cors import CORS
 import os
 from database import db, Data
-from config import model_name, API_KEY, prompt_generator, prompt_optimizer
+from config import model_name, API_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
 
 #set flask configs
 app = Flask(__name__)
@@ -119,6 +119,29 @@ def optimize():
         ],
         max_tokens=150,
         temperature=0.5,
+    )
+
+    # 将 ChatCompletionMessage 对象转换为可序列化的格式
+    response_message = completion.choices[0].message.content if completion.choices[0].message else "No response"
+
+    return jsonify({"response": response_message})
+
+@app.route('/api/promptMid', methods=['POST'])
+def generate_prompt_mid():
+    user_content = request.json.get('user-content')
+    if not user_content:
+        return jsonify({'error': 'No user-content provided'}), 400
+
+    contentPrompt = prompt_midjourney
+
+    completion = client.chat.completions.create(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": contentPrompt},
+            {"role": "user", "content": user_content}
+        ],
+        max_tokens=200,
+        temperature=0.8,
     )
 
     # 将 ChatCompletionMessage 对象转换为可序列化的格式
