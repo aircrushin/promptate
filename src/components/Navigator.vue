@@ -25,13 +25,13 @@ const navigate = (button: any) => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 :root {
   --hover-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   --active-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .navigator {
-  margin-top: 20px;
+  margin-top: 25px;
   justify-content: space-between;
   gap: 20px;
   position: relative;

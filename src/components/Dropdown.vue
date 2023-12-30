@@ -40,7 +40,7 @@ const emitSelectedKey = (key: string) => {
   margin-top: 20px;
   display: flex;
   justify-content: flex-start; /* 使组件靠右对齐 */
-  margin-right: 20px; /* 右侧边距 */
+  margin-right: 20px;
 }
 
 .n-button {

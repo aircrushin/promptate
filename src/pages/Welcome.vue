@@ -17,7 +17,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
-import PFooter from '../components/PFooter.vue';
+import PFooter from '../components/PFooter.vue'
+import PHeader from '../components/PHeader.vue';
 import Menu from '../components/Menu.vue'
 
 const isSpin = ref(false);

@@ -4,13 +4,14 @@
   </n-page-header> -->
   <div class="IndexPage">
     <nav>
-      <a class="logo" href="https://gitee.com/ultrav/promptate"
-        ><b>PROMPTATE</b>/FYH</a
-      >
-      <n-breadcrumb class="doc">
+      <!-- <n-breadcrumb class="doc">
         <n-breadcrumb-item href="https://gitee.com/ultrav/promptate">GitHub</n-breadcrumb-item>
         <n-breadcrumb-item @click="goToGenerator">生成器</n-breadcrumb-item>
-      </n-breadcrumb>
+      </n-breadcrumb> -->
+      <Menu />
+      <a class="logo" href="https://gitee.com/ultrav/promptate"
+      ><b>PROMPTATE</b>/FYH</a
+    >
     </nav>
   </div>
 </template>
@@ -18,6 +19,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import Menu from '../components/Menu.vue'
 import { darkTheme } from "naive-ui"
 
 const theme = ref(null); //主题变量
@@ -37,7 +39,7 @@ function goToGenerator() {
     display: flex;
     place-items: center;
     padding-top: 11px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     padding-left: 23px;
     padding-right: 14px;
     .logo {

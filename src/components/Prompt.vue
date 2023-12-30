@@ -49,11 +49,11 @@ const prompt = ref("");
 const responseText = ref("");
 const show = ref(false);
 //this is just a test to see if the api works
-function testApi() {
-  hello().then(({ data }) => {
-    console.log(data.response);
-  });
-}
+// function testApi() {
+//   hello().then(({ data }) => {
+//     console.log(data.response);
+//   });
+// }
 
 function generateText() {
   show.value = true;
@@ -204,6 +204,5 @@ span {
 
 .card-container {
   display: inline;
-  width: 200px;
 }
 </style>

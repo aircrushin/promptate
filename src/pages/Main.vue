@@ -7,7 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-      <Step v-if="isGPT" @update:step="updateStep"></Step>
+      <!-- <Step v-if="isGPT" @update:step="updateStep"></Step> -->
     </div>
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
@@ -25,7 +25,7 @@
 </template>
    
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import Card from '../components/Card.vue';
 import Navigator from '../components/Navigator.vue';
 import PromptWork from '../components/PromptWork.vue';
@@ -37,7 +37,11 @@ import Step from '../components/Step.vue';
 import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
 import Menu from '../components/Menu.vue';
+import { queryAllData } from '../api';
 
+onMounted(() => {
+  initData()
+   });
 
 const text = ref('');
 const title = ref('');
@@ -135,6 +139,14 @@ const navigatorLabels = computed(() => {
   }
   return chatGPTNames.value // return by default
 });
+
+const initData = async () => {
+  // 初始化数据
+  queryAllData().then(
+    res => console.log(res.data)
+  ).catch
+    (err => console.log(err))
+}
 </script>
   
 <style>
@@ -144,12 +156,12 @@ const navigatorLabels = computed(() => {
   padding: 20px;
 }
 
-.left-container, .right-container {
+.left-container{
+  width: 20%;
+}
+
+.right-container {
   width: 30%;
-  border: 2px solid #d0d0d0; /* Slightly darker grey */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
 }
 
 .card-container {
