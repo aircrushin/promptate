@@ -2,15 +2,32 @@
   <div class="PromptWork">
     <h2>工作区</h2>
     <div class="input">
-      <textarea class="input" v-model="inputValue" placeholder="输入您的提示词" rows="6" spellcheck="false"></textarea>
+      <textarea
+        class="input"
+        v-model="inputValue"
+        placeholder="输入您的提示词"
+        rows="6"
+        spellcheck="false"
+      ></textarea>
     </div>
     <div class="editor">
       <n-message-provider>
-        <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
+        <n-button class="btn" @click="copyToClipboard(inputValue!)"
+          >复制</n-button
+        >
         <n-button class="btn" @click="inputValue = ''">清空</n-button>
         <n-button class="btn" @click="betterPrompt">优化</n-button>
-        <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="优化结果" :content="betterContent"
-          positive-text="复制" negative-text="算了" @positive-click="onPositiveClick" @negative-click="onNegativeClick" />
+        <n-modal
+          v-model:show="showModal"
+          :mask-closable="false"
+          preset="dialog"
+          title="优化结果"
+          :content="betterContent"
+          positive-text="复制"
+          negative-text="算了"
+          @positive-click="onPositiveClick"
+          @negative-click="onNegativeClick"
+        />
       </n-message-provider>
     </div>
   </div>
@@ -18,42 +35,57 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, defineEmits } from "vue";
-import copyToClipboard from "../utils/copy"
-import { optimizePrompt } from "../api";
+import copyToClipboard from "../utils/copy";
+import { optimizePrompt, generatePromptMid } from "../api";
 
 const props = defineProps({
   modelValue: String,
   title: String,
+  isGPT: Boolean,
 });
 
-const showModal = ref(false)
-const betterContent = ref('')
+const showModal = ref(false);
+const betterContent = ref("");
 
 function betterPrompt() {
+  console.log(props.isGPT);
   let titleString: string = inputValue.value || "wrire a poem";
-  console.log(titleString)
+  console.log(titleString);
   //@ts-ignore
-  window.onmessage!.info('正在优化中...',{ duration: 5000 })
-  optimizePrompt(titleString).then(
-    ({ data }) => {
-      console.log(data.response);
-      betterContent.value = data.response
-      showModal.value = true
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  window.onmessage!.info("正在优化中...", { duration: 5000 });
+  if (props.isGPT) {
+    optimizePrompt(titleString)
+      .then(({ data }) => {
+        console.log(data.response);
+        betterContent.value = data.response;
+        showModal.value = true;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    // isGPT 为 false 时的逻辑
+    generatePromptMid(titleString)
+      .then(({ data }) => {
+        console.log(data.response);
+        betterContent.value = data.response;
+        showModal.value = true;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 function onNegativeClick() {
   //@ts-ignore
-  window.onmessage!.success('取消')
-  showModal.value = false
+  window.onmessage!.success("取消");
+  showModal.value = false;
 }
 
 function onPositiveClick() {
-  copyToClipboard(betterContent.value)
-  showModal.value = false
+  copyToClipboard(betterContent.value);
+  showModal.value = false;
 }
 
 const inputTitle = computed({
@@ -177,7 +209,7 @@ h2 {
 
 /* Styling the input field */
 .raw-prompt input[type="text"] {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   /* Clean, sans-serif font */
   font-size: 16px;
   /* Appropriate size for input text */
@@ -199,4 +231,5 @@ h2 {
   /* Include padding and border in the element's total width and height */
   transition: background-color 0.3s ease;
   /* Smooth transition for background color */
-}</style>
+}
+</style>

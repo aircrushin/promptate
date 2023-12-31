@@ -5,7 +5,7 @@
   <PHeader></PHeader>
   <div class="app">
     <div class="left-container">
-      <PromptWork :modelValue="text" :title="title" @update:modelValue="handleUpdateModelValue"
+      <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
       <!-- <Step v-if="isGPT" @update:step="updateStep"></Step> -->
     </div>
