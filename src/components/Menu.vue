@@ -73,20 +73,20 @@ const menuOptions: MenuOption[] = [
       },
     ],
   },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            path: "/about",
-          },
-        },
-        { default: () => "关于" }
-      ),
-    key: "about",
-    icon: renderIcon(HomeIcon),
-  },
+  // {
+  //   label: () =>
+  //     h(
+  //       RouterLink,
+  //       {
+  //         to: {
+  //           path: "/about",
+  //         },
+  //       },
+  //       { default: () => "关于" }
+  //     ),
+  //   key: "about",
+  //   icon: renderIcon(HomeIcon),
+  // },
   {
     label: () =>
       h(
@@ -100,6 +100,19 @@ const menuOptions: MenuOption[] = [
       ),
     key: "main",
     icon: renderIcon(WorkIcon),
+  },
+  {
+    label: () =>
+      h(
+        "a",
+        {
+          href: "http://localhost:8080", // 修改为目标URL
+          target: "_blank", // 可选，如果你想在新标签页打开链接
+        },
+        "文档"
+      ),
+    key: "docs",
+    icon: renderIcon(HomeIcon),
   },
 ];
 

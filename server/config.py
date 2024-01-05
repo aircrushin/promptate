@@ -1,3 +1,4 @@
+#this file contains all the settings and configs
 model_name = "gpt-3.5-turbo"
 API_KEY = "sess-OEqJHQN9lHtM250VeniIc68oF9yo84uvWDShAHfr"
 prompt_generator = """

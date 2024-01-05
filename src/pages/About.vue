@@ -1,13 +1,12 @@
 <template>
   <PHeader></PHeader>
   <div class="about-page">
-    <h1>产品介绍</h1>
-    <p>{{ productDescription }}</p>
+    <h1>PROMPTATE</h1>
 
     <div class="features">
-      <h2>产品特性</h2>
+      <p>{{ productDescription }}</p>
       <ul>
-        <li v-for="feature in features" :key="feature.id">
+        <li v-for="feature in features" :key="feature.id" class="feature-item">
           <h3>{{ feature.title }}</h3>
           <p>{{ feature.description }}</p>
         </li>
@@ -29,17 +28,28 @@ interface Feature {
 }
 
 const productDescription = ref(
-  "这里是您的产品的详细介绍。它可以是一个简短的段落，阐述您的产品如何解决用户问题、它的核心优势等等。"
+  "用简单的方式写最好的prompt"
 );
 
 const features = ref<Feature[]>([
-  { id: 1, title: "特性 1", description: "关于特性 1 的详细描述。" },
-  { id: 2, title: "特性 2", description: "关于特性 2 的详细描述。" },
+  { id: 1, title: "框架式编写", description: "根据prompt的格式编写，更加准确" },
+  { id: 2, title: "自动生成器", description: "使用AI助手自动生成准确率高的prompt" },
   // 添加更多特性...
 ]);
 </script>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.6;
+}
+
 .about-page {
   max-width: 800px;
   margin: 0 auto;
@@ -47,27 +57,51 @@ const features = ref<Feature[]>([
   text-align: center;
 }
 
-h1,
+h1 {
+  font-family: 'Nunito', sans-serif;
+  color: #2c3e50;
+  font-size: 2.5em;
+}
+
+p {
+  margin-bottom: 100px;
+  font-style: italic;
+}
+
 h2 {
-  color: #333;
+  color: #34495e;
+  font-size: 1.8em;
+}
+
+.features {
+  margin: 10px;
 }
 
 .features ul {
+  cursor: pointer;
   list-style: none;
   padding: 0;
 }
 
-.features li {
+.feature-item {
   margin-bottom: 15px;
   text-align: left;
+  border-left: 4px solid #3498db;
+  padding-left: 15px;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  background-color: #ecf0f1;
+  border-left-color: #2ecc71;
 }
 
 .features h3 {
   margin-bottom: 5px;
-  color: #444;
+  color: #2980b9;
 }
 
 .features p {
-  color: #666;
+  color: #34495e;
 }
 </style>
