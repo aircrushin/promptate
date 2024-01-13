@@ -2,8 +2,9 @@ from flask import Flask, request, jsonify
 from openai import OpenAI
 from flask_cors import CORS
 import os
-from database import db, Data
+from database import db, Data, User
 from config import model_name, API_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
+from werkzeug.security import generate_password_hash, check_password_hash
 
 #set flask configs
 app = Flask(__name__)
@@ -148,6 +149,45 @@ def generate_prompt_mid():
     response_message = completion.choices[0].message.content if completion.choices[0].message else "No response"
 
     return jsonify({"response": response_message})
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.get_json()
+
+    # 确认数据有效性
+    username = data.get('username')
+    password = data.get('password')
+    if not username or not password:
+        return jsonify({'message': 'Missing username or password'}), 400
+
+    # 检查用户名是否已存在
+    if User.query.filter_by(username=username).first():
+        return jsonify({'message': 'Username already exists'}), 400
+
+    # 创建新用户
+    hashed_password = generate_password_hash(password)
+    new_user = User(username=username, password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({'message': 'User created successfully', 'user': new_user.to_dict()}), 201
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    data = request.get_json()
+
+    username = data.get('username')
+    password = data.get('password')
+    if not username or not password:
+        return jsonify({'message': 'Missing username or password'}), 400
+
+    # 检查用户是否存在
+    user = User.query.filter_by(username=username).first()
+    if user and check_password_hash(user.password, password):
+        # 在这里，你应该生成并返回一个认证令牌
+        return jsonify({'message': 'Login successful', 'user': user.to_dict()}), 200
+    else:
+        return jsonify({'message': 'Invalid credentials'}), 401
 
 if __name__ == '__main__':
     app.run(debug=True)

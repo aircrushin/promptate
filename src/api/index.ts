@@ -25,3 +25,17 @@ export function optimizePrompt(message: string) {
     "user-content": message
   })
 }
+
+export function register(username: string, password: string) {
+  return axios.post("/api/register", {
+    username: username,
+    password: password
+  });
+}
+
+export function login(username: string, password: string) {
+  return axios.post("/api/register", {
+    username: username,
+    password: password
+  });
+}
