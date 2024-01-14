@@ -21,17 +21,11 @@ export default defineUserConfig({
       "看起来我们进入了错误的链接",
     ],
     backToHome: "返回首页",
-
-    // a11y
     openInNewWindow: "在新窗口打开",
-    //@ts-ignore
-    toggleDarkMode: "切换夜间模式",
     toggleSidebar: "切换侧边栏",
     // sidebar 配置
-    // @ts-ignore
     sidebar: Sidebar
     // ...其他配置...
   }),
   title: "PROMPTATE",
-  
 });

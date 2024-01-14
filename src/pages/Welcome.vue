@@ -3,8 +3,8 @@
     <Menu class="app-menu"></Menu>
     <div class="app-loading">
       <div class="app-loading-wrap">
-        <img src="/logo.png" class="app-loading-logo" alt="Logo" />
-        <n-button class="app-button" size="large" color="#a5d8ff" @click="changeSpin">开始</n-button>
+        <img src="/logo2.png" class="app-loading-logo" alt="Logo" />
+        <n-button class="app-button" size="large" @click="changeSpin">开始</n-button>
         <div class="app-loading-dots">
           <n-spin class="dot dot-spin" v-if="isSpin"></n-spin>
         </div>
@@ -33,7 +33,7 @@ const changeSpin = () => {
 
 <style lang="scss" scoped>
 .app-button {
-  width: 100px;
+  width: 200px;
   height: 50px;
   color: #000;
   position: relative;
@@ -52,7 +52,7 @@ const changeSpin = () => {
   height: 1rem;
   transform: translate3d(-50%, -50%, 0) scale(0, 0);
   border-radius: 50%;
-  background-color: #1c7ed6;
+  background-color: #444;
   transform-origin: center;
   transition: ease-in-out 1.5s;
 }
