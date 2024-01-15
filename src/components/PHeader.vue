@@ -12,6 +12,7 @@
       <a class="logo" href="https://gitee.com/ultrav/promptate"
       ><b>PROMPTATE</b>/FYH</a
     >
+    <Modal></Modal>
     </nav>
   </div>
 </template>
@@ -20,10 +21,8 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import Menu from '../components/Menu.vue'
-import { darkTheme } from "naive-ui"
+import Modal from '../components/Modal.vue'
 
-const theme = ref(null); //主题变量
-const themebtntit = ref("暗色主题"); //主体按钮title
 const router = useRouter();
 
 function goToGenerator() {

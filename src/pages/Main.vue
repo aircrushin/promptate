@@ -45,7 +45,7 @@ onMounted(() => {
 
 const text = ref('');
 const title = ref('');
-const selectedKey = ref('');
+const selectedKey = ref('ChatGPT');
 const chatGPTNames = computed(() => data.categories!.map((category) => ({
   name: category.name,
   color: category.color
@@ -87,12 +87,13 @@ const filteredCardItems = computed(() => {
 
 //实现addText函数
 const addText = (cardText?: string) => {
+  console.log(selectedKey.value)
   if (selectedKey.value === 'ChatGPT') {
-    text.value += cardText;
+    text.value += cardText + '\n';
   } else if (selectedKey.value === 'MidJourney') {
     text.value += cardText + ', ';
   } else {
-    text.value += cardText;
+    text.value += cardText + '\n';
   }
   console.log(text.value);
 };

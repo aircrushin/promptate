@@ -34,7 +34,7 @@ export function register(username: string, password: string) {
 }
 
 export function login(username: string, password: string) {
-  return axios.post("/api/register", {
+  return axios.post("/api/login", {
     username: username,
     password: password
   });

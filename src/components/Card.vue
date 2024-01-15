@@ -44,7 +44,7 @@ const showDetail = ref(false);
   border: 1px solid #e0e0e0;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  margin: 10px;
+  margin: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 10px;

@@ -18,7 +18,6 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import PFooter from '../components/PFooter.vue'
-import PHeader from '../components/PHeader.vue';
 import Menu from '../components/Menu.vue'
 
 const isSpin = ref(false);
@@ -52,7 +51,7 @@ const changeSpin = () => {
   height: 1rem;
   transform: translate3d(-50%, -50%, 0) scale(0, 0);
   border-radius: 50%;
-  background-color: #444;
+  background-color: #37b24d;
   transform-origin: center;
   transition: ease-in-out 1.5s;
 }
