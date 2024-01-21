@@ -17,7 +17,7 @@ export const Sidebar = [
         text: '工作区',
         link: '/workspace/README.md',
         children:[
-
+            '/introduction/settings.md'
         ]
     },
 ]

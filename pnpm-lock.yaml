@@ -20,7 +20,7 @@ dependencies:
     specifier: ^4.20.1
     version: 4.20.1
   pinia:
-    specifier: ^2.0.31
+    specifier: ^2.1.7
     version: 2.1.7(typescript@4.9.5)(vue@3.3.9)
   sass:
     specifier: ^1.69.5
