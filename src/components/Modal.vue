@@ -2,6 +2,7 @@
     <div class="container">
         <n-modal v-model:show="showModal" title="登录/注册">
             <div class="form">
+                <h1>{{ isRegistering ? '注册':'登录'}}</h1>
                 <p>欢迎使用Promptate</p>
                 <n-form ref="formRef" :model="formState" :rules="rules">
                     <n-form-item label="用户名" path="username">
@@ -124,6 +125,13 @@ const toggleForm = () => {
     text-align: center;
 }
 
+h1 {
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 p {
     text-align: center;
     font-size: 20px;
@@ -141,7 +149,6 @@ p {
     display: flex;
     justify-content: center;
     gap: 16px;
-    /* 这会在按钮之间创建16px的间隙 */
     button {
         width: 100px;
     }
