@@ -2,20 +2,23 @@ from flask import Flask, request, jsonify
 from openai import OpenAI
 from flask_cors import CORS
 import os
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from database import db, Data, User
-from config import model_name, API_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
+from config import model_name, API_KEY, JWY_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
 from werkzeug.security import generate_password_hash, check_password_hash
 
 #set flask configs
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///promptate.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = JWY_KEY
 
 #set proxy
 os.environ["HTTP_PROXY"] = "http://127.0.0.1:33210"
 os.environ["HTTPS_PROXY"] = "http://127.0.0.1:33210"
 openai_api_key = API_KEY
 client = OpenAI(api_key=openai_api_key)
+jwt = JWTManager(app)
 #init database
 db.init_app(app)
 
@@ -153,24 +156,21 @@ def generate_prompt_mid():
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.get_json()
-
-    # 确认数据有效性
     username = data.get('username')
     password = data.get('password')
+
     if not username or not password:
         return jsonify({'message': 'Missing username or password'}), 400
 
-    # 检查用户名是否已存在
     if User.query.filter_by(username=username).first():
         return jsonify({'message': 'Username already exists'}), 400
 
-    # 创建新用户
     hashed_password = generate_password_hash(password)
     new_user = User(username=username, password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': 'User created successfully', 'user': new_user.to_dict()}), 201
+    return jsonify({'message': 'User created successfully'}), 201
 
 @app.route('/api/login', methods=['POST'])
 def login():
@@ -184,10 +184,17 @@ def login():
     # 检查用户是否存在
     user = User.query.filter_by(username=username).first()
     if user and check_password_hash(user.password, password):
-        # 在这里，你应该生成并返回一个认证令牌
-        return jsonify({'message': 'Login successful', 'user': user.to_dict()}), 200
+        access_token = create_access_token(identity=username)
+        return jsonify({'message': 'Login successful', 'access_token': access_token}), 200
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
+    
+# 受保护的路由
+@app.route('/api/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user = get_jwt_identity()
+    return jsonify({'logged_in_as': current_user}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
