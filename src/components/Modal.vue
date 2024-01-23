@@ -2,7 +2,7 @@
     <div class="container">
         <n-modal v-model:show="showModal" title="登录/注册">
             <div class="form">
-                <h1>{{ isRegistering ? '注册':'登录'}}</h1>
+                <h1>{{ isRegistering ? '注册' : '登录' }}</h1>
                 <p>欢迎使用Promptate</p>
                 <n-form ref="formRef" :model="formState" :rules="rules">
                     <n-form-item label="用户名" path="username">
@@ -24,22 +24,27 @@
                 </div>
             </div>
         </n-modal>
-        <n-button @click="showModal = true" class="btn">登录</n-button>
+        <n-button @click="isLoggedIn ? logout() : showModal = true" class="btn">
+            {{ isLoggedIn ? '退出' : '登录' }}
+        </n-button>
     </div>
 </template>
   
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { login, register } from '../api'
 
 const showModal = ref(false);
-const isRegistering = ref(false); // 新增状态
+const isRegistering = ref(false);
+const isLoggedIn = ref(false);
 const formRef = ref();
 const formState = ref({
     username: '',
     password: '',
     repeatPassword: '' // 仅在注册时使用
 });
+
+isLoggedIn.value = localStorage.getItem('access_token') !== null;
 
 function checkPassword(value: string, callback: any) {
     if (value === formState.value.password) {
@@ -73,11 +78,14 @@ const handleSubmit = () => {
                 let password = formState.value.password
                 if (!isRegistering.value) {
                     login(username, password).then((res) => {
-                        console.log(res)
+                        console.log(res.data.access_token)
+                        const accessToken = res.data.access_token;
+                        localStorage.setItem('access_token', accessToken);
                         //@ts-ignore
                         window.onmessage!.success("登陆成功！");
                         setTimeout(() => {
                             showModal.value = false
+                            isLoggedIn.value = true
                         }, 1000);
                     }).catch((err) => {
                         console.log(err.code)
@@ -112,6 +120,15 @@ const handleSubmit = () => {
 const toggleForm = () => {
     isRegistering.value = !isRegistering.value;
 };
+
+const logout = () => {
+    localStorage.removeItem('access_token');
+    isLoggedIn.value = false;
+    // 这里可以添加其他清理操作，如重置用户状态等
+    //@ts-ignore
+    window.onmessage!.success("退出成功！");
+};
+
 </script>
 
 <style scoped lang="scss">
@@ -149,6 +166,7 @@ p {
     display: flex;
     justify-content: center;
     gap: 16px;
+
     button {
         width: 100px;
     }

@@ -9,10 +9,12 @@
         <n-breadcrumb-item @click="goToGenerator">生成器</n-breadcrumb-item>
       </n-breadcrumb> -->
       <Menu />
-      <a class="logo" href="https://gitee.com/ultrav/promptate"
-      ><b>PROMPTATE</b>/FYH</a
-    >
-    <Modal></Modal>
+      <div class="right-bar">
+        <a class="logo" href="https://gitee.com/ultrav/promptate"
+        ><b>PROMPTATE</b>/FYH</a
+      >
+      <Modal></Modal>
+      </div>
     </nav>
   </div>
 </template>
@@ -66,5 +68,9 @@ function goToGenerator() {
       text-decoration: none;
     }
   }
+}
+
+.right-bar {
+  display: flex;
 }
 </style>

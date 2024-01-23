@@ -2,7 +2,7 @@
   <div>
     <n-popover trigger="hover">
       <template #trigger>
-        <div class="card" @click="handleClick" @mouseover="showDetail = true" @mouseleave="showDetail = false">
+        <div class="card" @click="emitAddTag" @mouseover="showDetail = true" @mouseleave="showDetail = false">
           <div class="color-bar" :style="{ backgroundColor: color }"></div>
           <div class="text-content">{{ text }}</div>
         </div>
@@ -24,12 +24,13 @@ const props = defineProps({
 });
 
 // 定义可以发出的事件
-const emit = defineEmits(['click']);
+const emit = defineEmits(['add-tag','add-detail']);
 
 // 方法
-const handleClick = (event: Event) => {
-  event.stopPropagation(); // 阻止事件冒泡
-  emit('click');
+const emitAddTag = () => {
+  //event.stopPropagation(); // 阻止事件冒泡
+  emit('add-tag', props.text);
+  emit('add-detail', props.detail)
 };
 
 // 控制详细信息显示的状态

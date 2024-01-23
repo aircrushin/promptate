@@ -7,16 +7,17 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-      <!-- <Step v-if="isGPT" @update:step="updateStep"></Step> -->
+      <CardEditor />
     </div>
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
       <!-- <Tabs></Tabs> -->
-      <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels.map((label) => label.name)"/>
+      <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels.map((label) => label.name)" />
       <div class="card-container">
         <Action v-if="activeButton === '行动任务'"></Action>
-        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail" :color="card.color"
-          v-show="activeButton === card.button" @click="addText(card.detail)">
+        <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail"
+          :color="card.color" v-show="activeButton === card.button" @click="addText(card.detail)"
+          @add-tag="addTagToTagsRef" @add-detail="addDetailToTagsRef">
         </Card>
       </div>
     </div>
@@ -33,16 +34,18 @@ import { data, background } from '../data/data'
 import PFooter from '../components/PFooter.vue';
 import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
-import Step from '../components/Step.vue';
 import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
 import Menu from '../components/Menu.vue';
+import CardEditor from '../components/CardEditor.vue';
+import { tagsRef,tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
 
 onMounted(() => {
   initData()
-   });
+});
 
+const selectedCardDetail = ref('');
 const text = ref('');
 const title = ref('');
 const selectedKey = ref('ChatGPT');
@@ -119,17 +122,17 @@ const updateKey = (key: string) => {
   }
 }
 
-const updateStep = (step: number) => {
-  if (step === 1) {
-    activeButton.value = '背景'
-  } else if (step === 2) {
-    activeButton.value = '角色设定'
-  } else if (step === 3) {
-    activeButton.value = '行动任务'
-  } else if (step === 4) {
-    activeButton.value = '输出要求'
-  } 
-}
+// const updateStep = (step: number) => {
+//   if (step === 1) {
+//     activeButton.value = '背景'
+//   } else if (step === 2) {
+//     activeButton.value = '角色设定'
+//   } else if (step === 3) {
+//     activeButton.value = '行动任务'
+//   } else if (step === 4) {
+//     activeButton.value = '输出要求'
+//   }
+// }
 
 // 新增计算属性，根据 selectedKey 的值动态决定按钮标签
 const navigatorLabels = computed(() => {
@@ -140,6 +143,19 @@ const navigatorLabels = computed(() => {
   }
   return chatGPTNames.value // return by default
 });
+
+const addTagToTagsRef = (tagText: any) => {
+  if (!tagsRef.value.includes(tagText)) {
+    tagsRef.value.push(tagText);
+  }
+};
+
+const addDetailToTagsRef = (tagText: any) => {
+  if (!tagsDetail.value.includes(tagText)) {
+    tagsDetail.value.push(tagText);
+    console.log(tagsDetail)
+  }
+}
 
 const initData = async () => {
   // 初始化数据
@@ -157,7 +173,7 @@ const initData = async () => {
   padding: 20px;
 }
 
-.left-container{
+.left-container {
   width: 20%;
 }
 
@@ -177,10 +193,12 @@ const initData = async () => {
 }
 
 @media (max-width: 768px) {
-  .app, .left-container, .right-container, .card-container {
+
+  .app,
+  .left-container,
+  .right-container,
+  .card-container {
     padding: 10px;
     border-radius: 5px;
   }
-}
-
-</style>
+}</style>

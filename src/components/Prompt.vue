@@ -46,12 +46,6 @@ import Card from './Card.vue';
 const prompt = ref("");
 const responseText = ref("");
 const show = ref(false);
-//this is just a test to see if the api works
-// function testApi() {
-//   hello().then(({ data }) => {
-//     console.log(data.response);
-//   });
-// }
 
 function generateText() {
   show.value = true;
@@ -94,10 +88,11 @@ const addText = (text: string) => {
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  height: 30vh;
 }
 
 .action-container {
-  padding: 0px 20px 20px;
+  padding: 0px 20px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,7 +181,7 @@ textarea {
 
 .example-container {
   margin-top: 5vh;
-  width: 80%;
+  width: 90%;
   display: flex;  
   justify-content: flex-start;
 }

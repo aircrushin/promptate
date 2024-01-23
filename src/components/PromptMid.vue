@@ -94,10 +94,11 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    height: 30vh;
   }
   
   .action-container {
-    padding: 0px 20px 20px;
+    padding: 0px 20px 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,7 +187,7 @@
   
   .example-container {
     margin-top: 5vh;
-    width: 80%;
+    width: 90%;
     display: flex;  
     justify-content: flex-start;
   }

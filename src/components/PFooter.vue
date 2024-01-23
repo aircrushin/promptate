@@ -8,6 +8,9 @@
 
 <style scoped>
 .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed; /* 固定位置 */
   bottom: 0; /* 底部对齐 */
   left: 0; /* 左对齐 */

@@ -2,38 +2,27 @@
   <div class="PromptWork">
     <h2>工作区</h2>
     <div class="input">
-      <textarea
-        class="input"
-        v-model="inputValue"
-        placeholder="输入您的提示词"
-        rows="6"
-        spellcheck="false"
-      ></textarea>
+      <textarea class="input" v-model="inputValue" placeholder="输入您的提示词" rows="6" spellcheck="false"></textarea>
     </div>
     <div class="editor">
       <n-message-provider>
-        <n-button class="btn" @click="copyToClipboard(inputValue!)"
-          >复制</n-button
-        >
+        <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
         <n-button class="btn" @click="inputValue = ''">清空</n-button>
         <n-button class="btn" @click="betterPrompt">优化</n-button>
-        <n-modal
-          v-model:show="showModal"
-          :mask-closable="false"
-          preset="dialog"
-          title="优化结果"
-          :content="betterContent"
-          positive-text="复制"
-          negative-text="算了"
-          @positive-click="onPositiveClick"
-          @negative-click="onNegativeClick"
-        />
+        <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="优化结果" :content="betterContent"
+          positive-text="复制" negative-text="算了" @positive-click="onPositiveClick" @negative-click="onNegativeClick" />
       </n-message-provider>
+      <div class="chooser">
+        <template>
+          <slot></slot>
+        </template>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const tags = ref(['我在哪', '程序员'])
 import { ref, computed, watch, defineEmits } from "vue";
 import copyToClipboard from "../utils/copy";
 import { optimizePrompt, generatePromptMid } from "../api";
@@ -61,6 +50,8 @@ function betterPrompt() {
         showModal.value = true;
       })
       .catch((err) => {
+        //@ts-ignore
+        window.onmessage!.error("优化失败!", { duration: 2000 });
         console.log(err);
       });
   } else {
@@ -114,7 +105,6 @@ watch(inputValue, (newValue) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: auto;
 }
 
 .input {
@@ -231,5 +221,9 @@ h2 {
   /* Include padding and border in the element's total width and height */
   transition: background-color 0.3s ease;
   /* Smooth transition for background color */
+}
+
+.chooser {
+  margin-top: 100px;
 }
 </style>
