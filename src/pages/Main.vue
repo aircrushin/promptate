@@ -7,7 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-      <CardEditor />
+      <CardEditor/>
     </div>
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
@@ -36,7 +36,6 @@ import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
 import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
-import Menu from '../components/Menu.vue';
 import CardEditor from '../components/CardEditor.vue';
 import { tagsRef,tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
@@ -46,6 +45,7 @@ onMounted(() => {
 });
 
 const selectedCardDetail = ref('');
+const textHistory = ref<string[]>([]);
 const text = ref('');
 const title = ref('');
 const selectedKey = ref('ChatGPT');
@@ -93,10 +93,13 @@ const addText = (cardText?: string) => {
   console.log(selectedKey.value)
   if (selectedKey.value === 'ChatGPT') {
     text.value += cardText + '\n';
+    textHistory.value.push(cardText + '\n');
   } else if (selectedKey.value === 'MidJourney') {
     text.value += cardText + ', ';
+    textHistory.value.push(cardText + ', '); 
   } else {
     text.value += cardText + '\n';
+    textHistory.value.push(cardText + '\n');
   }
   console.log(text.value);
 };
@@ -153,7 +156,6 @@ const addTagToTagsRef = (tagText: any) => {
 const addDetailToTagsRef = (tagText: any) => {
   if (!tagsDetail.value.includes(tagText)) {
     tagsDetail.value.push(tagText);
-    console.log(tagsDetail)
   }
 }
 
