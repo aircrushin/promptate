@@ -27,15 +27,12 @@ import Modal from '../components/Modal.vue'
 
 const router = useRouter();
 
-function goToGenerator() {
-  router.push('/generator') 
-} 
-
 </script>
 
 <style scoped lang="scss">
 .IndexPage {
   > nav {
+    z-index: 10;
     font-size: 14px;
     display: flex;
     place-items: center;

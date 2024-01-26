@@ -4,6 +4,7 @@ import Generator from '../pages/Generator.vue'
 import Welcome from '../pages/Welcome.vue'
 import NotFound from '../pages/NotFound.vue'
 import About from '../pages/About.vue'
+import Community from '../pages/Community.vue'
 import GeneratorMid from '../pages/GeneratorMid.vue'
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/community',
+    name: 'Community',
+    component: Community
   },
   {
     path: '/:pathMatch(.*)*',

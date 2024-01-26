@@ -31,7 +31,7 @@
 </template>
   
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { login, register } from '../api'
 
 const showModal = ref(false);
@@ -83,6 +83,7 @@ const handleSubmit = () => {
                         localStorage.setItem('access_token', accessToken);
                         //@ts-ignore
                         window.onmessage!.success("登陆成功！");
+                        alert("ss")
                         setTimeout(() => {
                             showModal.value = false
                             isLoggedIn.value = true
@@ -90,7 +91,7 @@ const handleSubmit = () => {
                     }).catch((err) => {
                         console.log(err.code)
                         //@ts-ignore
-                        window.onmessage!.warning("账号或密码错误");
+                        window.onmessage!.error("账号或密码错误");
                     }
                     )
                 } else {
@@ -104,7 +105,7 @@ const handleSubmit = () => {
                     }).catch((err) => {
                         console.log(err.code)
                         //@ts-ignore
-                        window.onmessage!.warning("此账号已被注册");
+                        window.onmessage!.error("此账号已被注册");
                     }
                     )
                 }
