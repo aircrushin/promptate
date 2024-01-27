@@ -1,6 +1,6 @@
 #this file contains all the settings and configs
 model_name = "gpt-3.5-turbo"
-API_KEY = "sess-tHDRzMthCKjHwti6LHj4oJA0vJ3DOz110y3M5YhP"
+API_KEY = "sess-oDuUjcZnbDb1nLeLSaKWklbtuphg6qcrX64MyZRF"
 JWY_KEY = "pL7w6fBsPeMP4mnR96LC1Dd6yVxo37EeOljmEwjY38ZxpEqUX32eR6iny30Xl88kWLA7IJLBcT7NWQIeFiZ38w"
 
 prompt_generator = """
