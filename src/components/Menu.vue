@@ -23,6 +23,7 @@ import {
   GameControllerOutline as GameIcon,
   LaptopOutline as WorkIcon,
   LogOutOutline as HomeIcon,
+  ChatboxOutline as CommunityIcon
 } from "@vicons/ionicons5";
 
 function renderIcon(icon: Component) {
@@ -106,13 +107,27 @@ const menuOptions: MenuOption[] = [
       h(
         "a",
         {
-          href: "http://localhost:8080", // 修改为目标URL
+          href: "http://localhost:8000", // 修改为目标URL
           target: "_blank", // 可选，如果你想在新标签页打开链接
         },
         "文档"
       ),
     key: "docs",
     icon: renderIcon(HomeIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            path: "/community",
+          },
+        },
+        { default: () => "社区" }
+      ),
+    key: "community",
+    icon: renderIcon(CommunityIcon),
   },
 ];
 

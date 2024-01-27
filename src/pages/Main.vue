@@ -14,7 +14,7 @@
       <!-- <Tabs></Tabs> -->
       <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels.map((label) => label.name)" />
       <div class="card-container">
-        <Action v-if="activeButton === '行动任务'"></Action>
+        <Action v-if="activeButton === '行动任务'" @addText="handleAction"></Action>
         <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail"
           :color="card.color" v-show="activeButton === card.button" @click="addText(card.detail)"
           @add-tag="addTagToTagsRef" @add-detail="addDetailToTagsRef">
@@ -123,6 +123,12 @@ const updateKey = (key: string) => {
     isGPT.value = false;
     activeButton.value = "质量"
   }
+}
+
+const handleAction = (value:string) => {
+  console.log('111')
+  text.value += value + '\n';
+  textHistory.value.push(value + '\n');
 }
 
 // const updateStep = (step: number) => {

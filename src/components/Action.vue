@@ -5,7 +5,7 @@
         </div>
         <div class="editor">
             <n-message-provider>
-                <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
+                <n-button class="btn" @click="copyToWorkspace(inputValue!)">加入</n-button>
                 <n-button class="btn" @click="inputValue = ''">清空</n-button>
             </n-message-provider>
         </div>
@@ -13,32 +13,32 @@
 </template>
 
 <script setup lang="ts">
-import copyToClipboard from "../utils/copy"
-
 const props = defineProps({
   modelValue: String,
   title: String,
 });
 
 const inputValue:string = props.modelValue as string
-const emit = defineEmits(["update:modelValue", "update:title"]);
-
+const emit = defineEmits(['addText']);
+const copyToWorkspace = (value:string) => {
+    emit('addText', value); 
+};
 </script>
 
 <style scoped>
 .container {
     display: flex;
-    flex-direction: row; /* 垂直排列子元素 */
-    align-items: center; /* 水平居中对齐 */
-    justify-content: center; /* 垂直居中对齐 */
-    padding: 20px; /* 容器内边距 */
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
 }
 
 .input, .editor {
-    width: 80%; /* 宽度设置为100% */
-    max-width: 600px; /* 最大宽度限制 */
+    width: 80%; 
+    max-width: 600px; 
     display: flex;
-    justify-content: center; /* 水平居中对齐 */
+    justify-content: center;
 }
 
 .input textarea {
