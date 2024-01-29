@@ -38,10 +38,10 @@
                                         <img class="author-avatar" :src="url" />
                                         <span class="type">{{ item.type }}</span>
                                     </a>
-                                    <span class="like-wrapper like-active">
+                                    <span class="like-wrapper like-active" @click="copyToClipboard(item.content)">
                                         <CopyIcon style="width: 1em; height: 1em" />
                                         <span class="copy">
-
+                                            复制
                                         </span>
                                     </span>
                                 </div>
@@ -56,7 +56,6 @@
 </template>
   
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
 import { Waterfall } from "vue-waterfall-plugin-next";
 import PHeader from '../components/PHeader.vue'
 import "vue-waterfall-plugin-next/dist/style.css";
@@ -67,6 +66,7 @@ import {
     SearchOutline as SearchOutline,
 } from "@vicons/ionicons5";
 import { comData } from '../data/community'
+import copyToClipboard from '../utils/copy'
 
 const activeChannel = ref('推荐'); 
 const list = ref(comData) as any
@@ -171,7 +171,6 @@ function setActiveChannel(channel: string) {
 
         .feeds-container {
             padding-top: 20px;
-            cursor: pointer;
             position: relative;
             transition: width 0.5s;
             margin: 0 auto;
