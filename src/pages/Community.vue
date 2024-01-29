@@ -2,9 +2,6 @@
     <PHeader></PHeader>
     <div class="container">
         <!-- <div class="top">
-            <n-icon class="icon">
-                <IosArrowRoundBack size="500px" @click="handleBack"/>
-              </n-icon>
               <div class="input-box">
                 <n-input type="text" class="search-input" placeholder="搜索..." />
                 <div class="input-button">
@@ -17,31 +14,29 @@
             <div class="channel-container">
                 <div class="scroll-container channel-scroll-container">
                     <div class="content-container">
-                        <div class="channel active">推荐</div>
-                        <div class="channel">写作辅助</div>
-                        <div class="channel">IT/编程</div>
-                        <div class="channel">自助百科</div>
-                        <div class="channel">教育/学生</div>
-                        <div class="channel">语言/翻译</div>
-                        <div class="channel">学术/教师</div>
-                        <div class="channel">心理/社交</div>
+                        <div 
+                            class="channel" 
+                            :class="{ active: channel === activeChannel }"
+                            v-for="channel in ['推荐', '写作辅助', 'IT/编程', '自助百科', '教育/学生', '语言/翻译', '学术/教师', '心理/社交']"
+                            @click="setActiveChannel(channel)"
+                        >
+                            {{ channel }}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="feeds-container">
-                <Waterfall :list="list" :width="300" :gutter="10" :hasAroundGutter="false" style="max-width: 1260px">
+                <Waterfall :list="filteredData" :width="320" :gutter="20" :hasAroundGutter="false" style="max-width: 1260px"
+                    class="card-container">
                     <template #item="{ item, url, index }">
                         <div class="card">
                             <div class="footer">
-                                <h2>这是标题</h2>
-                                <p class="content"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                                        delectus aperiam illum, blanditiis veritatis dolor corporis possimus repellendus
-                                        numquam architecto ullam facilis nostrum autem aliquam totam veniam fugit earum
-                                        soluta!</span></p>
+                                <h2 class="title">{{ item.title }}</h2>
+                                <p class="content"><span>{{ item.content }}</span></p>
                                 <div class="author-wrapper">
                                     <a class="author">
                                         <img class="author-avatar" :src="url" />
-                                        <span class="type">类型</span>
+                                        <span class="type">{{ item.type }}</span>
                                     </a>
                                     <span class="like-wrapper like-active">
                                         <CopyIcon style="width: 1em; height: 1em" />
@@ -62,45 +57,39 @@
   
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import { LazyImg, Waterfall } from "vue-waterfall-plugin-next";
+import { Waterfall } from "vue-waterfall-plugin-next";
 import PHeader from '../components/PHeader.vue'
 import "vue-waterfall-plugin-next/dist/style.css";
-import { ref } from "vue";
-import { IosArrowRoundBack } from '@vicons/ionicons4';
+import { ref, computed } from "vue";
 import {
     CopyOutline as CopyIcon,
     CloseOutline as CloseIcon,
     SearchOutline as SearchOutline,
 } from "@vicons/ionicons5";
-const router = useRouter();
-function handleBack() {
-    router.push('/main')
+import { comData } from '../data/community'
+
+const activeChannel = ref('推荐'); 
+const list = ref(comData) as any
+
+let filteredData = computed(() => {
+    if (activeChannel.value === '推荐') {
+        return getRandomData();
+    } else {
+        return list.value.filter((item: { type: string; }) => item.type === activeChannel.value);
+    }
+});
+
+function getRandomData() {
+    const shuffled = list.value.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 10);
 }
 
-const list = ref([
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.Zte3ljd4g6kqrWWyg-8fhAHaEo?w=264&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.cGc4c8dVlqnfV3uwcS1IogHaE8?w=260&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.Zte3ljd4g6kqrWWyg-8fhAHaEo?w=264&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse4-mm.cn.bing.net/th/id/OIP-C.N0USLldg_iKDGVKT12vB4AHaEK?w=292&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.jzcWzXf_uts2sgE2WChuCQHaEo?w=263&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.Zte3ljd4g6kqrWWyg-8fhAHaEo?w=264&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg" },
-    { src: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg" },
-    { src: "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg" },
-    { src: "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg" },
-    { src: "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg" },
-    { src: "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg" },
-    { src: "https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg" },
-    { src: "https://tse4-mm.cn.bing.net/th/id/OIP-C.N0USLldg_iKDGVKT12vB4AHaEK?w=292&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.jzcWzXf_uts2sgE2WChuCQHaEo?w=263&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse3-mm.cn.bing.net/th/id/OIP-C.YzEeJqgWky6RQMatrMd6-gHaHa?w=170&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse3-mm.cn.bing.net/th/id/OIP-C.YzEeJqgWky6RQMatrMd6-gHaHa?w=170&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.Zte3ljd4g6kqrWWyg-8fhAHaEo?w=264&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse4-mm.cn.bing.net/th/id/OIP-C.N0USLldg_iKDGVKT12vB4AHaEK?w=292&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.jzcWzXf_uts2sgE2WChuCQHaEo?w=263&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.Zte3ljd4g6kqrWWyg-8fhAHaEo?w=264&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-    { src: "https://tse1-mm.cn.bing.net/th/id/OIP-C.cGc4c8dVlqnfV3uwcS1IogHaE8?w=260&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-]);
+function setActiveChannel(channel: string) {
+    activeChannel.value = channel;
+    if (channel === '推荐') {
+        filteredData = getRandomData();
+    }
+}
 </script>
   
 <style lang="scss" scoped>
@@ -120,8 +109,7 @@ const list = ref([
     overflow-x: hidden;
 
     .feeds-page {
-        padding: 0 24px;
-        padding-top: 72px;
+        padding: 8px 24px;
 
         .channel-container {
             display: flex;
@@ -153,6 +141,7 @@ const list = ref([
                 }
 
                 .content-container {
+                    gap: 10px;
                     display: flex;
                     overflow-x: scroll;
                     overflow-y: hidden;
@@ -181,13 +170,25 @@ const list = ref([
         }
 
         .feeds-container {
+            padding-top: 20px;
             cursor: pointer;
             position: relative;
             transition: width 0.5s;
             margin: 0 auto;
 
+            .card {
+                border: 1px solid #e0e0e0;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                margin: 1px;
+            }
+
             .footer {
                 padding: 12px;
+
+                .title {
+                    border-bottom: 1px solid black;
+                }
 
                 .content {
                     margin-bottom: 8px;
@@ -197,7 +198,9 @@ const list = ref([
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 140%;
+                    padding: 5px;
                     color: #333;
+                    margin-bottom: 100px;
                 }
 
                 .author-wrapper {
@@ -228,6 +231,7 @@ const list = ref([
                         }
 
                         .type {
+                            font-size: 12px;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
@@ -248,5 +252,6 @@ const list = ref([
             }
         }
     }
-}</style>
+}
+</style>
   

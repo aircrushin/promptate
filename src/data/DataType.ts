@@ -31,3 +31,10 @@ export type PDataType = {
   color?: string;
   varNum?: number;
 }
+
+export type CDataType = {
+  src?: string;
+  title: string;
+  content: string;
+  type: string
+}
