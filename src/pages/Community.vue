@@ -25,7 +25,7 @@
                         <div class="channel">语言/翻译</div>
                         <div class="channel">学术/教师</div>
                         <div class="channel">心理/社交</div>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div class="feeds-container">
@@ -34,15 +34,20 @@
                         <div class="card">
                             <div class="footer">
                                 <h2>这是标题</h2>
-                                <p class="title"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam delectus aperiam illum, blanditiis veritatis dolor corporis possimus repellendus numquam architecto ullam facilis nostrum autem aliquam totam veniam fugit earum soluta!</span></p>
+                                <p class="content"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                                        delectus aperiam illum, blanditiis veritatis dolor corporis possimus repellendus
+                                        numquam architecto ullam facilis nostrum autem aliquam totam veniam fugit earum
+                                        soluta!</span></p>
                                 <div class="author-wrapper">
                                     <a class="author">
                                         <img class="author-avatar" :src="url" />
-                                        <span class="name">Title</span>
+                                        <span class="type">类型</span>
                                     </a>
                                     <span class="like-wrapper like-active">
-                                        <Search style="width: 1em; height: 1em" />
-                                        <span class="count">12</span>
+                                        <CopyIcon style="width: 1em; height: 1em" />
+                                        <span class="copy">
+
+                                        </span>
                                     </span>
                                 </div>
                             </div>
@@ -63,12 +68,13 @@ import "vue-waterfall-plugin-next/dist/style.css";
 import { ref } from "vue";
 import { IosArrowRoundBack } from '@vicons/ionicons4';
 import {
-  CloseOutline as CloseIcon,
-  SearchOutline as SearchIcon,
+    CopyOutline as CopyIcon,
+    CloseOutline as CloseIcon,
+    SearchOutline as SearchOutline,
 } from "@vicons/ionicons5";
 const router = useRouter();
 function handleBack() {
-  router.push('/main')
+    router.push('/main')
 }
 
 const list = ref([
@@ -103,11 +109,12 @@ const list = ref([
     padding-left: 20px;
     font-size: 32px;
     cursor: pointer;
-  }
+}
+
 .container {
     max-width: 1728px;
     width: 100%;
-    margin: auto; 
+    margin: auto;
     background-color: #fff;
     display: flex;
     overflow-x: hidden;
@@ -182,13 +189,11 @@ const list = ref([
             .footer {
                 padding: 12px;
 
-                .title {
+                .content {
                     margin-bottom: 8px;
                     word-break: break-all;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 2;
-                    overflow: hidden;
+                    display: block;
+                    overflow: visible;
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 140%;
@@ -222,7 +227,7 @@ const list = ref([
                             flex-shrink: 0;
                         }
 
-                        .name {
+                        .type {
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
@@ -235,7 +240,7 @@ const list = ref([
                         display: flex;
                         align-items: center;
 
-                        .count {
+                        .copy {
                             margin-left: 2px;
                         }
                     }
@@ -243,6 +248,5 @@ const list = ref([
             }
         }
     }
-}
-</style>
+}</style>
   
