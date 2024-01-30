@@ -71,7 +71,7 @@ import copyToClipboard from '../utils/copy'
 const activeChannel = ref('推荐'); 
 const list = ref(comData) as any
 
-let filteredData = computed(() => {
+const filteredData = computed(() => {
     if (activeChannel.value === '推荐') {
         return getRandomData();
     } else {
@@ -86,9 +86,9 @@ function getRandomData() {
 
 function setActiveChannel(channel: string) {
     activeChannel.value = channel;
-    if (channel === '推荐') {
-        filteredData = getRandomData();
-    }
+    // if (channel === '推荐') {
+    //     filteredData.value = getRandomData();
+    // }
 }
 </script>
   
@@ -192,14 +192,17 @@ function setActiveChannel(channel: string) {
                 .content {
                     margin-bottom: 8px;
                     word-break: break-all;
-                    display: block;
-                    overflow: visible;
+                    display: -webkit-box;
+                    overflow: hidden;
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 140%;
                     padding: 5px;
                     color: #333;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 20; /* 指定显示的行数 */
                     margin-bottom: 100px;
+                    text-align: left;
                 }
 
                 .author-wrapper {
