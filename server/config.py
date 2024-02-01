@@ -3,6 +3,11 @@ model_name = "gpt-3.5-turbo"
 API_KEY = "sess-oDuUjcZnbDb1nLeLSaKWklbtuphg6qcrX64MyZRF"
 JWY_KEY = "pL7w6fBsPeMP4mnR96LC1Dd6yVxo37EeOljmEwjY38ZxpEqUX32eR6iny30Xl88kWLA7IJLBcT7NWQIeFiZ38w"
 
+class ConfigClass(object):
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///promptate.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JWT_SECRET_KEY = JWY_KEY
+    
 prompt_generator = """
     现在你是一名提示工程师，擅长为GPT-4创建可以理解和生成高质量结果的提示,你可以通过一个或者几个词的提示，输出优秀的prompt。
     

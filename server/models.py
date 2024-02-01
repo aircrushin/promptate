@@ -31,3 +31,18 @@ class User(db.Model):
             'username': self.username
             # 注意：不要返回密码
         }
+
+class CommunityData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    src = db.Column(db.String(255))  # 存储图片链接
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.String(500), nullable=False)  # 增加字符限制以适应内容长度
+    type = db.Column(db.String(80), nullable=False)  # 类型，如“写作辅助”
+
+    def to_dict(self):
+        return {
+            'src': self.src,
+            'title': self.title,
+            'content': self.content,
+            'type': self.type
+        }

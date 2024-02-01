@@ -2,28 +2,36 @@ from flask import Flask, request, jsonify
 from openai import OpenAI
 from flask_cors import CORS
 import os
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from database import db, Data, User
-from config import model_name, API_KEY, JWY_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
+from models import db
+from config import model_name, API_KEY, prompt_generator, prompt_optimizer, prompt_midjourney, ConfigClass
+from routes.data_routes import data_blueprint
+from routes.community_data_routes import community_data_blueprint
+from routes.auth_routes import auth_blueprint
 
 #set flask configs
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///promptate.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = JWY_KEY
+app.config.from_object(ConfigClass)
 
 #set proxy
 os.environ["HTTP_PROXY"] = "http://127.0.0.1:33210"
 os.environ["HTTPS_PROXY"] = "http://127.0.0.1:33210"
+
+#openai
 openai_api_key = API_KEY
 client = OpenAI(api_key=openai_api_key)
+
+##init app
 jwt = JWTManager(app)
-#init database
 db.init_app(app)
 
 # 允许所有来源
 CORS(app, supports_credentials=True)
+
+#routes
+app.register_blueprint(data_blueprint)
+app.register_blueprint(community_data_blueprint)
+app.register_blueprint(auth_blueprint)
 
 @app.before_request
 def create_tables():
@@ -32,57 +40,6 @@ def create_tables():
 @app.route('/api/hello', methods=['GET'])
 def hello():
     return 'Hello World!'
-
-#查询所有数据
-@app.route('/api/queryAllData', methods=['GET'])
-def get_all_data():
-    entries = Data.query.all()
-    return jsonify([entry.to_dict() for entry in entries])
-
-#增加一条数据
-@app.route('/api/data', methods=['POST'])
-def create_data():
-    data_json = request.json
-    new_data = Data(
-        keyWord=data_json['keyWord'],
-        type=data_json['type'],
-        detail=data_json['detail'],
-        useTime=data_json['useTime'],
-        color=data_json['color'],
-        varNum=data_json['varNum']
-    )
-    db.session.add(new_data)
-    db.session.commit()
-    return jsonify(new_data.to_dict()), 201
-
-#查询一条数据
-@app.route('/api/data/<int:id>', methods=['GET'])
-def get_data(id):
-    data = Data.query.get_or_404(id)
-    return jsonify(data.to_dict())
-
-#更新一条数据
-@app.route('/api/data/<int:id>', methods=['PUT'])
-def update_data(id):
-    data = Data.query.get_or_404(id)
-    data_json = request.json
-    data.keyWord = data_json.get('keyWord', data.keyWord)
-    data.type = data_json.get('type', data.type)
-    data.detail = data_json.get('detail', data.detail)
-    data.useTime = data_json.get('useTime', data.useTime)
-    data.color = data_json.get('color', data.color)
-    data.varNum = data_json.get('varNum', data.varNum)
-    db.session.commit()
-    return jsonify(data.to_dict())
-
-#删除一条数据
-@app.route('/api/data/<int:id>', methods=['DELETE'])
-def delete_data(id):
-    data = Data.query.get_or_404(id)
-    db.session.delete(data)
-    db.session.commit()
-    return jsonify({'message': 'Data deleted'})
-    
 
 @app.route('/api/prompt', methods=['POST'])
 def generate_prompt():
@@ -153,42 +110,6 @@ def generate_prompt_mid():
 
     return jsonify({"response": response_message})
 
-@app.route('/api/register', methods=['POST'])
-def register():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-
-    if not username or not password:
-        return jsonify({'message': 'Missing username or password'}), 400
-
-    if User.query.filter_by(username=username).first():
-        return jsonify({'message': 'Username already exists'}), 400
-
-    hashed_password = generate_password_hash(password)
-    new_user = User(username=username, password=hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify({'message': 'User created successfully'}), 201
-
-@app.route('/api/login', methods=['POST'])
-def login():
-    data = request.get_json()
-
-    username = data.get('username')
-    password = data.get('password')
-    if not username or not password:
-        return jsonify({'message': 'Missing username or password'}), 400
-
-    # 检查用户是否存在
-    user = User.query.filter_by(username=username).first()
-    if user and check_password_hash(user.password, password):
-        access_token = create_access_token(identity=username)
-        return jsonify({'message': 'Login successful', 'access_token': access_token}), 200
-    else:
-        return jsonify({'message': 'Invalid credentials'}), 401
-    
 # 受保护的路由
 @app.route('/api/protected', methods=['GET'])
 @jwt_required()
