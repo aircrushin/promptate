@@ -33,7 +33,7 @@ const navigate = (button: any) => {
 .navigator {
   margin-top: 25px;
   justify-content: space-between;
-  gap: 20px;
+  gap: 18px;
   position: relative;
   display: flex;
   list-style: none;

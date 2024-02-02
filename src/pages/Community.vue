@@ -14,14 +14,13 @@
             <div class="channel-container">
                 <div class="scroll-container channel-scroll-container">
                     <div class="content-container">
-                        <div 
-                            class="channel" 
-                            :class="{ active: channel === activeChannel }"
+                        <div class="channel" :class="{ active: channel === activeChannel }"
                             v-for="channel in ['推荐', '写作辅助', 'IT/编程', '自助百科', '教育/学生', '语言/翻译', '学术/教师', '心理/社交']"
-                            @click="setActiveChannel(channel)"
-                        >
+                            @click="setActiveChannel(channel)">
                             {{ channel }}
                         </div>
+                        <n-input type="text" class="search-input" placeholder="搜索..." v-model="searchQuery" @keyup.enter="search" />
+                        <div class="search-icon"><SearchIcon/></div>
                     </div>
                 </div>
             </div>
@@ -38,7 +37,7 @@
                                         <img class="author-avatar" :src="url" />
                                         <span class="type">{{ item.type }}</span>
                                     </a>
-                                    <span class="like-wrapper like-active" @click="copyToClipboard(item.content)">
+                                    <span class="like-wrapper like-active" @click="copy(item.content)">
                                         <CopyIcon style="width: 1em; height: 1em" />
                                         <span class="copy">
                                             复制
@@ -63,13 +62,14 @@ import { ref, computed } from "vue";
 import {
     CopyOutline as CopyIcon,
     CloseOutline as CloseIcon,
-    SearchOutline as SearchOutline,
+    SearchOutline as SearchIcon,
 } from "@vicons/ionicons5";
 import { comData } from '../data/community'
 import copyToClipboard from '../utils/copy'
 
-const activeChannel = ref('推荐'); 
+const activeChannel = ref('推荐');
 const list = ref(comData) as any
+const searchQuery = ref('');
 
 const filteredData = computed(() => {
     if (activeChannel.value === '推荐') {
@@ -79,16 +79,22 @@ const filteredData = computed(() => {
     }
 });
 
+// 添加一个搜索方法
+function search() {
+    
+}
+
 function getRandomData() {
     const shuffled = list.value.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 10);
+    return shuffled.slice(0, 15);
 }
 
 function setActiveChannel(channel: string) {
     activeChannel.value = channel;
-    // if (channel === '推荐') {
-    //     filteredData.value = getRandomData();
-    // }
+}
+
+function copy(item: any) {
+    copyToClipboard(item)
 }
 </script>
   
@@ -165,6 +171,19 @@ function setActiveChannel(channel: string) {
                         -webkit-user-select: none;
                         user-select: none;
                     }
+
+                    .search-input {
+                        margin-left: 10px;
+                        width: 100%;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .search-icon {
+                        float: right;
+                        width: 20px;
+                        height: 20px;
+                    }
                 }
             }
         }
@@ -200,7 +219,8 @@ function setActiveChannel(channel: string) {
                     padding: 5px;
                     color: #333;
                     -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 20; /* 指定显示的行数 */
+                    -webkit-line-clamp: 20;
+                    /* 指定显示的行数 */
                     margin-bottom: 100px;
                     text-align: left;
                 }

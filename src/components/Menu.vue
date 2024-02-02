@@ -107,7 +107,8 @@ const menuOptions: MenuOption[] = [
       h(
         "a",
         {
-          href: "http://localhost:8000", // 修改为目标URL
+          // href: "http://localhost:8000",
+          href: "https://ultrav.gitee.io/promptate-docs/",
           target: "_blank", // 可选，如果你想在新标签页打开链接
         },
         "文档"

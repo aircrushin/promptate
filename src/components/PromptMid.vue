@@ -29,8 +29,8 @@
       </div>
     </div>
     <div class="example-container">
-      <div class="main">
-        <span>Example:</span> 
+      <div class="example-main">
+        <span style="margin-left: 9vw;">示例:</span> 
         <Card v-for="card in exampleCards" :text="card.text" @click="addText(card.text)" :detail="card.text" color="green"
             class="card-container">
         </Card>
@@ -98,18 +98,19 @@
   }
   
   .action-container {
-    padding: 0px 20px 50px;
+    padding: 0px 20px 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     transition: border-color 0.3s, box-shadow 0.3s; /* 平滑的过渡效果 */
-    width: 90%;
+    width: 80%;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
   
   .main-space {
-    width: 90%;
+    height: 15vh;
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -192,7 +193,7 @@
     justify-content: flex-start;
   }
   
-  .main {
+  .example-main {
     display: flex; /* 启用Flexbox布局 */
     justify-content: center;
     align-items: center;

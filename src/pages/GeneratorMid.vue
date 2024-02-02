@@ -33,6 +33,7 @@
   }
   
   .icon {
+    margin-bottom: 5vh;
     margin-left: 0;
     padding-left: 20px;
     font-size: 32px;
