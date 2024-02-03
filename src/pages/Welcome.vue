@@ -98,11 +98,12 @@ const changeSpin = () => {
 }
 
 h2 {
-  font-size: 2rem;
+  margin-top: 14vh;
+  font-size: 1.875rem;
   opacity: 0.9;
 }
 .text-large {
-  font-size: 1.2rem; /* Equivalent to text-3xl */
+  font-size: 1.1rem; /* Equivalent to text-3xl */
   line-height: 1.4;
   opacity: 0.8;
 }
