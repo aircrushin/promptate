@@ -33,18 +33,9 @@ const changeSpin = () => {
 </script>
 
 <style lang="scss" scoped>
-h2 {
-  font-size: 2rem;
-  opacity: 0.9;
-}
-.text-large {
-  font-size: 1.2rem; /* Equivalent to text-3xl */
-  line-height: 1.4;
-  opacity: 0.8;
-}
-
 .app-button {
-  width: 200px;
+  margin-top: 20px;
+  width: 180px;
   height: 50px;
   color: #000;
   position: relative;
@@ -109,10 +100,20 @@ h2 {
   align-items: center;
 }
 
+h2 {
+  font-size: 2rem;
+  opacity: 0.9;
+}
+.text-large {
+  font-size: 1.2rem; /* Equivalent to text-3xl */
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
 .app-loading .app-loading-logo {
-  display: block;
-  width: 50vh;
-  height: 50vh;
+  display: flex;
+  width: 40vh;
+  height: 40vh;
   margin: 0 auto;
 }
 
