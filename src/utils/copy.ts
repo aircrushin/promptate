@@ -12,6 +12,8 @@ const copyToClipboard = (text: string): void => {
         })
         .catch((err) => {
           // 处理复制失败的情况
+          //@ts-ignore
+          window.onmessage!.error("复制失败:");
           console.error("复制失败: ", err);
         });
     }

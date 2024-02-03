@@ -19,7 +19,11 @@
           </div>
         </div>
         <div class="output-container">
-          <p>Prompt:</p>
+          <p class="output-menu">Prompt:
+            <span class="copy-container" @click="copy(responseText)" v-if="responseText">
+              <CopyIcon/>
+          </span>
+          </p>
           <textarea disabled="true" v-if="!show">{{ responseText }}</textarea>
           <n-spin v-if="show" :delay="1000" style="margin-top: 50px;">
             <span/>
@@ -40,8 +44,12 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { generatePrompt, hello } from "../api";
+import { generatePrompt } from "../api";
 import Card from './Card.vue';
+import copyToClipboard from '../utils/copy'
+import {
+    CopyOutline as CopyIcon,
+} from "@vicons/ionicons5";
 
 const prompt = ref("");
 const responseText = ref("");
@@ -59,6 +67,10 @@ function generateText() {
       show.value = true;
       console.log(err);
     });
+}
+
+function copy(item: any) {
+    copyToClipboard(item)
 }
 
 const exampleCards = [
@@ -81,7 +93,7 @@ const addText = (text: string) => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .action {
   display: flex;
   flex-direction: column;
@@ -127,6 +139,21 @@ const addText = (text: string) => {
   width: 90%;
   display: flex;
   flex-direction: column;
+
+  .output-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    overflow: hidden;
+    width: 100%
+  }
+  
+  .copy-container {
+    float: right;
+    cursor: pointer;
+    width: 0.875em; 
+    height: 0.875em
+  }
 }
 
 .output-container p:first-child {
