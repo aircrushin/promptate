@@ -103,7 +103,6 @@ const addText = (text: string) => {
 }
 
 .main-space {
-  height: 15vh;
   width: 80%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,7 +168,7 @@ input {
 }
 
 textarea {
-  font-size: 12px;
+  font-size: 14px;
   position: relative;
   margin-top: 20px;
   border: 1px solid #ddd;
@@ -181,7 +180,7 @@ textarea {
 }
 
 .example-container {
-  margin-top: 5vh;
+  margin-top: 10vh;
   width: 90%;
   display: flex;  
   justify-content: flex-start;

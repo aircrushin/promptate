@@ -64,10 +64,7 @@ const changeSpin = () => {
 }
 
 .app-loading {
-  background-image: url('../utils/cover.jpg');
   display: flex;
-  width: 100%;
-  height: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
