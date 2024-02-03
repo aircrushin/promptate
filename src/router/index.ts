@@ -6,6 +6,7 @@ import NotFound from '../pages/NotFound.vue'
 import About from '../pages/About.vue'
 import Community from '../pages/Community.vue'
 import GeneratorMid from '../pages/GeneratorMid.vue'
+import Index from '../pages/Index.vue'
 
 const routes = [
   {

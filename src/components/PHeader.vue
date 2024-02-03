@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
 import Menu from '../components/Menu.vue'
 import Modal from '../components/Modal.vue'
 
@@ -32,11 +31,10 @@ const router = useRouter();
 <style scoped lang="scss">
 .IndexPage {
   > nav {
-    z-index: 10;
     font-size: 14px;
     display: flex;
     place-items: center;
-    padding-top: 11px;
+    padding-top: 20px;
     padding-bottom: 10px;
     padding-left: 23px;
     padding-right: 14px;

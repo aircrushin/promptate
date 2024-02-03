@@ -174,10 +174,11 @@ const initData = async () => {
 }
 </script>
   
-<style>
+<style scoped>
 .app {
   display: flex;
   justify-content: space-around;
+  margin-top: 20px;
   padding: 20px;
 }
 

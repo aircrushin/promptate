@@ -1,8 +1,10 @@
 <template>
   <div class="app">
-    <Menu class="app-menu"></Menu>
+    <PHeader class="app-menu"></PHeader>
     <div class="app-loading">
       <div class="app-loading-wrap">
+        <h2>📖 Promptate 📖</h2>
+        <span class="text-large">---- 针对文本和图像生成模型 Prompt 的优化辅助平台</span>
         <img src="/logo2.png" class="app-loading-logo" alt="Logo" />
         <n-button class="app-button" size="large" @click="changeSpin">开始</n-button>
         <div class="app-loading-dots">
@@ -18,7 +20,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import PFooter from '../components/PFooter.vue'
-import Menu from '../components/Menu.vue'
+import PHeader from '../components/PHeader.vue';
 
 const isSpin = ref(false);
 const router = useRouter();
@@ -31,6 +33,16 @@ const changeSpin = () => {
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  font-size: 2rem;
+  opacity: 0.9;
+}
+.text-large {
+  font-size: 1.2rem; /* Equivalent to text-3xl */
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
 .app-button {
   width: 200px;
   height: 50px;
