@@ -1,15 +1,6 @@
 <template>
     <PHeader></PHeader>
     <div class="container">
-        <!-- <div class="top">
-              <div class="input-box">
-                <n-input type="text" class="search-input" placeholder="搜索..." />
-                <div class="input-button">
-                    <div class="close-icon"><CloseIcon/></div>
-                    <div class="search-icon"><SearchIcon></SearchIcon></div>
-                </div>
-            </div>
-        </div> -->
         <div class="feeds-page">
             <div class="channel-container">
                 <div class="scroll-container channel-scroll-container">
@@ -19,7 +10,7 @@
                             @click="setActiveChannel(channel)">
                             {{ channel }}
                         </div>
-                        <n-input type="text" class="search-input" placeholder="搜索..." v-model="searchQuery" @keyup.enter="search" />
+                        <input type="text" class="search-input" placeholder="搜索..." v-model="searchQuery" @keyup.enter="search" />
                         <div class="search-icon"><SearchIcon/></div>
                     </div>
                 </div>
@@ -72,12 +63,23 @@ const list = ref(comData) as any
 const searchQuery = ref('');
 
 const filteredData = computed(() => {
-    if (activeChannel.value === '推荐') {
-        return getRandomData();
+    // 如果有输入搜索词，则过滤所有频道的数据，包括推荐
+    if (searchQuery.value) {
+        return list.value.filter((item: { title: string; }) => 
+            item.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+        );
     } else {
-        return list.value.filter((item: { type: string; }) => item.type === activeChannel.value);
+        // 如果没有输入搜索词
+        if (activeChannel.value === '推荐') {
+            // 在推荐频道且没有搜索词时返回随机数据
+            return getRandomData();
+        } else {
+            // 在非推荐频道时根据频道过滤数据
+            return list.value.filter((item: { type: string; }) => item.type === activeChannel.value);
+        }
     }
 });
+
 
 // 添加一个搜索方法
 function search() {
@@ -91,6 +93,7 @@ function getRandomData() {
 
 function setActiveChannel(channel: string) {
     activeChannel.value = channel;
+    searchQuery.value = '';
 }
 
 function copy(item: any) {
@@ -173,10 +176,19 @@ function copy(item: any) {
                     }
 
                     .search-input {
-                        margin-left: 10px;
-                        width: 100%;
-                        justify-content: center;
-                        align-items: center;
+                        width: 100%; /* 完全宽度 */
+                        padding: 10px 20px; /* 上下内边距10px，左右内边距20px */
+                        font-size: 16px; /* 字体大小 */
+                        border: 1px solid #ccc; /* 边框颜色 */
+                        border-radius: 20px; /* 圆角边框 */
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 边框阴影 */
+                        outline: none; /* 移除焦点时的轮廓 */
+                        transition: all 0.3s ease; /* 过渡效果 */
+                    }
+
+                    .search-input:focus {
+                        border-color: #2b8a3e; /* 蓝色边框 */
+                        box-shadow: 0 2px 8px rgba(0,123,255,0.2); /* 更亮的阴影 */
                     }
 
                     .search-icon {
