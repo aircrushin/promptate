@@ -2,7 +2,8 @@
   <div class="PromptWork">
     <h2>工作区</h2>
     <div class="input">
-      <textarea class="input" v-model="inputValue" placeholder="输入您的提示词" rows="6" spellcheck="false"></textarea>
+      <textarea class="input" v-model="inputValue" placeholder="输入您的提示词..." rows="6" spellcheck="false"></textarea>
+      <!-- <TextEditor></TextEditor> -->
     </div>
     <div class="editor">
       <n-message-provider>
@@ -22,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-const tags = ref(['我在哪', '程序员'])
-import { ref, computed, watch, defineEmits } from "vue";
+import TextEditor from './TextEditor.vue'
+import { ref, computed, watch } from "vue";
 import copyToClipboard from "../utils/copy";
 import { optimizePrompt, generatePromptMid } from "../api";
 
@@ -108,9 +109,17 @@ watch(inputValue, (newValue) => {
 }
 
 .input {
+  text-align: left;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.text-editor {
+  border-radius: 5px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .input textarea {
@@ -118,109 +127,47 @@ watch(inputValue, (newValue) => {
   font-style: italic;
   padding: 10px;
   font-size: 16px;
+  margin: 4px;
   border: 1px solid #ccc;
-  /* 灰色边框 */
   border-radius: 5px;
-  /* 圆角边框 */
   outline: none;
-  /* 去除默认轮廓 */
   resize: none;
-  /* 禁止调整大小 */
-  width: 300px;
-  /* 宽度 */
-  height: 200px;
-  /* 高度 */
+  width: 340px;
+  height: 220px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* 轻微的阴影效果 */
   transition: border-color 0.3s, box-shadow 0.3s;
-  /* 平滑的过渡效果 */
 }
 
 h2 {
   letter-spacing: 2px;
   font-family: "Helvetica Neue", sans-serif;
-  /* Instagram uses a clean, sans-serif font */
   font-size: 20px;
-  /* A sizeable font for visibility */
   text-align: center;
-  /* Center align the title */
   color: white;
-  /* White color for the text */
   background: -webkit-linear-gradient(left, #a8c0ff 0%, #3f2b96 100%);
-  /* Cooler gradient with lighter start and darker end for contrast */
   background: linear-gradient(to right, #a8c0ff 0%, #3f2b96 100%);
-  /* Standard syntax for gradient */
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
-  /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
-  /* Slight shadow for depth */
 }
 
 .editor {
+  margin-top: 8px;
   display: flex;
-  /* 使用flex布局 */
   justify-content: center;
-  /* 水平居中 */
-  gap: 10px;
-  /* 按钮之间的间隙 */
+  gap: 12px;
+
 }
 
 .btn {
   padding: 10px 20px;
-  /* 按钮内边距 */
   border: none;
-  /* 移除边框 */
   border-radius: 5px;
-  /* 圆角边框 */
   text-transform: uppercase;
-  /* 文本转换为大写 */
   font-weight: bold;
-  /* 字体加粗 */
   cursor: pointer;
-  /* 鼠标悬停时显示指针 */
   transition: background-color 0.3s, transform 0.3s;
-  /* 平滑的过渡效果 */
-}
-
-/* Styling the container */
-.raw-prompt {
-  width: 300px;
-  text-align: center;
-  /* Center the input field */
-  margin: 0px;
-  padding: 10px;
-  border-radius: 5px;
-  /* Rounded corners */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
-  /* Subtle shadow for depth */
-}
-
-/* Styling the input field */
-.raw-prompt input[type="text"] {
-  font-family: "Helvetica Neue", sans-serif;
-  /* Clean, sans-serif font */
-  font-size: 16px;
-  /* Appropriate size for input text */
-  color: black;
-  /* Black text color */
-  border: none;
-  /* Remove default border */
-  outline: none;
-  /* Remove focus outline */
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Slightly transparent white background for readability */
-  padding: 10px 15px;
-  /* Padding inside the input field */
-  border-radius: 5px;
-  /* Rounded corners */
-  width: 80%;
-  /* Width relative to parent container */
-  box-sizing: border-box;
-  /* Include padding and border in the element's total width and height */
-  transition: background-color 0.3s ease;
-  /* Smooth transition for background color */
 }
 
 .chooser {

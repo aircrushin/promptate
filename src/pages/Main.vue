@@ -7,7 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-      <CardEditor/>
+      <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
       <Dropdown @update:key="updateKey"></Dropdown>
@@ -195,10 +195,6 @@ const initData = async () => {
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-}
-
-.text {
-  height: 300px;
 }
 
 @media (max-width: 768px) {
