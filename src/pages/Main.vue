@@ -36,14 +36,23 @@ import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
 import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
-import CardEditor from '../components/CardEditor.vue';
 import { tagsRef,tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
+//import { glmTest } from '../api/model'
 
 onMounted(() => {
   initData()
+  // glmTest().then(response_message => {
+  //       console.log(response_message);
+  //   })
+  //   .catch(error => {
+  //       console.error('请求失败', error);
+  //   });
+  //const token = generateToken(apiKey, expSeconds);
+  //console.log("token:",token);
 });
-
+const apiKey = "c87755766bf2af696e8fef3a715ff2f2.Vn5KXqmxFOgxig8K";
+const expSeconds = 36000000; // token有效期，单位为秒
 const selectedCardDetail = ref('');
 const textHistory = ref<string[]>([]);
 const text = ref('');
@@ -172,6 +181,7 @@ const initData = async () => {
   ).catch
     (err => console.log(err))
 }
+
 </script>
   
 <style scoped>
@@ -194,7 +204,7 @@ const initData = async () => {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px;
 }
 
 @media (max-width: 768px) {

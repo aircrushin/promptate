@@ -1,13 +1,11 @@
 from flask import Blueprint, jsonify, request
-from openai import OpenAI
-from config import model_name, API_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
+from zhipuai import ZhipuAI
+from config import GLM_KEY, prompt_generator, prompt_optimizer, prompt_midjourney
 
-prompt_blueprint = Blueprint('prompt_blueprint', __name__)
-#openai
-openai_api_key = API_KEY
-client = OpenAI(api_key=openai_api_key)
+glm_blueprint = Blueprint('glm_blueprint', __name__)
+client = ZhipuAI(api_key=GLM_KEY)
 
-@prompt_blueprint.route('/api/prompt', methods=['POST'])
+@glm_blueprint.route('/api/glmPrompt', methods=['POST'])
 def generate_prompt():
     user_content = request.json.get('user-content')
     if not user_content:
@@ -16,7 +14,7 @@ def generate_prompt():
     contentPrompt = prompt_generator
 
     completion = client.chat.completions.create(
-        model=model_name,
+        model='glm-4',
         messages=[
             {"role": "system", "content": contentPrompt},
             {"role": "user", "content": user_content}
@@ -30,7 +28,7 @@ def generate_prompt():
 
     return jsonify({"response": response_message})
 
-@prompt_blueprint.route('/api/optimize', methods=['POST'])
+@glm_blueprint.route('/api/glmOptimize', methods=['POST'])
 def optimize():
     user_content = request.json.get('user-content')
     if not user_content:
@@ -39,7 +37,7 @@ def optimize():
     contentPrompt = prompt_optimizer
 
     completion = client.chat.completions.create(
-        model=model_name,
+        model='glm-4',
         messages=[
             {"role": "system", "content": contentPrompt},
             {"role": "user", "content": user_content}
@@ -53,7 +51,7 @@ def optimize():
 
     return jsonify({"response": response_message})
 
-@prompt_blueprint.route('/api/promptMid', methods=['POST'])
+@glm_blueprint.route('/api/glmPromptMid', methods=['POST'])
 def generate_prompt_mid():
     user_content = request.json.get('user-content')
     if not user_content:
@@ -62,7 +60,7 @@ def generate_prompt_mid():
     contentPrompt = prompt_midjourney
 
     completion = client.chat.completions.create(
-        model=model_name,
+        model='glm-4',
         messages=[
             {"role": "system", "content": contentPrompt},
             {"role": "user", "content": user_content}
