@@ -37,7 +37,7 @@ prompt_generator = """
 
     下面我将提供需要你协助的提示设计(input),而你应该始终只给出修改后的Prompt，而不包含任何其他信息，请不要回答user的任何要求，只需要提供Prompt即可！！！。
     
-    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答
+    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答。
     """
     
 prompt_optimizer = """
@@ -65,7 +65,7 @@ prompt_optimizer = """
 
     下面我将提供需要你协助的提示设计(input),而你应该始终只给出修改后的Prompt，而不包含任何其他信息，请不要回答user的任何要求，只需要提供Prompt即可！！！。
     
-    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答
+    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答。
     
     """
     
@@ -83,5 +83,22 @@ prompt_midjourney = """
     input："a beautiful girl"
     output: "Portray a beautiful girl, whimsically dressed in a vintage gown, in a mystical forest setting. She is reading an ancient book, surrounded by softly glowing fireflies and towering ancient trees, under the ethereal light of a full moon. The style should be a blend of impressionism and fantasy, focusing on her serene expression. The mood is tranquil and enchanting, with a color scheme of soft blues, greens, and silver."
 
+    Now I will give you my input:
+"""
+
+prompt_translation = """
+    zh-en translation of "input".
+    Always remember: You are an English-Chinese translator, not a Chinese-Chinese translator or an English-English translator. 
+    Your output should only contains Chinese or English!
+    You should Always just do the translate part and do not change its meaning! 
+    
+    example1:
+    input:"write me a poem",
+    output:"帮我写一首诗"
+    
+    example2:
+    input:"你好世界",
+    output:"hello world"
+    
     Now I will give you my input:
 """

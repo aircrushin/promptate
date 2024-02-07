@@ -10,8 +10,11 @@
         <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
         <n-button class="btn" @click="inputValue = ''">清空</n-button>
         <n-button class="btn" @click="betterPrompt">优化</n-button>
+        <n-button class="btn" @click="translation">翻译</n-button>
         <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="优化结果" :content="betterContent"
           positive-text="复制" negative-text="算了" @positive-click="onPositiveClick" @negative-click="onNegativeClick" />
+          <n-modal v-model:show="showTrans" :mask-closable="false" preset="dialog" title="翻译结果" :content="tranlatedText"
+          positive-text="复制" negative-text="算了" @positive-click="onPositiveClickTrans" @negative-click="onNegativeClickTrans" />
       </n-message-provider>
       <div class="chooser">
         <template>
@@ -26,7 +29,7 @@
 import TextEditor from './TextEditor.vue'
 import { ref, computed, watch } from "vue";
 import copyToClipboard from "../utils/copy";
-import { optimizePrompt, generatePromptMid } from "../api";
+import { optimizePrompt, generatePromptMid,translate } from "../api";
 
 const props = defineProps({
   modelValue: String,
@@ -34,8 +37,10 @@ const props = defineProps({
   isGPT: Boolean,
 });
 
-const showModal = ref(false);
-const betterContent = ref("");
+const showModal = ref(false)
+const showTrans = ref(false)
+const betterContent = ref("")
+const tranlatedText = ref("")
 
 function betterPrompt() {
   console.log(props.isGPT);
@@ -69,6 +74,23 @@ function betterPrompt() {
   }
 }
 
+function translation() {
+  let rawText: string = inputValue.value || "";
+  console.log(rawText)
+    //@ts-ignore
+  window.onmessage!.info("翻译中...", { duration: 5000 });
+  translate(rawText).then(({ data }) => {
+        console.log(data.response);
+        tranlatedText.value = data.response;
+        showTrans.value = true;
+      })
+      .catch((err) => {
+        //@ts-ignore
+        window.onmessage!.error("翻译失败!", { duration: 2000 });
+        console.log(err);
+      });
+}
+
 function onNegativeClick() {
   //@ts-ignore
   window.onmessage!.success("取消");
@@ -76,8 +98,19 @@ function onNegativeClick() {
 }
 
 function onPositiveClick() {
-  copyToClipboard(betterContent.value);
+  copyToClipboard(betterContent.value!);
   showModal.value = false;
+}
+
+function onNegativeClickTrans() {
+  //@ts-ignore
+  window.onmessage!.success("取消");
+  showTrans.value = false;
+}
+
+function onPositiveClickTrans() {
+  copyToClipboard(tranlatedText.value!);
+  showTrans.value = false;
 }
 
 const inputTitle = computed({

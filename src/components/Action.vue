@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="input">
-            <textarea class="input" v-model="inputValue" placeholder="输入您的行动" rows="1" spellcheck="false"></textarea>
+            <textarea v-model="inputValue" placeholder="输入您的行动" rows="1" spellcheck="false"></textarea>
         </div>
         <div class="editor">
             <n-message-provider>
@@ -35,8 +35,7 @@ const copyToWorkspace = (value:string) => {
 }
 
 .input, .editor {
-    width: 80%; 
-    max-width: 600px; 
+    width: 100%; 
     display: flex;
     justify-content: center;
 }
@@ -47,19 +46,12 @@ const copyToWorkspace = (value:string) => {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    /* 灰色边框 */
     border-radius: 5px;
-    /* 圆角边框 */
     outline: none;
-    /* 去除默认轮廓 */
     resize: none;
-    /* 宽度 */
     height: 20px;
-    /* 高度 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* 轻微的阴影效果 */
     transition: border-color 0.3s, box-shadow 0.3s;
-    /* 平滑的过渡效果 */
 }
 
 .btn {
@@ -67,18 +59,11 @@ const copyToWorkspace = (value:string) => {
     margin-left: 20px;
     justify-content: center;
     padding: 10px 10px;
-    /* 按钮内边距 */
     border: none;
-    /* 移除边框 */
     border-radius: 5px;
-    /* 圆角边框 */
     text-transform: uppercase;
-    /* 文本转换为大写 */
     font-weight: bold;
-    /* 字体加粗 */
     cursor: pointer;
-    /* 鼠标悬停时显示指针 */
     transition: background-color 0.3s, transform 0.3s;
-    /* 平滑的过渡效果 */
 }
 </style>

@@ -30,7 +30,7 @@
                                     </a>
                                     <span class="like-wrapper like-active" @click="copy(item.content)">
                                         <CopyIcon style="width: 1em; height: 1em" />
-                                        <span class="copy">
+                                        <span class="copy" @click="showToast">
                                             复制
                                         </span>
                                     </span>
@@ -57,6 +57,18 @@ import {
 } from "@vicons/ionicons5";
 import { comData } from '../data/community'
 import copyToClipboard from '../utils/copy'
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast();
+
+const showToast = () => {
+  toast.open({
+    message: '复 制 成 功 !',
+    type: 'info',
+    position: 'top',
+    duration: 2000
+  });
+};
 
 const activeChannel = ref('推荐');
 const list = ref(comData) as any
@@ -79,7 +91,6 @@ const filteredData = computed(() => {
         }
     }
 });
-
 
 // 添加一个搜索方法
 function search() {

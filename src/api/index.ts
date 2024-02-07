@@ -39,3 +39,9 @@ export function login(username: string, password: string) {
     password: password
   });
 }
+
+export function translate(message: string) {
+  return axios.post("/api/glmTranslation", {
+    "user-content": message
+  })
+}
