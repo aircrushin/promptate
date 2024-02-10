@@ -5,7 +5,7 @@ contentPrompt = "you are a helpful assistant"
 completion = client.chat.completions.create(
     model="glm-4",
     messages=[
-        {"role": "system", "content": contentPrompt},
+        {"role": "system", "content": contentPrompt},    
         {"role": "user", "content": user_content}
         ],
     max_tokens=150,
