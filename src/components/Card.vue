@@ -3,7 +3,7 @@
     <n-popover trigger="hover">
       <template #trigger>
         <div class="card" @click="emitAddTag" @mouseover="showDetail = true" @mouseleave="showDetail = false">
-          <div class="color-bar" :style="{ backgroundColor: color }"></div>
+          <div class="color-bar" :style="{ backgroundColor: computedColor }"></div>
           <div class="text-content">{{ text }}</div>
         </div>
       </template>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineProps, defineEmits } from 'vue';
 
 // 定义属性
@@ -35,6 +35,12 @@ const emitAddTag = () => {
 
 // 控制详细信息显示的状态
 const showDetail = ref(false);
+
+// 计算属性，根据原始颜色返回修改后的颜色
+const computedColor = computed(() => {
+  return props.color === 'yellow' ? 'orange' : props.color;
+});
+
 
 </script>
 

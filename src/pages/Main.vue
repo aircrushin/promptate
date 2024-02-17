@@ -7,6 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
+        <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank"> 🗨️ </a>
       <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
@@ -36,24 +37,32 @@ import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
 import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
-import { tagsRef,tagsDetail } from '../store/store'
+import { tagsRef, tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
+import { useRouter } from 'vue-router';
+// 定义 openChatBot 方法
+const router = useRouter();
 //import { glmTest } from '../api/model'
 
-onMounted(() => {
-  initData()
-  // glmTest().then(response_message => {
-  //       console.log(response_message);
-  //   })
-  //   .catch(error => {
-  //       console.error('请求失败', error);
-  //   });
-  //const token = generateToken(apiKey, expSeconds);
-  //console.log("token:",token);
+onMounted(async () => {
+  try {
+    // 调用queryAllData并等待结果
+    const response = await queryAllData();
+    // 假设返回的数据格式和background.data相同
+    cardItems.value = response.data.map((item: any) => ({
+      button: item.type,
+      text: item.keyWord,
+      detail: item.detail,
+      color: item.color
+    }));
+  } catch (error) {
+    console.error('Failed to fetch card items:', error);
+  }
 });
-const apiKey = "c87755766bf2af696e8fef3a715ff2f2.Vn5KXqmxFOgxig8K";
-const expSeconds = 36000000; // token有效期，单位为秒
-const selectedCardDetail = ref('');
+
+// const apiKey = "c87755766bf2af696e8fef3a715ff2f2.Vn5KXqmxFOgxig8K";
+// const expSeconds = 36000000; // token有效期，单位为秒
+// const selectedCardDetail = ref('');
 const textHistory = ref<string[]>([]);
 const text = ref('');
 const title = ref('');
@@ -75,12 +84,13 @@ interface cardItemsType {
   color: string | undefined;
 }
 
-const cardItems: cardItemsType[] = background.data.map((item, index) => ({
-  button: item.type,
-  text: item.keyWord,
-  detail: item.detail,
-  color: item.color
-}));
+const cardItems = ref<cardItemsType[]>([]);
+// const cardItems: cardItemsType[] = background.data.map((item, index) => ({
+//   button: item.type,
+//   text: item.keyWord,
+//   detail: item.detail,
+//   color: item.color
+// }));
 
 const activeButton = ref('背景');
 
@@ -94,7 +104,7 @@ const filteredCardItems = computed(() => {
   if (!activeButton.value) {
     return;
   }
-  return cardItems.filter(card => card.button === activeButton.value);
+  return cardItems.value.filter((card: { button: string; }) => card.button === activeButton.value);
 });
 
 //实现addText函数
@@ -105,7 +115,7 @@ const addText = (cardText?: string) => {
     textHistory.value.push(cardText + '\n');
   } else if (selectedKey.value === 'MidJourney') {
     text.value += cardText + ', ';
-    textHistory.value.push(cardText + ', '); 
+    textHistory.value.push(cardText + ', ');
   } else {
     text.value += cardText + '\n';
     textHistory.value.push(cardText + '\n');
@@ -134,7 +144,7 @@ const updateKey = (key: string) => {
   }
 }
 
-const handleAction = (value:string) => {
+const handleAction = (value: string) => {
   console.log('111')
   text.value += value + '\n';
   textHistory.value.push(value + '\n');
@@ -174,13 +184,6 @@ const addDetailToTagsRef = (tagText: any) => {
   }
 }
 
-const initData = async () => {
-  // 初始化数据
-  queryAllData().then(
-    res => console.log(res.data)
-  ).catch
-    (err => console.log(err))
-}
 
 </script>
   
@@ -216,4 +219,24 @@ const initData = async () => {
     padding: 10px;
     border-radius: 5px;
   }
-}</style>
+}
+
+.robot-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px; /* 按钮宽度 */
+  height: 80px; /* 按钮高度 */
+  font-size: 24px; /* 字体大小 */
+  border-radius: 50%; 
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 40px; 
+  transition: transform 0.3s ease;
+}
+.robot-button:hover {
+  transform: scale(1.1); /* 鼠标悬停时放大按钮 */
+}
+
+</style>

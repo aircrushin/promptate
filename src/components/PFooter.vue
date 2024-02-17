@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <p>© 2023 Designed by aircrushin</p>
+      <p>© 2023-2024 Designed by FYH</p>
     </div>
   </footer>
 </template>

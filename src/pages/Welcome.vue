@@ -9,8 +9,10 @@
         <n-button class="app-button" size="large" @click="changeSpin">开始</n-button>
         <div class="scroll-down-wrapper">
           <n-button class="scroll-down-button" size="large" @click="scrollToGallery">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </n-button>
         </div>
@@ -22,43 +24,41 @@
     <PFooter></PFooter>
   </div>
   <div class="app-gallery">
-    <h1 class="gallery-title">辅助生成案例</h1>
+    <h1 class="gallery-title">辅助生成案例 -- 图片</h1>
     <div class="gallery-item">
-      <span class="gallery-description">“Immerse yourself in the vastness of the ocean, where the deep blue waters stretch as far as the eye can see.”</span>
+      <span class="gallery-description">“Immerse yourself in the vastness of the ocean, where the deep blue waters stretch
+        as far as the eye can see. discovering wonders beyond your wildest dreams.”</span>
       <img src="/gallery1.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
+      <span class="gallery-description">"Autumn forest, colorful leaves, serene path, wooden bench, crisp air, falling
+        leaves, golden sunlight, peaceful nature, hidden mushrooms, gentle stream."</span>
+      <img src="/gallery2.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
+      <span class="gallery-description">"Portray a beautiful girl in a modern setting, bathed in cinematic lighting. The
+        girl should have clear facial features and a serene expression. The style should be ultra high definition, with
+        sharp lines and realistic detailing."</span>
+      <img src="/gallery3.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
+      <span class="gallery-description">“portray a wonderland, maple trees, red leaves, woodsy scent, acorn scattered
+        ground, soft sunlight filtering through branches, hiking trail, quiet ambiance, squirrel activity, gentle breeze,
+        autumnal landscape.”</span>
+      <img src="/gallery4.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
+      <span class="gallery-description">"Picture a Chinese man in his 40s, Charming face, stylish outfit,
+        confident pose, striking eyes, well-groomed hair, captivating aura, muscular build, fashionable accessories,
+        charismatic personality, handsome features."</span>
+      <img src="/gallery5.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
+      <span class="gallery-description">"Towering peaks, cascading waterfalls, misty mountains, serene streams, ancient pine trees, tranquil ambiance, traditional Chinese landscape, harmonious nature, lush greenery, peaceful hiking trails.
+        "</span>
+      <img src="/gallery6.png" alt="" class="gallery-image">
     </div>
-    <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">A giant mountain under the sky</span>
-      <img src="https://source.unsplash.com/random/300x300?sig=1" alt="A giant mountain under the sky" class="gallery-image">
-    </div>
+    <h1 class="gallery-title">More To Come...</h1>
   </div>
 </template>
 
@@ -87,20 +87,20 @@ const scrollToGallery = () => {
 
 <style lang="scss" scoped>
 .app {
-  overflow-y: scroll; 
-  height: 100vh; 
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  overflow-y: scroll;
+  height: 100vh;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer and Edge */
 }
+
 .app::-webkit-scrollbar {
   display: none;
 }
 
-.app-menu {
-  margin-bottom: 100px;
-}
-
 .app-button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   width: 180px;
   height: 50px;
@@ -135,6 +135,7 @@ const scrollToGallery = () => {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
 }
 
 .app-loading .app-loading-wrap {
@@ -165,14 +166,20 @@ const scrollToGallery = () => {
 }
 
 h2 {
-  margin-top: 14vh;
+  margin-top: 16vh;
   font-size: 1.875rem;
   opacity: 0.9;
 }
+
 .text-large {
-  font-size: 1.1rem; /* Equivalent to text-3xl */
+  font-size: 1.1rem;
+  /* Equivalent to text-3xl */
   line-height: 1.4;
   opacity: 0.8;
+}
+
+h2, .text-large {
+  color: #333;
 }
 
 .app-loading .app-loading-logo {
@@ -201,64 +208,71 @@ h2 {
   justify-content: center;
   align-items: center;
   padding: 50px;
-  gap: 50px; /* 可以根据需要调整间隙 */
+  gap: 50px;
+  /* 可以根据需要调整间隙 */
 }
 
 .gallery-title {
   width: 100%;
-  font-size: 2rem; /* 根据需要调整大小 */
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 30px; /* 根据需要调整底部边距 */
-  color: #333; /* 根据需要调整颜色 */
+  margin-bottom: 30px;
+  color: #444;
 }
 
 
 .gallery-item {
-  width: calc(33.333% - 50px); /* 减去gap值，确保总宽度不超过100% */
+  width: calc(33.333% - 50px);
+  background: linear-gradient(to right, #f5f5f5, #e8e8e8);
   display: flex;
   align-items: center;
-  background-color: #f5f5f5; /* 背景颜色，可以根据需要调整 */
+  background-color: #f5f5f5;
   border-radius: 10px;
-  overflow: hidden; /* 确保内部的阴影效果不会超出边界 */
-  margin-bottom: 20px; /* 可以根据需要调整 */
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .gallery-description {
-  padding: 20px; /* 内边距，可以根据需要调整 */
-  font-size: 1rem; /* 描述文字的大小 */
-  line-height: 1.4; /* 描述文字的行高 */
-  color: #333; /* 描述文字颜色 */
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 20;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
 .gallery-image {
   width: 500px;
-  height: 500px; /* 保持图片的宽高比 */
+  height: 500px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-/* 响应式设计，如果屏幕尺寸较小，则调整为每行一个 */
 @media (max-width: 1024px) {
   .gallery-item {
-    width: 100%; /* 占据容器的全部宽度 */
+    width: 50%;
   }
 }
 
-/* 对于更小的屏幕，可以进一步调整 */
 @media (max-width: 768px) {
   .gallery-item {
     flex-direction: column;
   }
+
   .gallery-description,
   .gallery-image {
     width: 100%;
   }
+
   .gallery-description {
     border-radius: 10px 10px 0 0;
   }
+
   .gallery-image {
     border-radius: 0 0 10px 10px;
   }
@@ -268,36 +282,41 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px; /* 根据需要调整 */
+  margin-top: 20px;
+  /* 根据需要调整 */
 }
 
 .scroll-down-button {
   margin-top: 20px;
-  background-color: white; /* 根据需要调整颜色 */
+  background-color: white;
   color: #333;
   border: none;
-  border-radius: 50%; /* 使按钮呈圆形 */
-  width: 50px; /* 根据需要调整大小 */
-  height: 50px; /* 根据需要调整大小 */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease; /* 添加一些过渡效果 */
+  transition: transform 0.3s ease;
 }
 
 .scroll-down-button:hover {
-  transform: translateY(5px); /* 鼠标悬停时的效果 */
+  transform: translateY(5px);
 }
 
 .scroll-down-button:focus {
-  outline: none; /* 移除焦点时的默认边框 */
+  outline: none;
 }
 
-/* SVG图标样式 */
 .scroll-down-button svg {
-  width: 24px; /* 根据需要调整大小 */
-  height: 24px; /* 根据需要调整大小 */
+  width: 24px;
+  height: 24px;
 }
 
+@keyframes color-change {
+  0% { border-color: #37b24d; }
+  50% { border-color: #f5b24d; }
+  100% { border-color: #37b24d; }
+}
 </style>
