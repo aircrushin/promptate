@@ -230,9 +230,10 @@ const addDetailToTagsRef = (tagText: any) => {
   font-size: 24px; /* 字体大小 */
   border-radius: 50%; 
   color: white;
+  background-color: #eee;
   border: none;
   cursor: pointer;
-  margin-top: 40px; 
+  margin-top: 20px; 
   transition: transform 0.3s ease;
 }
 .robot-button:hover {

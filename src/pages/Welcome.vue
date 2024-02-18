@@ -139,6 +139,7 @@ const scrollToGallery = () => {
 }
 
 .app-loading .app-loading-wrap {
+  margin-top: 12vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -166,7 +167,6 @@ const scrollToGallery = () => {
 }
 
 h2 {
-  margin-top: 16vh;
   font-size: 1.875rem;
   opacity: 0.9;
 }
@@ -223,7 +223,7 @@ h2, .text-large {
 
 
 .gallery-item {
-  width: calc(33.333% - 50px);
+  width: calc(50% - 50px);
   background: linear-gradient(to right, #f5f5f5, #e8e8e8);
   display: flex;
   align-items: center;
@@ -234,6 +234,7 @@ h2, .text-large {
 }
 
 .gallery-description {
+  width: 40%;
   padding: 20px;
   font-size: 1rem;
   line-height: 1.4;
@@ -246,8 +247,8 @@ h2, .text-large {
 }
 
 .gallery-image {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
