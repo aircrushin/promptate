@@ -49,6 +49,38 @@ export const background: backgroundType = {
       varNum: 1,
     },
     {
+      "keyWord": "我的饮食习惯",
+      "type": "背景",
+      "detail": "我喜欢的食物是{文本}",
+      "useTime": 22,
+      "color": "orange",
+      "varNum": 1
+    },
+    {
+      "keyWord": "我的音乐品味",
+      "type": "背景",
+      "detail": "我喜欢听{文本}音乐",
+      "useTime": 22,
+      "color": "orange",
+      "varNum": 1
+    },
+    {
+      "keyWord": "我的阅读习惯",
+      "type": "背景",
+      "detail": "我喜欢的书籍类型是{文本}",
+      "useTime": 22,
+      "color": "orange",
+      "varNum": 1
+    },
+    {
+      "keyWord": "我的电影偏好",
+      "type": "背景",
+      "detail": "我最喜欢的电影类型是{文本}",
+      "useTime": 22,
+      "color": "orange",
+      "varNum": 1
+    },
+    {
       keyWord: "工作经历",
       type: "背景",
       detail: "我在{文本}公司工作，担任{文本}职位",

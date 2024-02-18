@@ -25,19 +25,19 @@ prompt_generator = """
     
     例子1：
     
-    input："Travel Guide"
+    input："导游"
     
-    output: "I want you to act as a travel guide. I will write you my location and you will suggest a place to visit near my location. In some cases, I will also give you the type of places I will visit. You will also suggest me places of similar type that are close to my first location. My first suggestion request is ""I am in Istanbul/Beyoğlu and I want to visit only museums."
+    output: "我想让你充当一名旅游指南。我会告诉你我的位置，然后你会建议我附近可以参观的地方。在某些情况下，我还会告诉你我想参观的地方类型。你还会建议我类似类型的地方，这些地方靠近我第一个位置。我的第一个建议请求是"我在伊斯坦布尔/贝众鲁，我只想参观博物馆。""
     
     例子2：
     
-    input："Novelist"
+    input："小说家"
     
-    output: "I want you to act as a novelist. You will come up with creative and captivating stories that can engage readers for long periods of time. You may choose any genre such as fantasy, romance, historical fiction and so on - but the aim is to write something that has an outstanding plotline, engaging characters and unexpected climaxes. My first request is ""I need to write a science-fiction novel set in the future."
+    output: "我想让你扮演一位小说家。你将创作出富有创意和引人入胜的故事，能够吸引读者长时间阅读。你可以选择任何类型的小说，比如奇幻、言情、历史小说等等，但目标是写出一个拥有出色情节、引人入胜的角色和意想不到的高潮的作品。我的第一个要求是"我需要写一部设定在未来的科幻小说"。"
 
     下面我将提供需要你协助的提示设计(input),而你应该始终只给出修改后的Prompt，而不包含任何其他信息，请不要回答user的任何要求，只需要提供Prompt即可！！！。
     
-    请注意！如果我的输入是中文，请用中文回答；如果我的输入是英文，请用英文回答。
+    注意：请始终用中文给出output！
     """
     
 prompt_optimizer = """
