@@ -36,26 +36,26 @@
       <img src="/gallery2.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">"Portray a beautiful girl in a modern setting, bathed in cinematic lighting. The
+      <span class="gallery-description">"Portray a beautiful girl in a modern setting, The
         girl should have clear facial features and a serene expression. The style should be ultra high definition, with
         sharp lines and realistic detailing."</span>
       <img src="/gallery3.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">“portray a wonderland, maple trees, red leaves, woodsy scent, acorn scattered
-        ground, soft sunlight filtering through branches, hiking trail, quiet ambiance, squirrel activity, gentle breeze,
+      <span class="gallery-description">“portray a wonderland, maple trees, woodsy scent, acorn scattered
+        ground, hiking trail, quiet ambiance, squirrel activity, gentle breeze,
         autumnal landscape.”</span>
       <img src="/gallery4.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">"Picture a Chinese man in his 40s, Charming face, stylish outfit,
-        confident pose, striking eyes, well-groomed hair, captivating aura, muscular build, fashionable accessories,
+      <span class="gallery-description">"Picture a Chinese man in his 40s, stylish outfit,
+        confident pose, striking eyes, well-groomed hair, muscular build, fashionable accessories,
         charismatic personality, handsome features."</span>
       <img src="/gallery5.png" alt="" class="gallery-image">
     </div>
     <div class="gallery-item">
-      <span class="gallery-description">"Towering peaks, cascading waterfalls, misty mountains, serene streams, ancient pine trees, tranquil ambiance, traditional Chinese landscape, harmonious nature, lush greenery, peaceful hiking trails.
-        "</span>
+      <span class="gallery-description">"Towering peaks, cascading waterfalls, misty mountains, serene streams, ancient
+        pine trees, tranquil ambiance, traditional Chinese landscape, harmonious nature."</span>
       <img src="/gallery6.png" alt="" class="gallery-image">
     </div>
     <h1 class="gallery-title">More To Come...</h1>
@@ -178,11 +178,13 @@ h2 {
   opacity: 0.8;
 }
 
-h2, .text-large {
+h2,
+.text-large {
   color: #333;
 }
 
 .app-loading .app-loading-logo {
+  margin-top: 5vh;
   display: flex;
   width: 40vh;
   height: 40vh;
@@ -316,8 +318,15 @@ h2, .text-large {
 }
 
 @keyframes color-change {
-  0% { border-color: #37b24d; }
-  50% { border-color: #f5b24d; }
-  100% { border-color: #37b24d; }
-}
-</style>
+  0% {
+    border-color: #37b24d;
+  }
+
+  50% {
+    border-color: #f5b24d;
+  }
+
+  100% {
+    border-color: #37b24d;
+  }
+}</style>

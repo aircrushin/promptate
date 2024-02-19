@@ -211,7 +211,7 @@ textarea {
 }
 
 .example-container {
-  margin-top: 10vh;
+  margin-top: 12vh;
   width: 90%;
   display: flex;
   justify-content: flex-start;

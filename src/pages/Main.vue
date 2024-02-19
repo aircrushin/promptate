@@ -7,7 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-        <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank"> 🗨️ </a>
+        <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank"><ChatIcon></ChatIcon></a>
       <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
@@ -40,6 +40,9 @@ import PHeader from '../components/PHeader.vue';
 import { tagsRef, tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
 import { useRouter } from 'vue-router';
+import {
+    Chatbox as ChatIcon,
+} from "@vicons/ionicons5";
 // 定义 openChatBot 方法
 const router = useRouter();
 //import { glmTest } from '../api/model'
@@ -225,12 +228,11 @@ const addDetailToTagsRef = (tagText: any) => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 80px; /* 按钮宽度 */
-  height: 80px; /* 按钮高度 */
+  width: 40px; /* 按钮宽度 */
+  height: 40px; /* 按钮高度 */
   font-size: 24px; /* 字体大小 */
   border-radius: 50%; 
-  color: white;
-  background-color: #eee;
+  color: #ddd;
   border: none;
   cursor: pointer;
   margin-top: 20px; 
