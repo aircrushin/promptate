@@ -21,7 +21,6 @@
         </div>
       </div>
     </div>
-    <PFooter></PFooter>
   </div>
   <div class="app-gallery">
     <h1 class="gallery-title">辅助生成案例 -- 图片</h1>
@@ -60,6 +59,7 @@
     </div>
     <h1 class="gallery-title">More To Come...</h1>
   </div>
+  <PFooter></PFooter>
 </template>
 
 <script lang="ts" setup>
@@ -139,7 +139,7 @@ const scrollToGallery = () => {
 }
 
 .app-loading .app-loading-wrap {
-  margin-top: 12vh;
+  margin-top: 16vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -211,7 +211,6 @@ h2,
   align-items: center;
   padding: 50px;
   gap: 50px;
-  /* 可以根据需要调整间隙 */
 }
 
 .gallery-title {

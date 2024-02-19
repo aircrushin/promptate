@@ -4,7 +4,6 @@
    
   <script lang="ts">
   import { defineComponent } from "vue";
-  //@ts-ignore
   import { useMessage } from "naive-ui";
    
   export default defineComponent({

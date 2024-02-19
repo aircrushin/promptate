@@ -63,6 +63,7 @@ onMounted(async () => {
   }
 });
 
+//token
 // const apiKey = "c87755766bf2af696e8fef3a715ff2f2.Vn5KXqmxFOgxig8K";
 // const expSeconds = 36000000; // token有效期，单位为秒
 // const selectedCardDetail = ref('');
@@ -228,9 +229,9 @@ const addDetailToTagsRef = (tagText: any) => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px; /* 按钮宽度 */
-  height: 40px; /* 按钮高度 */
-  font-size: 24px; /* 字体大小 */
+  width: 40px; 
+  height: 40px; 
+  font-size: 24px;
   border-radius: 50%; 
   color: #ddd;
   border: none;
@@ -239,7 +240,7 @@ const addDetailToTagsRef = (tagText: any) => {
   transition: transform 0.3s ease;
 }
 .robot-button:hover {
-  transform: scale(1.1); /* 鼠标悬停时放大按钮 */
+  transform: scale(1.1);
 }
 
 </style>

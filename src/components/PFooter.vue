@@ -11,11 +11,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; /* 固定位置 */
-  bottom: 0; /* 底部对齐 */
-  left: 0; /* 左对齐 */
-  right: 0; /* 右对齐 */
-  padding: 20px 0;
+  bottom: 0;
+  left: 0; 
+  right: 0; 
+  padding: 16px 0;
   text-align: center;
   font-family: "JetBrains Mono";
   color: #9f9f9f;

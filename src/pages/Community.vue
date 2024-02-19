@@ -11,7 +11,8 @@
                             {{ channel }}
                         </div>
                         <input type="text" class="search-input" placeholder="搜索..." v-model="searchQuery" @keyup.enter="search" />
-                        <div class="search-icon"><SearchIcon/></div>
+                        <!-- <div class="search-icon"><SearchIcon/></div> -->
+                        <ShareCommunity></ShareCommunity>
                     </div>
                 </div>
             </div>
@@ -52,12 +53,11 @@ import "vue-waterfall-plugin-next/dist/style.css";
 import { ref, computed } from "vue";
 import {
     CopyOutline as CopyIcon,
-    CloseOutline as CloseIcon,
-    SearchOutline as SearchIcon,
 } from "@vicons/ionicons5";
 import { comData } from '../data/community'
 import copyToClipboard from '../utils/copy'
 import { useToast } from 'vue-toast-notification';
+import ShareCommunity from '../components/ShareCommunity.vue'
 
 const toast = useToast();
 
@@ -110,6 +110,8 @@ function setActiveChannel(channel: string) {
 function copy(item: any) {
     copyToClipboard(item)
 }
+
+
 </script>
   
 <style lang="scss" scoped>

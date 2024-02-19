@@ -46,3 +46,18 @@ class CommunityData(db.Model):
             'content': self.content,
             'type': self.type
         }
+    
+class ShareData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    src = db.Column(db.String(255))
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.String(500), nullable=False)  
+    type = db.Column(db.String(80), nullable=False)
+
+    def to_dict(self):
+        return {
+            'src': self.src,
+            'title': self.title,
+            'content': self.content,
+            'type': self.type
+        }
