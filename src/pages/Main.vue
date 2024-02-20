@@ -7,7 +7,12 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-        <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank"><ChatIcon></ChatIcon></a>
+      <div class="chat-container">
+        <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank">
+          <ChatIcon></ChatIcon>
+        </a>
+        <span class="test-prompt">测试你的提示词</span>
+      </div>
       <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
@@ -41,7 +46,7 @@ import { tagsRef, tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
 import { useRouter } from 'vue-router';
 import {
-    Chatbox as ChatIcon,
+  Chatbox as ChatIcon,
 } from "@vicons/ionicons5";
 // 定义 openChatBot 方法
 const router = useRouter();
@@ -225,22 +230,34 @@ const addDetailToTagsRef = (tagText: any) => {
   }
 }
 
+.chat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .robot-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px; 
-  height: 40px; 
+  width: 40px;
+  height: 40px;
   font-size: 24px;
-  border-radius: 50%; 
+  border-radius: 50%;
   color: #ddd;
   border: none;
   cursor: pointer;
-  margin-top: 20px; 
+  margin-top: 20px;
   transition: transform 0.3s ease;
 }
+
 .robot-button:hover {
   transform: scale(1.1);
 }
 
-</style>
+.test-prompt {
+  margin-left: 10px;
+  font-size: 10px;
+  margin-top: 20px;
+  color: #aaa;
+}</style>

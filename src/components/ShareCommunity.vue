@@ -27,6 +27,7 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { addCommunityData } from '../api'
+import { useToast } from 'vue-toast-notification';
 
 const bodyStyle = {
     width: '600px'
@@ -36,6 +37,16 @@ const segmented = {
     content: 'soft',
     footer: 'soft'
 } as const
+
+const toast = useToast();
+const showToast = () => {
+    toast.open({
+        message: '分享成功，请等待管理员审核!',
+        type: 'info',
+        position: 'top',
+        duration: 2000
+    });
+};
 
 const showModal = ref(false)
 
@@ -93,6 +104,7 @@ function submitClick() {
         if (!errors) {
             addCommunityData(model.title, model.content, model.type)
             console.log('表单提交', model);
+            showToast()
             showModal.value = false
         } else {
             console.log('验证失败', errors);
@@ -108,6 +120,7 @@ function resetForm() {
 
 <style scoped>
 .add-data-btn {
+    margin-left: 10px;
     color: black;
     background-color: #eee;
 }

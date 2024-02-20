@@ -10,7 +10,8 @@
                             @click="setActiveChannel(channel)">
                             {{ channel }}
                         </div>
-                        <input type="text" class="search-input" placeholder="搜索..." v-model="searchQuery" @keyup.enter="search" />
+                        <input type="text" class="search-input" placeholder="🔍搜索..." v-model="searchQuery"
+                            @keyup.enter="search" />
                         <!-- <div class="search-icon"><SearchIcon/></div> -->
                         <ShareCommunity></ShareCommunity>
                     </div>
@@ -60,14 +61,13 @@ import { useToast } from 'vue-toast-notification';
 import ShareCommunity from '../components/ShareCommunity.vue'
 
 const toast = useToast();
-
 const showToast = () => {
-  toast.open({
-    message: '复 制 成 功 !',
-    type: 'info',
-    position: 'top',
-    duration: 2000
-  });
+    toast.open({
+        message: '复 制 成 功 !',
+        type: 'info',
+        position: 'top',
+        duration: 2000
+    });
 };
 
 const activeChannel = ref('推荐');
@@ -77,7 +77,7 @@ const searchQuery = ref('');
 const filteredData = computed(() => {
     // 如果有输入搜索词，则过滤所有频道的数据，包括推荐
     if (searchQuery.value) {
-        return list.value.filter((item: { title: string; }) => 
+        return list.value.filter((item: { title: string; }) =>
             item.title.toLowerCase().includes(searchQuery.value.toLowerCase())
         );
     } else {
@@ -94,7 +94,7 @@ const filteredData = computed(() => {
 
 // 添加一个搜索方法
 function search() {
-    
+
 }
 
 function getRandomData() {
@@ -189,19 +189,29 @@ function copy(item: any) {
                     }
 
                     .search-input {
-                        width: 100%; /* 完全宽度 */
-                        padding: 10px 20px; /* 上下内边距10px，左右内边距20px */
-                        font-size: 16px; /* 字体大小 */
-                        border: 1px solid #ccc; /* 边框颜色 */
-                        border-radius: 20px; /* 圆角边框 */
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 边框阴影 */
-                        outline: none; /* 移除焦点时的轮廓 */
-                        transition: all 0.3s ease; /* 过渡效果 */
+                        width: 100%;
+                        /* 完全宽度 */
+                        padding: 10px 20px;
+                        /* 上下内边距10px，左右内边距20px */
+                        font-size: 16px;
+                        /* 字体大小 */
+                        border: 1px solid #ccc;
+                        /* 边框颜色 */
+                        border-radius: 20px;
+                        /* 圆角边框 */
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        /* 边框阴影 */
+                        outline: none;
+                        /* 移除焦点时的轮廓 */
+                        transition: all 0.3s ease;
+                        /* 过渡效果 */
                     }
 
                     .search-input:focus {
-                        border-color: #2b8a3e; /* 蓝色边框 */
-                        box-shadow: 0 2px 8px rgba(0,123,255,0.2); /* 更亮的阴影 */
+                        border-color: #2b8a3e;
+                        /* 蓝色边框 */
+                        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+                        /* 更亮的阴影 */
                     }
 
                     .search-icon {
@@ -298,6 +308,11 @@ function copy(item: any) {
                 }
             }
         }
+    }
+}
+@media (max-width: 768px) {
+    .channel-scroll-container {
+        overflow-x: auto; // 允许在水平方向上滚动
     }
 }
 </style>
