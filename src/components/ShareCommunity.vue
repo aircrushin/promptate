@@ -26,7 +26,7 @@
   
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
-import { addCommunityData } from '../api'
+import { addShareData } from '../api'
 import { useToast } from 'vue-toast-notification';
 
 const bodyStyle = {
@@ -102,7 +102,7 @@ const rules = {
 function submitClick() {
     formRef.value.validate((errors: any) => {
         if (!errors) {
-            addCommunityData(model.title, model.content, model.type)
+            addShareData(model.title, model.content, model.type)
             console.log('表单提交', model);
             showToast()
             showModal.value = false

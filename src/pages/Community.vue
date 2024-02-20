@@ -51,7 +51,7 @@
 import { Waterfall } from "vue-waterfall-plugin-next";
 import PHeader from '../components/PHeader.vue'
 import "vue-waterfall-plugin-next/dist/style.css";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import {
     CopyOutline as CopyIcon,
 } from "@vicons/ionicons5";
@@ -59,6 +59,24 @@ import { comData } from '../data/community'
 import copyToClipboard from '../utils/copy'
 import { useToast } from 'vue-toast-notification';
 import ShareCommunity from '../components/ShareCommunity.vue'
+import { queryCommunityData } from "../api/community";
+import { CDataType } from "../data/DataType"
+
+onMounted(async () => {
+  try {
+    const response = await queryCommunityData();
+    //console.log(response.data)
+    list.value = response.data.map((item:any) => ({
+        src: item.src,
+        content: item.content,
+        type: item.type,
+        title: item.title
+    }))
+    console.log(list.value)
+  } catch (error) {
+    console.error('Failed to fetch card items:', error);
+  }
+});
 
 const toast = useToast();
 const showToast = () => {
@@ -71,7 +89,8 @@ const showToast = () => {
 };
 
 const activeChannel = ref('推荐');
-const list = ref(comData) as any
+const list = ref<CDataType[]>([]) as any;
+//const list = ref(comData) as any;
 const searchQuery = ref('');
 
 const filteredData = computed(() => {
@@ -310,6 +329,7 @@ function copy(item: any) {
         }
     }
 }
+
 @media (max-width: 768px) {
     .channel-scroll-container {
         overflow-x: auto; // 允许在水平方向上滚动

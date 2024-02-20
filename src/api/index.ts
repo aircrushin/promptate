@@ -46,7 +46,7 @@ export function translate(message: string) {
   })
 }
 
-export function addCommunityData(title: string, content: string, type: string) {
+export function addShareData(title: string, content: string, type: string) {
   const imgSrc = [
       "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
       "https://tse1-mm.cn.bing.net/th/id/OIP-C.Zte3ljd4g6kqrWWyg-8fhAHaEo?w=264&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",

@@ -63,6 +63,7 @@ onMounted(async () => {
       detail: item.detail,
       color: item.color
     }));
+    console.log(cardItems.value)
   } catch (error) {
     console.error('Failed to fetch card items:', error);
   }
