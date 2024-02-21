@@ -2,6 +2,7 @@
     <div>
         <font-awesome-icon class="fa-question-circle" icon="fa-question-circle" @mouseover="showTooltip" @mouseleave="hideTooltip" />
         <div class="tooltip" v-if="isTooltipVisible">
+            <faq></faq>
             Tooltip infomation
         </div>
     </div>
@@ -10,7 +11,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle as faq } from '@fortawesome/free-solid-svg-icons'
 
 const isTooltipVisible = ref(false)
 

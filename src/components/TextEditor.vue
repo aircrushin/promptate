@@ -23,10 +23,6 @@ const editorConfig = {
     placeholder: '请输入您的提示词...'
 }
 
-// 初始化 MENU_CONF 属性
-// const editorConfig: Partial<IEditorConfig> = {
-//   MENU_CONF: {}
-// };
 const mode = "default";
 
 // 编辑器实例，必须用 shallowRef，重要！
