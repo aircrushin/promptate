@@ -39,17 +39,17 @@ const emitSelectedKey = (key: string) => {
 .dropdown-container {
   margin-top: 20px;
   display: flex;
-  justify-content: flex-start; /* 使组件靠右对齐 */
+  justify-content: flex-start;
   margin-right: 20px;
 }
 
 .n-button {
-  color: white; /* White color for the text */
+  color: white;
   background: -webkit-linear-gradient(
     left,
     #a8c0ff 0%,
     #3f2b96 100%
-  ); /* Cooler gradient with lighter start and darker end for contrast */
+  ); 
   background: linear-gradient(
     to right,
     #a8c0ff 0%,
@@ -59,10 +59,10 @@ const emitSelectedKey = (key: string) => {
   text-align: center; /* 文本居中 */
   text-decoration: none; /* 无下划线 */
   display: inline-block;
-  font-size: 16px; /* 字体大小 */
+  font-size: 16px; 
   margin: 4px 2px;
-  cursor: pointer; /* 鼠标样式 */
-  border-radius: 8px; /* 边框圆角 */
+  cursor: pointer; 
+  border-radius: 8px; 
 }
 
 .n-button :hover {

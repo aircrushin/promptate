@@ -15,7 +15,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-// 定义属性
 const props = defineProps({
   text: String,
   detail: String,
@@ -27,7 +26,6 @@ const emit = defineEmits(['add-tag','add-detail']);
 
 // 方法
 const emitAddTag = () => {
-  //event.stopPropagation(); // 阻止事件冒泡
   emit('add-tag', props.text);
   emit('add-detail', props.detail)
 };
@@ -54,25 +52,25 @@ const computedColor = computed(() => {
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 10px;
-  display: flex; /* Enable flex layout */
-  align-items: center; /* Align items vertically */
+  display: flex;
+  align-items: center; 
 }
 
 .color-bar {
-  width: 5px; /* Width of the colored bar */
-  height: 20px; /* Full height of the card */
-  border-radius: 5px; /* Rounded left corners */
+  width: 5px; 
+  height: 20px; 
+  border-radius: 5px; 
 }
 
 .text-content {
-  padding-left: 10px; /* Space between color bar and text */
-  text-align: left; /* Align text to the left */
-  flex-grow: 1; /* Allow the text to take up remaining space */
+  padding-left: 10px; 
+  text-align: left;
+  flex-grow: 1;
 }
 
 .card:hover {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-  transform: scale(1.05); /* Scale up slightly */
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
