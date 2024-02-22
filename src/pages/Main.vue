@@ -9,7 +9,7 @@
         @update:title="handleUpdateTitle"></PromptWork>
       <div class="chat-container">
         <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank">
-          <ChatIcon></ChatIcon>
+          <ChatIcon class="icon-chatbox"></ChatIcon>
         </a>
         <span class="test-prompt">测试你的提示词</span>
       </div>
@@ -261,4 +261,9 @@ const addDetailToTagsRef = (tagText: any) => {
   font-size: 10px;
   margin-top: 20px;
   color: #aaa;
-}</style>
+}
+
+.icon-chatbox {
+  fill: #aaa !important;
+}
+</style>

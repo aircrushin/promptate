@@ -8,7 +8,7 @@
 </template>
   
 <script setup lang="ts">
-import { ref, watch, defineEmits } from 'vue'
+import { ref, watch } from 'vue'
 import { tagsRef } from '../store/store'
 
 const emit = defineEmits(['close'])
