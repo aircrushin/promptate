@@ -194,6 +194,10 @@ const addDetailToTagsRef = (tagText: any) => {
   }
 }
 
+const toChatBot = () => {
+  router.push('/chatbot')
+}
+
 
 </script>
   
