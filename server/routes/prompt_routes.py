@@ -98,3 +98,23 @@ def translation():
     response_message = completion.choices[0].message.content if completion.choices[0].message else "No response"
 
     return jsonify({"response": response_message})
+
+@prompt_blueprint.route('/api/chat', methods=['POST'])
+def chat():
+    user_content = request.json.get('user-content')
+    if not user_content:
+        return jsonify({'error': 'No user-content provided'}), 400
+    completion = client.chat.completions.create(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": "你是一个有用的聊天助手,名为 promptate 机器人,可以完成用户的各种请求和问题"},
+            {"role": "assistant", "content": user_content}
+        ],
+        max_tokens=200,
+        temperature=0.1,
+    )
+
+    # 将 ChatCompletionMessage 对象转换为可序列化的格式
+    response_message = completion.choices[0].message.content if completion.choices[0].message else "No response"
+
+    return jsonify({"response": response_message})
