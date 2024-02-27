@@ -7,6 +7,7 @@ import About from '../pages/About.vue'
 import Community from '../pages/Community.vue'
 import GeneratorMid from '../pages/GeneratorMid.vue'
 import Index from '../pages/Index.vue'
+import ChatBot from '../pages/ChatBot.vue'
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/community',
     name: 'Community',
     component: Community
+  },
+  {
+    path: '/chatbot',
+    name: 'Chatbot',
+    component: ChatBot
   },
   {
     path: '/:pathMatch(.*)*',

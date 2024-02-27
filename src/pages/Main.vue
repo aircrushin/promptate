@@ -7,12 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-      <div class="chat-container">
-        <a class="robot-button" href="https://promptate-chatbot.streamlit.app/" target="_blank">
-          <ChatIcon class="chatIcon"></ChatIcon>
-        </a>
-        <span class="test-prompt">测试你的提示词</span>
-      </div>
+        <Chat></Chat>
       <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
@@ -34,6 +29,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import Card from '../components/Card.vue';
+import Chat from '../components/Chat.vue'
 import Navigator from '../components/Navigator.vue';
 import PromptWork from '../components/PromptWork.vue';
 import { data, background } from '../data/data'
@@ -192,6 +188,10 @@ const addDetailToTagsRef = (tagText: any) => {
   if (!tagsDetail.value.includes(tagText)) {
     tagsDetail.value.push(tagText);
   }
+}
+
+const toChatBot = () => {
+  router.push('/chatbot')
 }
 
 

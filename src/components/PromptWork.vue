@@ -166,7 +166,7 @@ watch(inputValue, (newValue) => {
   outline: none;
   resize: none;
   width: 340px;
-  height: 220px;
+  height: 160px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -204,6 +204,6 @@ h2 {
 }
 
 .chooser {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 </style>
