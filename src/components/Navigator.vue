@@ -9,8 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
-
 // 定义接收外部传入的按钮文本数组的 props
 const props = defineProps({
   buttonLabels: Array,

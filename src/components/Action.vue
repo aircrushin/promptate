@@ -66,4 +66,18 @@ const copyToWorkspace = (value:string) => {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
+
+/* 添加响应式布局 */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    .input, .editor {
+        flex-direction: column;
+        width: 90%;
+    }
+    .btn {
+        margin: 10px 0;
+    }
+}
 </style>
