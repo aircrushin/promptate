@@ -262,8 +262,4 @@ const toChatBot = () => {
   margin-top: 20px;
   color: #aaa;
 }
-
-.icon-chatbox {
-  fill: #aaa !important;
-}
 </style>
