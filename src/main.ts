@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import './style.css'
 import App from './App.vue'
 import naive from 'naive-ui'
@@ -11,5 +12,6 @@ import VueToast from 'vue-toast-notification';
 // 引入样式
 import 'vue-toast-notification/dist/theme-default.css';
 
+const pinia = createPinia()
 library.add(faQuestionCircle, faCopy)
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).use(naive).use(VueToast).mount('#app')
+createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).use(pinia).use(naive).use(VueToast).mount('#app')

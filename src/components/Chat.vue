@@ -7,40 +7,37 @@
             <textarea class="input" v-model="inputValue" placeholder="" rows="4" spellcheck="false"></textarea>
         </div>
         <div class="editor">
-            <n-button class="btn" @click="copyToClipboard(inputValue!)">测试</n-button>
-            <n-button class="btn" @click="inputValue = ''">清空</n-button>
+            <n-button class="btn" @click="chat(props.inputValue!)">测试</n-button>
+            <n-button class="btn">清空</n-button>
         </div>
     </div>
 </template>
   
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
-import copyToClipboard from "../utils/copy";
+import { testPrompt } from "../api"
 
 const props = defineProps({
-    modelValue: String,
-    title: String,
-    isGPT: Boolean,
+    inputValue: String,
 });
 
-const inputTitle = computed({
-    get: () => props.title,
-    set: (val) => emit("update:title", val),
-});
+function chat(message: string) {
+    let titleString: string = props.inputValue!
+    console.log(titleString);
+    //@ts-ignore
+    window.onmessage!.info("正在生成结果...", { duration: 5000 });
 
-const inputValue = computed({
-    get: () => props.modelValue,
-    set: (val) => emit("update:modelValue", val),
-});
-
-const emit = defineEmits(["update:modelValue", "update:title"]);
-
-watch(inputTitle, (newValue) => {
-    emit("update:title", newValue);
-});
-watch(inputValue, (newValue) => {
-    emit("update:modelValue", newValue);
-});
+    testPrompt(message)
+        .then(({ data }) => {
+            console.log(data.response);
+            //betterContent.value = data.response;
+        })
+        .catch((err) => {
+            //@ts-ignore
+            window.onmessage!.error("error!", { duration: 2000 });
+            console.log(err);
+        });
+}
 </script>
   
 <style scoped lang="scss">
@@ -49,7 +46,8 @@ watch(inputValue, (newValue) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%; /* 确保容器宽度充满父容器，这对居中很重要 */
+    width: 100%;
+    /* 确保容器宽度充满父容器，这对居中很重要 */
 }
 
 .test {

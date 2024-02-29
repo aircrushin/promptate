@@ -46,6 +46,12 @@ export function translate(message: string) {
   })
 }
 
+export function testPrompt(message: string) {
+  return axios.post("/api/test", {
+    "user-content": message
+  })
+}
+
 export function addShareData(title: string, content: string, type: string) {
   const imgSrc = [
       "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",

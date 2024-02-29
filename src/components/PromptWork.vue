@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import TextEditor from './TextEditor.vue'
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, defineExpose } from "vue";
 import copyToClipboard from "../utils/copy";
 import { optimizePrompt, generatePromptMid,translate } from "../api";
 

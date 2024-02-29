@@ -38,9 +38,9 @@ import Action from '../components/Action.vue';
 import MessageApi from '../components/message-api.vue';
 import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
-import { tagsRef, tagsDetail } from '../store/store'
 import { queryAllData } from '../api';
 import { useRouter } from 'vue-router';
+import { usePromptStore } from '../store/store';
 import {
   Chatbox as ChatIcon,
 } from "@vicons/ionicons5";
@@ -82,6 +82,8 @@ const mIdJourneyNames = computed(() => data.midCategories!.map((category) => ({
   color: category.color
 })));
 const isGPT = ref(true);
+
+const promptStore = usePromptStore();
 
 interface cardItemsType {
   button: string;
@@ -132,6 +134,8 @@ const addText = (cardText?: string) => {
 //实现 handleUpdateModelValue 方法
 const handleUpdateModelValue = (value: string) => {
   text.value = value;
+  promptStore.updateInputValue(value);
+  console.log(promptStore.inputValue)
 };
 
 const handleUpdateTitle = (value: string) => {
@@ -179,15 +183,15 @@ const navigatorLabels = computed(() => {
 });
 
 const addTagToTagsRef = (tagText: any) => {
-  if (!tagsRef.value.includes(tagText)) {
-    tagsRef.value.push(tagText);
-  }
+  // if (!tagsRef.value.includes(tagText)) {
+  //   tagsRef.value.push(tagText);
+  // }
 };
 
 const addDetailToTagsRef = (tagText: any) => {
-  if (!tagsDetail.value.includes(tagText)) {
-    tagsDetail.value.push(tagText);
-  }
+  // if (!tagsDetail.value.includes(tagText)) {
+  //   tagsDetail.value.push(tagText);
+  // }
 }
 
 const toChatBot = () => {
