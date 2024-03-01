@@ -2,13 +2,15 @@
   <div class="navigator" :style="{ color: color }">
     <li class="slide1"></li>
     <li class="slide2"></li>
-    <n-button v-for="buttonText in buttonLabels" :key="buttonText" @click="navigate(buttonText)" class="btn">
-      {{ buttonText }}
+    <n-button v-for="( buttonText, index ) in buttonLabels" :key="buttonText" @click="navigate(buttonText)" class="btn">
+      <div class="color-bar" :style="{ backgroundColor: colorList[index] }"></div>
+      <div class="text-content">{{ buttonText }}</div>
     </n-button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 // 定义接收外部传入的按钮文本数组的 props
 const props = defineProps({
   buttonLabels: Array,
@@ -16,11 +18,18 @@ const props = defineProps({
   color: String
 });
 
+const colorList: string[] = ['orange','green','lightblue','blue','purple','orange']
+
 const emit = defineEmits(["navigate"]);
 
 const navigate = (button: any) => {
   emit("navigate", button);
 };
+
+// 计算属性，根据原始颜色返回修改后的颜色
+const computedColor = computed(() => {
+  return props.color === 'yellow' ? 'orange' : props.color;
+});
 </script>
 
 <style scoped lang="scss">
@@ -35,12 +44,25 @@ const navigate = (button: any) => {
   position: relative;
   display: flex;
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
+}
+
+.color-bar {
+  width: 6px; 
+  height: 15px; 
+  border-radius: 6px; 
+}
+
+.text-content {
+  padding-left: 10px; 
+  padding-right: 6px;
+  text-align: left;
+  flex-grow: 1;
 }
 
 .btn {
   position: relative;
-  padding: 15px 20px;
+  padding: 15px 15px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
   display: flex;

@@ -4,7 +4,7 @@
             <h2 class="title">测试区</h2>
         </div>
         <div class="input">
-            <textarea class="input" v-model="inputValue" placeholder="" rows="4" spellcheck="false"></textarea>
+            <textarea class="input" placeholder="" rows="4" spellcheck="false"></textarea>
         </div>
         <div class="editor">
             <n-button class="btn" @click="chat(props.inputValue!)">测试</n-button>
@@ -14,7 +14,6 @@
 </template>
   
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
 import { testPrompt } from "../api"
 
 const props = defineProps({
@@ -47,7 +46,6 @@ function chat(message: string) {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* 确保容器宽度充满父容器，这对居中很重要 */
 }
 
 .test {

@@ -7,7 +7,7 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-        <Chat></Chat>
+        <!-- <Chat></Chat> -->
       <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
@@ -15,9 +15,10 @@
       <!-- <Tabs></Tabs> -->
       <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels.map((label) => label.name)" />
       <div class="card-container">
-        <Action v-if="activeButton === '行动任务'" @addText="handleAction"></Action>
+        <Action @addText="handleAction" :modelValue="actionInputValue" />
+        <!-- <Action v-if="activeButton === '行动任务'" @addText="handleAction"></Action> -->
         <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail"
-          :color="card.color" v-show="activeButton === card.button" @click="addText(card.detail)"
+          :color="card.color" v-show="activeButton === card.button" @click="handleCardClick(card.detail!)"
           @add-tag="addTagToTagsRef" @add-detail="addDetailToTagsRef">
         </Card>
       </div>
@@ -27,7 +28,7 @@
 </template>
    
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import Card from '../components/Card.vue';
 import Chat from '../components/Chat.vue'
 import Navigator from '../components/Navigator.vue';
@@ -41,12 +42,10 @@ import PHeader from '../components/PHeader.vue';
 import { queryAllData } from '../api';
 import { useRouter } from 'vue-router';
 import { usePromptStore } from '../store/store';
-import {
-  Chatbox as ChatIcon,
-} from "@vicons/ionicons5";
-// 定义 openChatBot 方法
-const router = useRouter();
 //import { glmTest } from '../api/model'
+
+const router = useRouter();
+
 
 onMounted(async () => {
   try {
@@ -70,6 +69,7 @@ onMounted(async () => {
 // const expSeconds = 36000000; // token有效期，单位为秒
 // const selectedCardDetail = ref('');
 const textHistory = ref<string[]>([]);
+const actionInputValue = ref('');
 const text = ref('');
 const title = ref('');
 const selectedKey = ref('ChatGPT');
@@ -84,6 +84,9 @@ const mIdJourneyNames = computed(() => data.midCategories!.map((category) => ({
 const isGPT = ref(true);
 
 const promptStore = usePromptStore();
+watch(actionInputValue, (newValue) => {
+  console.log('父组件 actionInputValue 更新:', newValue);
+});
 
 interface cardItemsType {
   button: string;
@@ -105,6 +108,11 @@ const activeButton = ref('背景');
 // 方法
 const handleNavigation = (button: string) => {
   activeButton.value = button;
+};
+
+const handleCardClick = (detail: string) => {
+  actionInputValue.value = detail; // 更新 inputValue 的值
+  console.log(actionInputValue.value)
 };
 
 // 创建过滤后的 cardItems 计算属性
@@ -265,5 +273,16 @@ const toChatBot = () => {
   font-size: 10px;
   margin-top: 20px;
   color: #aaa;
+}
+
+.input {
+    margin: 0 auto;
+    min-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 </style>

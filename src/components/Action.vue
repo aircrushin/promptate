@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="input">
-            <textarea v-model="inputValue" placeholder="输入您的行动" rows="1" spellcheck="false"></textarea>
+            <textarea v-model="inputValue" placeholder="输入您的自定义提示词" rows="1" spellcheck="false"></textarea>
         </div>
         <div class="editor">
             <n-message-provider>
@@ -13,16 +13,24 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 const props = defineProps({
   modelValue: String,
-  title: String,
 });
 
-const inputValue:string = props.modelValue as string
-const emit = defineEmits(['addText']);
+const inputValue = ref(props.modelValue)
+const emit = defineEmits(['addText','update:modelValue']);
 const copyToWorkspace = (value:string) => {
     emit('addText', value); 
+    inputValue.value = ''
 };
+
+// 监听本地变量的变化，通知父组件
+watch(() => props.modelValue, (newVal) => {
+  inputValue.value = newVal;
+  console.log('Action 组件接收到的 modelValue 更新:', newVal);
+});
+
 </script>
 
 <style scoped>
