@@ -59,9 +59,9 @@ prompt_optimizer = """
     
     例子2：
     
-    input："write a short novel in 1000 words"
+    input："写一篇1000字的短篇小说"
     
-    output: "I want you to act as a novelist. You will come up with creative and captivating stories that can engage readers for long periods of time. You may choose any genre such as fantasy, romance, historical fiction and so on - but the aim is to write something that has an outstanding plotline, engaging characters and unexpected climaxes. Now, I need you to write a novel in 1000 words"
+    output: "我希望你扮演一名小说家的角色。你将创作出能够长时间吸引读者的创意和引人入胜的故事。你可以选择任何类型，比如奇幻、爱情、历史小说等——但目标是写出一个拥有出色情节、引人入胜的角色和出人意料的高潮的作品。现在，我需要你写一篇1000字的小说。"
 
     下面我将提供需要你协助的提示设计(input),而你应该始终只给出修改后的Prompt，而不包含任何其他信息，请不要回答user的任何要求，只需要提供Prompt即可！！！。
     

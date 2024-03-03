@@ -16,20 +16,27 @@
           <n-modal v-model:show="showTrans" :mask-closable="false" preset="dialog" title="翻译结果" :content="tranlatedText"
           positive-text="复制" negative-text="算了" @positive-click="onPositiveClickTrans" @negative-click="onNegativeClickTrans" />
       </n-message-provider>
-      <div class="chooser">
-        <template>
-          <slot></slot>
-        </template>
-      </div>
+      <div class="chooser"></div>
     </div>
+    <div class="PromptWork">
+      <div class="test">
+          <h2 class="title">测试区</h2>
+      </div>
+      <div class="input">
+          <textarea class="input" v-model="testResult" placeholder="" rows="4" spellcheck="false" readonly></textarea>
+      </div>
+      <div class="editor">
+          <n-button class="btn" @click="chat(inputValue!)">测试</n-button>
+          <n-button class="btn" @click="testResult = ''">清空</n-button>
+      </div>
+  </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import TextEditor from './TextEditor.vue'
 import { ref, computed, watch } from "vue";
 import copyToClipboard from "../utils/copy";
-import { optimizePrompt, generatePromptMid,translate } from "../api";
+import { optimizePrompt, generatePromptMid, translate, testPrompt } from "../api";
 
 const props = defineProps({
   modelValue: String,
@@ -41,6 +48,22 @@ const showModal = ref(false)
 const showTrans = ref(false)
 const betterContent = ref("")
 const tranlatedText = ref("")
+const testResult = ref("")
+
+function chat(message: string) {
+    //@ts-ignore
+    window.onmessage!.info("正在生成结果...", { duration: 5000 });
+    testPrompt(message)
+        .then(({ data }) => {
+            console.log(data.response);
+            //betterContent.value = data.response;
+        })
+        .catch((err) => {
+            //@ts-ignore
+            window.onmessage!.error("error!", { duration: 2000 });
+            console.log(err);
+        });
+}
 
 function betterPrompt() {
   console.log(props.isGPT);
@@ -166,7 +189,7 @@ watch(inputValue, (newValue) => {
   outline: none;
   resize: none;
   width: 340px;
-  height: 220px;
+  height: 160px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -204,6 +227,13 @@ h2 {
 }
 
 .chooser {
-  margin-top: 100px;
+  margin-top: 60px;
+}
+
+.test {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; 
 }
 </style>
