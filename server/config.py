@@ -1,6 +1,6 @@
 #this file contains all the settings and configs
 model_name = "gpt-3.5-turbo"
-API_KEY = "sess-vmbbG09TnKMEZK6iOG7l1ZdJ8UaX49I9d5OISIo1"
+API_KEY = "sess-meIT6idSSyFROWMhM1EBrMbFOleaGN2qUzjtBt29"
 JWY_KEY = "pL7w6fBsPeMP4mnR96LC1Dd6yVxo37EeOljmEwjY38ZxpEqUX32eR6iny30Xl88kWLA7IJLBcT7NWQIeFiZ38w"
 GLM_KEY = "c87755766bf2af696e8fef3a715ff2f2.Vn5KXqmxFOgxig8K"
 class ConfigClass(object):
