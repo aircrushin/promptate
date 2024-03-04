@@ -8,9 +8,10 @@
     <div class="editor">
       <n-message-provider>
         <n-button class="btn" @click="copyToClipboard(inputValue!)">复制</n-button>
-        <n-button class="btn" @click="inputValue = ''">清空</n-button>
+        <!-- <n-button class="btn" @click="inputValue = ''">清空</n-button> -->
         <n-button class="btn" @click="betterPrompt">优化</n-button>
         <n-button class="btn" @click="translation">翻译</n-button>
+        <n-button class="btn" @click="chat(inputValue!)">测试</n-button>
         <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="优化结果" :content="betterContent"
           positive-text="复制" negative-text="算了" @positive-click="onPositiveClick" @negative-click="onNegativeClick" />
           <n-modal v-model:show="showTrans" :mask-closable="false" preset="dialog" title="翻译结果" :content="tranlatedText"
@@ -23,12 +24,12 @@
           <h2 class="title">测试区</h2>
       </div>
       <div class="input">
-          <textarea class="input" v-model="testResult" placeholder="" rows="4" spellcheck="false" readonly></textarea>
+          <textarea class="input" v-model="testResult" placeholder="点击测试即可获得结果..." rows="4" spellcheck="false" readonly></textarea>
       </div>
-      <div class="editor">
+      <!-- <div class="editor">
           <n-button class="btn" @click="chat(inputValue!)">测试</n-button>
           <n-button class="btn" @click="testResult = ''">清空</n-button>
-      </div>
+      </div> -->
   </div>
   </div>
 </template>
@@ -56,6 +57,7 @@ function chat(message: string) {
     testPrompt(message)
         .then(({ data }) => {
             console.log(data.response);
+            testResult.value = data.response
             //betterContent.value = data.response;
         })
         .catch((err) => {

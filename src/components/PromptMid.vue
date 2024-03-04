@@ -11,7 +11,7 @@
       <!-- input space -->
       <div class="main-space">
         <div class="input-container">
-          <p style="float: left">输入一段提示词, 例如：a young girl</p>
+          <p style="float: left">输入一段提示词, 例如：一个年轻女孩</p>
           <input v-model="prompt" placeholder="Enter..." />
           <div class="editor">
             <n-button class="btn" @click="prompt = ''">清空</n-button>
@@ -82,15 +82,15 @@ function copy(item: any) {
 const exampleCards = [
   {
     button: '1',
-    text: 'a wolf with one eye',
+    text: '一只独眼狼',
   },
   {
     button: '2',
-    text: 'a young girl',
+    text: '一个年轻姑娘',
   },
   {
     button: '3',
-    text: 'beach by the sea',
+    text: '海边的沙滩',
   }
 ]
 
@@ -146,6 +146,21 @@ const addText = (text: string) => {
   width: 90%;
   display: flex;
   flex-direction: column;
+}
+
+.output-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  overflow: hidden;
+  width: 100%
+}
+
+.copy-container {
+  float: right;
+  cursor: pointer;
+  width: 0.875em; 
+  height: 0.875em
 }
 
 .output-container p:first-child {

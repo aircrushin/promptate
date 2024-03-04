@@ -11,7 +11,7 @@
       <!-- input space -->
       <div class="main-space">
         <div class="input-container">
-          <p style="float: left">输入一个角色, 例如：photographer</p>
+          <p style="float: left">输入一个角色, 例如：摄影师</p>
           <input v-model="prompt" placeholder="Enter..." />
           <div class="editor">
             <n-button class="btn" @click="prompt = ''">清空</n-button>
@@ -76,15 +76,15 @@ function copy(item: any) {
 const exampleCards = [
     {
     button: '1',
-    text: 'Novelist',
+    text: '小说家',
     }, 
     {
     button: '2',
-    text: 'Travel Guide',
+    text: '导游',
     },
     {
     button: '3',
-    text: 'Linux',
+    text: 'Linux终端',
     }
 ]
 

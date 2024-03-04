@@ -9,19 +9,19 @@ export function queryAllData() {
 }
 
 export function generatePrompt(message: string) {
-  return axios.post("/api/prompt", {
+  return axios.post("/api/glmPrompt", {
     "user-content": message
   })
 }
 
 export function generatePromptMid(message: string) {
-  return axios.post("/api/promptMid", {
+  return axios.post("/api/glmPromptMid", {
     "user-content": message
   })
 }
 
 export function optimizePrompt(message: string) {
-  return axios.post("/api/optimize", {
+  return axios.post("/api/glmOptimize", {
     "user-content": message
   })
 }
@@ -41,13 +41,13 @@ export function login(username: string, password: string) {
 }
 
 export function translate(message: string) {
-  return axios.post("/api/translation", {
+  return axios.post("/api/glmTranslation", {
     "user-content": message
   })
 }
 
 export function testPrompt(message: string) {
-  return axios.post("/api/test", {
+  return axios.post("/api/glmChat", {
     "user-content": message
   })
 }
