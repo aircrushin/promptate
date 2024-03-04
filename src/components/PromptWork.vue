@@ -52,13 +52,16 @@ const tranlatedText = ref("")
 const testResult = ref("")
 
 function chat(message: string) {
+  if(message == null){
+    //@ts-ignore
+    window.onmessage!.error("请先输入！", { duration: 2000 });
+  }
     //@ts-ignore
     window.onmessage!.info("正在生成结果...", { duration: 5000 });
     testPrompt(message)
         .then(({ data }) => {
             console.log(data.response);
             testResult.value = data.response
-            //betterContent.value = data.response;
         })
         .catch((err) => {
             //@ts-ignore

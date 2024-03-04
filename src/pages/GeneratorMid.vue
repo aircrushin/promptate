@@ -8,8 +8,8 @@
         <IosArrowRoundBack size="500px" @click="handleBack"/>
       </n-icon>
       <Prompt></Prompt>
-      <PFooter></PFooter>
     </div>
+    <PFooter></PFooter>
   </template>
   
   <script setup lang="ts">

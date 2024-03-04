@@ -21,8 +21,8 @@
         <div class="output-container">
           <p class="output-menu">Prompt:
             <span class="copy-container" @click="copy(responseText)" v-if="responseText">
-              <CopyIcon/>
-          </span>
+              <CopyIcon />
+            </span>
           </p>
           <textarea disabled="true" v-if="!show">{{ responseText }}</textarea>
           <n-spin v-if="show" :delay="1000" style="margin-top: 50px;">
@@ -40,8 +40,13 @@
       </Card>
     </div>
   </div>
+  <!-- <div class="example-container">
+    <div class="example-main">
+      <img src="https://sfile.chatglm.cn/testpath/2599568c-7616-515b-be08-ff5b36d8740c_0.png" alt="">
+    </div>
+  </div> -->
 </template>
-  
+
 <script setup lang="ts">
 import { ref } from "vue";
 import { generatePromptMid } from "../api";
@@ -76,7 +81,7 @@ function generateText() {
 }
 
 function copy(item: any) {
-    copyToClipboard(item)
+  copyToClipboard(item)
 }
 
 const exampleCards = [
@@ -98,7 +103,7 @@ const addText = (text: string) => {
   prompt.value = text;
 }
 </script>
-  
+
 <style scoped>
 .action {
   display: flex;
@@ -151,7 +156,7 @@ const addText = (text: string) => {
 .output-menu {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   overflow: hidden;
   width: 100%
 }
@@ -159,7 +164,7 @@ const addText = (text: string) => {
 .copy-container {
   float: right;
   cursor: pointer;
-  width: 0.875em; 
+  width: 0.875em;
   height: 0.875em
 }
 
@@ -232,11 +237,19 @@ textarea {
   justify-content: flex-start;
 }
 
+
 .example-main {
   display: flex;
   /* 启用Flexbox布局 */
   justify-content: center;
   align-items: center;
+}
+
+.example-main img {
+  max-width: 100px;
+  /* 限制图片的最大宽度 */
+  max-height: 100px;
+  /* 限制图片的最大高度 */
 }
 
 span {
@@ -247,5 +260,5 @@ span {
 .card-container {
   width: auto;
   display: inline;
-}</style>
-  
+}
+</style>

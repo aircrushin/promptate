@@ -14,6 +14,12 @@ export function generatePrompt(message: string) {
   })
 }
 
+export function testDraw(message: string) {
+  return axios.post("/api/glmDraw", {
+    "user-content": message
+  })
+}
+
 export function generatePromptMid(message: string) {
   return axios.post("/api/glmPromptMid", {
     "user-content": message
