@@ -3,20 +3,21 @@
     <PHeader class="app-menu"></PHeader>
     <div class="app-loading">
       <div class="app-loading-wrap">
-        <h2>📖 Promptate 📖</h2>
-        <span class="text-large">---- 针对文本和图像生成模型 Prompt 的优化辅助平台</span>
+        <h2 v-if="!isMobile">📖 Promptate 📖</h2>
+        <span class="text-large" v-if="!isMobile">---- 针对文本和图像生成模型 Prompt 的优化辅助平台</span>
         <img src="/logo2.png" class="app-loading-logo" alt="Logo" />
         <n-button class="app-button" size="large" @click="changeSpin">开始</n-button>
-        <div class="scroll-down-wrapper">
+        <div class="scroll-down-wrapper" v-if="!isMobile">
           <n-button class="scroll-down-button" size="large" @click="scrollToGallery">
+            <!-- SVG arrow -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
           </n-button>
         </div>
-        <div class="app-loading-dots">
+        <div class="app-loading-dots" v-if="!isMobile">
           <n-spin class="dot dot-spin" v-if="isSpin"></n-spin>
         </div>
       </div>
@@ -24,38 +25,9 @@
   </div>
   <div class="app-gallery">
     <h1 class="gallery-title">辅助生成案例 -- 图片</h1>
-    <div class="gallery-item">
-      <span class="gallery-description">“Immerse yourself in the vastness of the ocean, where the deep blue waters stretch
-        as far as the eye can see. discovering wonders beyond your wildest dreams.”</span>
-      <img src="/gallery1.png" alt="" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">"Autumn forest, colorful leaves, serene path, wooden bench, crisp air, falling
-        leaves, golden sunlight, peaceful nature, hidden mushrooms, gentle stream."</span>
-      <img src="/gallery2.png" alt="" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">"Portray a beautiful girl in a modern setting, The
-        girl should have clear facial features and a serene expression. The style should be ultra high definition, with
-        sharp lines and realistic detailing."</span>
-      <img src="/gallery3.png" alt="" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">“portray a wonderland, maple trees, woodsy scent, acorn scattered
-        ground, hiking trail, quiet ambiance, squirrel activity, gentle breeze,
-        autumnal landscape.”</span>
-      <img src="/gallery4.png" alt="" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">"Picture a Chinese man in his 40s, stylish outfit,
-        confident pose, striking eyes, well-groomed hair, muscular build, fashionable accessories,
-        charismatic personality, handsome features."</span>
-      <img src="/gallery5.png" alt="" class="gallery-image">
-    </div>
-    <div class="gallery-item">
-      <span class="gallery-description">"Towering peaks, cascading waterfalls, misty mountains, serene streams, ancient
-        pine trees, tranquil ambiance, traditional Chinese landscape, harmonious nature."</span>
-      <img src="/gallery6.png" alt="" class="gallery-image">
+    <div class="gallery-item" v-for="(item, index) in galleryItems" :key="index">
+      <span class="gallery-description">{{ item.description }}</span>
+      <img :src="item.imageSrc" alt="" class="gallery-image">
     </div>
     <h1 class="gallery-title">More To Come...</h1>
   </div>
@@ -63,11 +35,25 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted  } from 'vue';
 import { useRouter } from 'vue-router'
 import PFooter from '../components/PFooter.vue'
 import PHeader from '../components/PHeader.vue';
 
+const isMobile = ref(false);
+
+const checkScreenSize = () => {
+  isMobile.value = window.innerHeight < 600;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', checkScreenSize);
+  checkScreenSize();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkScreenSize);
+});
 const isSpin = ref(false);
 const router = useRouter();
 const changeSpin = () => {
@@ -76,6 +62,33 @@ const changeSpin = () => {
     router.push('/main')
   }, 1500);
 }
+
+const galleryItems = ref([
+  {
+    description: "Immerse yourself in the vastness of the ocean, where the deep blue waters stretch as far as the eye can see. Discovering wonders beyond your wildest dreams.",
+    imageSrc: "/gallery1.png",
+  },
+  {
+    description: "Autumn forest, colorful leaves, serene path, wooden bench, crisp air, falling leaves, golden sunlight, peaceful nature, hidden mushrooms, gentle stream.",
+    imageSrc: "/gallery2.png",
+  },
+  {
+    description: "Portray a beautiful girl in a modern setting, The girl should have clear facial features and a serene expression. The style should be ultra high definition, with sharp lines and realistic detailing.",
+    imageSrc: "/gallery3.png",
+  },
+  {
+    description: "Portray a wonderland, maple trees, woodsy scent, acorn scattered ground, hiking trail, quiet ambiance, squirrel activity, gentle breeze, autumnal landscape.",
+    imageSrc: "/gallery4.png",
+  },
+  {
+    description: "Picture a Chinese man in his 40s, stylish outfit, confident pose, striking eyes, well-groomed hair, muscular build, fashionable accessories, charismatic personality, handsome features.",
+    imageSrc: "/gallery5.png",
+  },
+  {
+    description: "Towering peaks, cascading waterfalls, misty mountains, serene streams, ancient pine trees, tranquil ambiance, traditional Chinese landscape, harmonious nature.",
+    imageSrc: "/gallery6.png",
+  }
+]);
 
 const scrollToGallery = () => {
   const gallery = document.querySelector('.app-gallery');
@@ -90,9 +103,7 @@ const scrollToGallery = () => {
   overflow-y: scroll;
   height: 100vh;
   scrollbar-width: none;
-  /* Firefox */
   -ms-overflow-style: none;
-  /* Internet Explorer and Edge */
 }
 
 .app::-webkit-scrollbar {
@@ -139,7 +150,7 @@ const scrollToGallery = () => {
 }
 
 .app-loading .app-loading-wrap {
-  margin-top: 16vh;
+  margin-top: 20vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -173,7 +184,6 @@ h2 {
 
 .text-large {
   font-size: 1.1rem;
-  /* Equivalent to text-3xl */
   line-height: 1.4;
   opacity: 0.8;
 }
@@ -193,7 +203,6 @@ h2,
 
 .dot {
   position: absolute;
-  /* 将position设置为absolute */
   display: inline-block;
   width: 48px;
   height: 48px;
@@ -285,7 +294,6 @@ h2,
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  /* 根据需要调整 */
 }
 
 .scroll-down-button {

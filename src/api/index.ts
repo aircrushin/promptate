@@ -5,7 +5,7 @@ export function hello() {
 }
 
 export function queryAllData() {
-  return axios.get("/api/queryAllData")
+  return axios.get("/api/data")
 }
 
 export function generatePrompt(message: string) {
