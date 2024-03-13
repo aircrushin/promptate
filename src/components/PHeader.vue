@@ -10,7 +10,7 @@
       </n-breadcrumb> -->
       <Menu />
       <div class="right-bar">
-        <a class="logo" href="https://gitee.com/ultrav/promptate"
+        <a class="logo" href="./"
         ><b>PROMPTATE</b>/FYH</a
       >
       <Modal></Modal>
@@ -23,9 +23,6 @@
 import { useRouter } from 'vue-router'
 import Menu from '../components/Menu.vue'
 import Modal from '../components/Modal.vue'
-
-const router = useRouter();
-
 </script>
 
 <style scoped lang="scss">
@@ -67,5 +64,6 @@ const router = useRouter();
 
 .right-bar {
   display: flex;
+  margin-right: 2rem;
 }
 </style>

@@ -30,12 +30,13 @@ function handleBack() {
 .main-generator {
   display: flex;
   flex-direction: column;
+  min-height: 90vh;
 }
 
 .icon {
   margin-bottom: 5vh;
   margin-left: 0;
-  padding-left: 20px;
+  padding-left: 2rem;
   font-size: 32px;
   cursor: pointer;
 }

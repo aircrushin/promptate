@@ -99,7 +99,7 @@ const addText = (text: string) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 5vh;
   height: 30vh;
 }
 

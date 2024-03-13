@@ -36,7 +36,8 @@ const menuOptions: MenuOption[] = [
       h(
         "a",
         {
-          href: "https://gitee.com/ultrav/promptate",
+          href: "https://github.com/aircrushin/promptate",
+          //href: "https://gitee.com/ultrav/promptate",
           target: "_blank",
           rel: "noopenner noreferrer",
         },

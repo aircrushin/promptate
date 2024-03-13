@@ -1,4 +1,5 @@
 <template>
+<div class="cont">
   <n-message-provider>
     <MessageApi />
   </n-message-provider>
@@ -25,6 +26,7 @@
     </div>
   </div>
   <PFooter></PFooter>
+</div>
 </template>
    
 <script setup lang="ts">
@@ -210,6 +212,9 @@ const toChatBot = () => {
 </script>
   
 <style scoped>
+.cont {
+  min-height: 100vh;
+}
 .app {
   display: flex;
   justify-content: space-around;
@@ -223,6 +228,7 @@ const toChatBot = () => {
 
 .right-container {
   width: 30%;
+  margin-right: 2rem;
 }
 
 .card-container {
