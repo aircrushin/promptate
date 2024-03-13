@@ -7,6 +7,10 @@ export type DataType = {
     name?: string;
     color?: string;
   }[];
+  sunoCatagories?: {
+    name?: string;
+    color?: string;
+  }[];
   tables?: {
     category?: string;
     minorCategories?: {

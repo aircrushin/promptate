@@ -226,8 +226,6 @@ textarea {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: 'Roboto', sans-serif;
-  /* or font-family: 'Open Sans', sans-serif; */
 }
 
 .example-container {

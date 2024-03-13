@@ -19,7 +19,7 @@
       </n-message-provider>
       <div class="chooser"></div>
     </div>
-    <div class="PromptWork">
+    <div class="PromptWork" v-show="props.isGPT">
       <div class="test">
           <h2 class="title">测试区</h2>
       </div>
@@ -184,7 +184,6 @@ watch(inputValue, (newValue) => {
 }
 
 .input textarea {
-  font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-style: italic;
   padding: 10px;
   font-size: 16px;

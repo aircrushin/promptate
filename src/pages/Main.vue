@@ -16,7 +16,7 @@
       <!-- <Tabs></Tabs> -->
       <Navigator @navigate="handleNavigation" :buttonLabels="navigatorLabels.map((label) => label.name)" />
       <div class="card-container">
-        <Action @addText="handleAction" :modelValue="actionInputValue" />
+        <Action @addText="addText" :modelValue="actionInputValue" />
         <!-- <Action v-if="activeButton === '行动任务'" @addText="handleAction"></Action> -->
         <Card v-for="card in filteredCardItems" :key="card.button" :text="card.text" :detail="card.detail"
           :color="card.color" v-show="activeButton === card.button" @click="handleCardClick(card.detail!)"
@@ -25,8 +25,8 @@
       </div>
     </div>
   </div>
-  <PFooter></PFooter>
 </div>
+<PFooter></PFooter>
 </template>
    
 <script setup lang="ts">
@@ -83,6 +83,10 @@ const mIdJourneyNames = computed(() => data.midCategories!.map((category) => ({
   name: category.name,
   color: category.color
 })));
+const sunoNames = computed(() => data.sunoCatagories!.map((category) => ({
+  name: category.name,
+  color: category.color
+})));
 const isGPT = ref(true);
 
 const promptStore = usePromptStore();
@@ -134,6 +138,9 @@ const addText = (cardText?: string) => {
   } else if (selectedKey.value === 'MidJourney') {
     text.value += cardText + ', ';
     textHistory.value.push(cardText + ', ');
+  }else if (selectedKey.value === 'Suno') {
+    text.value += cardText + ', ';
+    textHistory.value.push(cardText + ', ');
   } else {
     text.value += cardText + '\n';
     textHistory.value.push(cardText + '\n');
@@ -161,6 +168,9 @@ const updateKey = (key: string) => {
   } else if (selectedKey.value === "MidJourney") {
     isGPT.value = false;
     activeButton.value = "质量"
+  } else if (selectedKey.value === "Suno") {
+    isGPT.value = false;
+    activeButton.value = "段落"
   }
 }
 
@@ -188,6 +198,8 @@ const navigatorLabels = computed(() => {
     return chatGPTNames.value;
   } else if (selectedKey.value === 'MidJourney') {
     return mIdJourneyNames.value;
+  } else if (selectedKey.value === 'Suno') {
+    return sunoNames.value
   }
   return chatGPTNames.value // return by default
 });

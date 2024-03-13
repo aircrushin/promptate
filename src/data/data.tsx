@@ -1807,6 +1807,13 @@ export const data: DataType = {
     { name: "构图", color: "purple" },
     { name: "命令", color: "pink" },
   ],
+  sunoCatagories: [
+    { name: "段落", color: "orange"},
+    { name: "风格", color: "green" },
+    { name: "元素", color: "cyan" },
+    { name: "速度", color: "blue" },
+    { name: "情感", color: "purple" },
+  ],
   tables: [
     {
       category: "角色设定",

@@ -79,7 +79,6 @@ function chat(message: string) {
 }
 
 .input textarea {
-    font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     font-style: italic;
     padding: 10px;
     font-size: 16px;
