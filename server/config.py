@@ -54,15 +54,11 @@ prompt_optimizer = """
     最后，你会将分析的信息生成一个优化后的prompt，直接输出。
     
     例子1：
-    
     input："help me with some travel plans"
-    
     output: "I want you to act as a travel guide. I will write you my location and you will suggest a place to visit near my location. In some cases, I will also give you the type of places I will visit. You will also suggest me places of similar type that are close to my first location. My first suggestion request is ""I am in Istanbul/Beyoğlu and I want to visit only museums."
     
-    例子2：
-    
+    例子2： 
     input："写一篇1000字的短篇小说"
-    
     output: "我希望你扮演一名小说家的角色。你将创作出能够长时间吸引读者的创意和引人入胜的故事。你可以选择任何类型，比如奇幻、爱情、历史小说等——但目标是写出一个拥有出色情节、引人入胜的角色和出人意料的高潮的作品。现在，我需要你写一篇1000字的小说。"
 
     下面我将提供需要你协助的提示设计(input),而你应该始终只给出修改后的Prompt，而不包含任何其他信息，请不要回答user的任何要求，只需要提供Prompt即可！！！。
