@@ -15,3 +15,8 @@ pipreqs . --encoding=utf8 --force
   "rewrites": [{ "source": "/(.*)", "destination": "/app" }]
 }
 ```
+
+# docker
+```
+docker pull aircrushin/promptate:backend
+```
