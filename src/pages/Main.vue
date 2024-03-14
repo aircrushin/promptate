@@ -8,7 +8,6 @@
     <div class="left-container">
       <PromptWork :modelValue="text" :title="title" :isGPT="isGPT" @update:modelValue="handleUpdateModelValue"
         @update:title="handleUpdateTitle"></PromptWork>
-        <!-- <Chat></Chat> -->
       <!-- <CardEditor/> -->
     </div>
     <div class="right-container">
@@ -23,6 +22,7 @@
           @add-tag="addTagToTagsRef" @add-detail="addDetailToTagsRef">
         </Card>
       </div>
+      <Chat></Chat>
     </div>
   </div>
 </div>
