@@ -170,6 +170,7 @@ watch(inputValue, (newValue) => {
 }
 
 .input {
+  font-family: "Helvetica Neue", sans-serif;
   text-align: left;
   display: flex;
   align-items: center;

@@ -117,16 +117,20 @@ def chat():
 
     return jsonify({"response": response_message})
 
-@glm_blueprint.route('/api/glmDraw', methods=['POST'])
-def draw():
-    user_content = request.json.get('user-content')
-    if not user_content:
-        return jsonify({'error': 'No user-content provided'}), 400
-    completion = client.images.generations(
-    model = "cogview-3", 
-    prompt = user_content,
-    )
+# @glm_blueprint.route('/api/glmDraw', methods=['POST'])
+# def draw():
+#     user_content = request.json.get('user-content')
+#     if not user_content:
+#         return jsonify({'error': 'No user-content provided'}), 400
+#     completion = client.images.generations(
+#     model = "cogview-3", 
+#     prompt = user_content,
+#     )
 
-    response_message = completion.data[0].url
+#     response_message = completion.data[0].url
 
-    return jsonify({"response": response_message})
+#     return jsonify({"response": response_message})
+
+@glm_blueprint.route('/api/glmSuno', methods=['POST'])
+def suno():
+    pass

@@ -49,10 +49,11 @@ watch(() => props.modelValue, (newVal) => {
 }
 
 .input textarea {
+    font-family: "Helvetica Neue", sans-serif;
     min-width: 300px;
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
