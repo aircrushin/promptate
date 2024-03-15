@@ -3,7 +3,7 @@
         <PHeader></PHeader>
         <div>
             <h1 class="title">📖 Promptate 📖</h1>
-            <p class="description">---- 针对文本和图像生成模型 Prompt 的优化辅助平台</p>
+            <p class="description" ref="typewriter">-</p>
             <img src="/logo2.png" class="app-loading-logo" alt="Logo" />
             <n-button class="app-button" size="large" @click="changeSpin">开始</n-button>
         </div>
@@ -14,10 +14,12 @@
 <script setup lang="ts">
 import { onMounted,ref } from 'vue';
 import { useRouter } from 'vue-router';
+import Typed from 'typed.js';
 import PFooter from '../components/PFooter.vue'
 import PHeader from '../components/PHeader.vue';
 
 const isSpin = ref(false);
+const typewriter = ref(null);
 const router = useRouter();
 const changeSpin = () => {
   isSpin.value = !isSpin.value;
@@ -29,6 +31,12 @@ const changeSpin = () => {
 onMounted(() => {
     const title = document.querySelector('.title');
     title!.classList.add('animate');
+    new Typed(typewriter.value, {
+    strings: ["--- 针对文本和图像生成模型 Prompt 的优化辅助平台"],
+    typeSpeed: 50,
+    showCursor: false,
+
+  });
 });
 </script>
 
