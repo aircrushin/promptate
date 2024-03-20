@@ -225,6 +225,7 @@ const toChatBot = () => {
   
 <style scoped>
 .cont {
+  background-color: white;
   min-height: 100vh;
 }
 .app {
