@@ -23,7 +23,7 @@
     </n-modal>
     <button class="add-data-btn" @click="showModal = true">🙏 分享提示词</button>
 </template>
-  
+
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { addShareData } from '../api'
@@ -55,7 +55,8 @@ const formRef = ref()
 const model = reactive({
     type: '写作辅助',
     content: "",
-    title: ''
+    title: '',
+    createUser: 'henry123'
 })
 
 const options = [
@@ -102,10 +103,22 @@ const rules = {
 function submitClick() {
     formRef.value.validate((errors: any) => {
         if (!errors) {
-            addShareData(model.title, model.content, model.type)
-            console.log('表单提交', model);
-            showToast()
-            showModal.value = false
+            const username = localStorage.getItem('username');
+            console.log('username', username);
+            if (!username) {
+                toast.open({
+                    message: '请先登录再操作!',
+                    type: 'warning',
+                    position: 'top',
+                    duration: 2000
+                });
+            } else {
+                model.createUser = username
+                addShareData(model.title, model.content, model.type, model.createUser)
+                console.log('表单提交', model);
+                showToast()
+                showModal.value = false
+            }
         } else {
             console.log('验证失败', errors);
         }
@@ -115,6 +128,7 @@ function resetForm() {
     model.type = "写作辅助"
     model.content = ''
     model.title = ''
+    model.createUser = 'henry123'
 }
 </script>
 

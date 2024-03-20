@@ -253,7 +253,102 @@ export const background: backgroundType = {
       color: "green",
       type: "角色设定",
     },
-
+    {
+      keyWord: "撰写文章",
+      "detail": "撰写一篇关于最新科技趋势的文章，覆盖至少三种新兴技术，并分析其对未来社会的潜在影响。",
+      "useTime": 120,
+      "color": "lightblue",
+      "varNum": 3,
+      "type": "行动任务"
+    },
+    {
+      keyWord: "生成食谱",
+      "detail": "创建一个健康饮食的食谱，包括早餐、午餐、晚餐和两次小吃，确保食谱营养均衡且适合家庭制作。",
+      "useTime": 90,
+      "color": "lightblue",
+      "varNum": 5,
+      "type": "行动任务"
+    },
+    {
+      keyWord: "设计旅行计划",
+      "detail": "规划一个为期7天的家庭度假旅行计划，包括目的地选择、住宿推荐、必访景点以及每日行程安排。",
+      "useTime": 150,
+      "color": "lightblue",
+      "varNum": 4,
+      "type": "行动任务"
+    },
+    {
+      keyWord: "制作教学视频",
+      "detail": "制作一系列关于基础编程概念的教学视频，每个视频长度不超过10分钟，覆盖变量、循环、函数和数据结构等主题。",
+      "useTime": 180,
+      "color": "lightblue",
+      "varNum": 4,
+      "type": "行动任务"
+    }, 
+    {
+      keyWord: "创意写作",
+      "detail": "写一篇短篇故事，主题自选，展现你的创意和想象力。",
+      "useTime": 60,
+      "color": "lightblue",
+      "varNum": 1,
+      "type": "行动任务"
+    },
+    {
+      keyWord: "思维导图",
+      "detail": "创建一个思维导图，梳理你感兴趣的一个话题或问题的各个方面。",
+      "useTime": 45,
+      "color": "lightblue",
+      "varNum": 2,
+      "type": "行动任务"
+    },
+    {
+      keyWord: "研究报告",
+      "detail": "准备一个研究报告，总结一个你感兴趣领域的最新发展。",
+      "useTime": 180,
+      "color": "lightblue",
+      "varNum": 3,
+      "type": "行动任务"
+    },
+    {
+      keyWord: "语言学习",
+      "detail": "制定一个语言学习计划，包括学习目标、使用的资源和时间表。",
+      "useTime": 30,
+      "color": "lightblue",
+      "varNum": 1,
+      "type": "行动任务"
+    },
+    {
+      "keyWord": "内容整理",
+      "detail": "整理并总结一系列相关信息，使其更易于理解和分享。",
+      "useTime": 40,
+      "color": "lightblue",
+      "varNum": 2,
+      "type": "行动任务"
+    },
+    {
+      "keyWord": "概念验证",
+      "detail": "设计并实施一个小型实验，以验证一个特定的想法或假设。",
+      "useTime": 120,
+      "color": "lightblue",
+      "varNum": 3,
+      "type": "行动任务"
+    },
+    {
+      "keyWord": "用户调研",
+      "detail": "执行一项用户调研，以收集目标用户群对于产品或服务的看法和需求。",
+      "useTime": 90,
+      "color": "lightblue",
+      "varNum": 2,
+      "type": "行动任务"
+    },
+    {
+      "keyWord": "技能提升",
+      "detail": "选择一个新技能进行学习，制定一个实际可行的学习计划，并跟踪学习进度。",
+      "useTime": 60,
+      "color": "lightblue",
+      "varNum": 1,
+      "type": "行动任务"
+    },    
     {
       keyWord: "100字以下",
       detail: "请你把输出字数限制在100字以下",
@@ -1711,6 +1806,13 @@ export const data: DataType = {
     { name: "容貌", color: "blue" },
     { name: "构图", color: "purple" },
     { name: "命令", color: "pink" },
+  ],
+  sunoCatagories: [
+    { name: "段落", color: "orange"},
+    { name: "风格", color: "green" },
+    { name: "元素", color: "cyan" },
+    { name: "速度", color: "blue" },
+    { name: "情感", color: "purple" },
   ],
   tables: [
     {

@@ -110,7 +110,7 @@ const addText = (text: string) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 5vh;
   height: 30vh;
 }
 
@@ -226,8 +226,6 @@ textarea {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: 'Roboto', sans-serif;
-  /* or font-family: 'Open Sans', sans-serif; */
 }
 
 .example-container {

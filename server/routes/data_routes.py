@@ -5,7 +5,7 @@ from extensions import db
 data_blueprint = Blueprint('data_blueprint', __name__)
 
 #查询所有数据
-@data_blueprint.route('/api/queryAllData', methods=['GET'])
+@data_blueprint.route('/api/data', methods=['GET'])
 def get_all_data():
     entries = Data.query.all()
     return jsonify([entry.to_dict() for entry in entries])

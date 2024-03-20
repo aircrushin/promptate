@@ -5,7 +5,8 @@ from config import model_name, API_KEY, prompt_generator, prompt_optimizer, prom
 prompt_blueprint = Blueprint('prompt_blueprint', __name__)
 #openai
 openai_api_key = API_KEY
-client = OpenAI(api_key=openai_api_key)
+# remove base_url for chatgpt api access
+client = OpenAI(api_key=openai_api_key, base_url="https://api.moonshot.cn/v1")
 
 @prompt_blueprint.route('/api/prompt', methods=['POST'])
 def generate_prompt():
