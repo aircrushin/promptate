@@ -7,8 +7,8 @@ export default defineConfig({
   server:{
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:5000',
-        //target: 'http://43.136.174.253:5000',
+        //target: 'http://127.0.0.1:5000',  //本地环境
+        target: 'https://promptate-backend.zeabur.app', //线上环境
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, '')
         },

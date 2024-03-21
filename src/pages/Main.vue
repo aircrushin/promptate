@@ -50,9 +50,10 @@ const router = useRouter();
 
 
 onMounted(async () => {
-  try {
     // 调用queryAllData并等待结果
     const response = await queryAllData();
+    console.log(response.data);
+    console.log(Array.isArray(response.data)); 
     // 假设返回的数据格式和background.data相同
     cardItems.value = response.data.map((item: any) => ({
       button: item.type,
@@ -61,9 +62,6 @@ onMounted(async () => {
       color: item.color
     }));
     console.log(cardItems.value)
-  } catch (error) {
-    console.error('Failed to fetch card items:', error);
-  }
 });
 
 //token
