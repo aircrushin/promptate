@@ -227,4 +227,43 @@ span {
   width: auto;
   display: inline;
 }
+
+@media (max-width: 768px) {
+  .main-space {
+    grid-template-columns: 1fr; /* 在移动设备上改为单列布局 */
+    gap: 10px; /* 减小行间距 */
+  }
+
+  .input-container, .output-container {
+    width: 100%; /* 宽度调整为100% */
+    padding: 10px; /* 减少内边距 */
+  }
+
+  .editor, .btn {
+    flex-direction: column; /* 将按钮垂直排列 */
+    gap: 10px; /* 调整按钮之间的间隙 */
+  }
+
+  input, textarea {
+    width: 90%; /* 调整输入框和文本区域的宽度 */
+  }
+
+  .action-container, .main-space {
+    width: 95%; /* 增加容器的宽度，为内容提供更多空间 */
+  }
+
+  h2 {
+    font-size: 24px; /* 减小标题字体大小 */
+  }
+
+  .example-container {
+    margin-top: 8vh; /* 调整示例容器的顶部边距 */
+    flex-direction: column; /* 在移动设备上垂直排列 */
+    align-items: center; /* 居中对齐 */
+  }
+
+  .card-container {
+    margin: 5px; /* 调整卡片之间的间距 */
+  }
+}
 </style>

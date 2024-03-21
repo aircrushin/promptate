@@ -250,13 +250,22 @@ const toChatBot = () => {
 }
 
 @media (max-width: 768px) {
+  .app {
+    flex-direction: column; /* 在移动设备上垂直堆叠容器 */
+    align-items: center; /* 居中对齐子元素 */
+  }
 
-  .app,
-  .left-container,
-  .right-container,
+  .left-container, .right-container {
+    width: 90%; /* 增加移动设备上的容器宽度 */
+    margin-right: 0; /* 移除右容器的外边距 */
+  }
+
   .card-container {
-    padding: 10px;
-    border-radius: 5px;
+    justify-content: center; /* 在移动设备上居中卡片 */
+  }
+
+  .chat-container {
+    flex-direction: column; /* 调整聊天容器布局 */
   }
 }
 

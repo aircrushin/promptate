@@ -30,7 +30,6 @@ watch(() => props.modelValue, (newVal) => {
   inputValue.value = newVal;
   console.log('Action 组件接收到的 modelValue 更新:', newVal);
 });
-
 </script>
 
 <style scoped>
@@ -47,7 +46,13 @@ watch(() => props.modelValue, (newVal) => {
     justify-content: center;
 }
 
+.input textarea::-webkit-scrollbar {
+    display: none; /* 对WebKit浏览器隐藏滚动条 */
+}
+
 .input textarea {
+    -ms-overflow-style: none; /* IE和Edge */
+    scrollbar-width: none; 
     font-family: "Helvetica Neue", sans-serif;
     min-width: 300px;
     width: 100%;
@@ -88,4 +93,6 @@ watch(() => props.modelValue, (newVal) => {
         margin: 10px 0;
     }
 }
+
+
 </style>
