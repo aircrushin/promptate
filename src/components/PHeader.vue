@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import Menu from '../components/Menu.vue'
-import Modal from '../components/Modal.vue'
+import Modal from '../components/LoginModal.vue'
 </script>
 
 <style scoped lang="scss">

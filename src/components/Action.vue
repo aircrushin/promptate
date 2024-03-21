@@ -43,7 +43,6 @@ watch(() => props.modelValue, (newVal) => {
 }
 
 .input, .editor {
-    width: 100%; 
     display: flex;
     justify-content: center;
 }

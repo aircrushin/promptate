@@ -29,7 +29,7 @@
         </n-button>
     </div>
 </template>
-  
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import { login, register } from '../api'
@@ -78,22 +78,26 @@ const handleSubmit = () => {
                 let password = formState.value.password
                 if (!isRegistering.value) {
                     login(username, password).then((res) => {
-                        console.log(res.data.access_token)
+                        console.log(res.data.access_token);
                         const accessToken = res.data.access_token;
                         localStorage.setItem('access_token', accessToken);
+
+                        // 保存用户名到本地存储
+                        const username = formState.value.username;
+                        localStorage.setItem('username', username);
+                        console.log(username)
+
                         //@ts-ignore
-                        window.onmessage!.success("登陆成功！");
-                        alert("ss")
+                        window.onmessage!.success("登录成功！");
                         setTimeout(() => {
-                            showModal.value = false
-                            isLoggedIn.value = true
+                            showModal.value = false;
+                            isLoggedIn.value = true;
                         }, 1000);
                     }).catch((err) => {
                         console.log(err.code)
                         //@ts-ignore
                         window.onmessage!.error("账号或密码错误");
-                    }
-                    )
+                    });
                 } else {
                     register(username, password).then((res) => {
                         console.log(res)
