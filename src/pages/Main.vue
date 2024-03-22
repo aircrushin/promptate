@@ -43,7 +43,7 @@ import Dropdown from '../components/Dropdown.vue';
 import PHeader from '../components/PHeader.vue';
 import { queryAllData } from '../api';
 import { useRouter } from 'vue-router';
-import { usePromptStore } from '../store/store';
+import { usePromptStore } from '../stores/store';
 //import { glmTest } from '../api/model'
 
 const router = useRouter();
@@ -311,4 +311,4 @@ const toChatBot = () => {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
-</style>
+</style>../stores/store

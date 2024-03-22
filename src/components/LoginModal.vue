@@ -3,7 +3,7 @@
         <n-modal v-model:show="showModal" title="登录/注册">
             <div class="form">
                 <h1>{{ isRegistering ? '注册' : '登录' }}</h1>
-                <p>欢迎使用Promptate</p>
+                <p>欢迎使用 Promptate</p>
                 <n-form ref="formRef" :model="formState" :rules="rules">
                     <n-form-item label="用户名" path="username">
                         <n-input v-model:value="formState.username" placeholder="请输入用户名" />
@@ -33,7 +33,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { login, register } from '../api'
+import { useUserStore } from '../stores/userStore'
 
+const userStore = useUserStore();
 const showModal = ref(false);
 const isRegistering = ref(false);
 const isLoggedIn = ref(false);
@@ -89,6 +91,7 @@ const handleSubmit = () => {
 
                         //@ts-ignore
                         window.onmessage!.success("登录成功！");
+                        userStore.login('username', 'token');
                         setTimeout(() => {
                             showModal.value = false;
                             isLoggedIn.value = true;
@@ -128,6 +131,8 @@ const toggleForm = () => {
 
 const logout = () => {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
+    userStore.logout();
     isLoggedIn.value = false;
     // 这里可以添加其他清理操作，如重置用户状态等
     //@ts-ignore

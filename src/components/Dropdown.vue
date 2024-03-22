@@ -25,10 +25,10 @@ const options = [
     label: "MidJourney",
     key: "MidJourney",
   },
-  {
-    label: "Suno",
-    key: "Suno",
-  },
+  // {
+  //   label: "Suno",
+  //   key: "Suno",
+  // },
 ];
 
 const emit = defineEmits(["update:key"]);
