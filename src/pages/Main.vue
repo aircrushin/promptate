@@ -44,6 +44,7 @@ import PHeader from '../components/PHeader.vue';
 import { queryAllData } from '../api';
 import { useRouter } from 'vue-router';
 import { usePromptStore } from '../stores/store';
+import { fetchNotionDatabase } from '../utils/notion'
 //import { glmTest } from '../api/model'
 
 const router = useRouter();
@@ -62,6 +63,7 @@ onMounted(async () => {
       color: item.color
     }));
     console.log(cardItems.value)
+    fetchNotionDatabase()
 });
 
 //token
@@ -131,7 +133,7 @@ const filteredCardItems = computed(() => {
 const addText = (cardText?: string) => {
   console.log(selectedKey.value)
   if (selectedKey.value === 'ChatGPT') {
-    text.value += cardText + '\n';
+    text.value += cardText  + '\n';
     textHistory.value.push(cardText + '\n');
   } else if (selectedKey.value === 'MidJourney') {
     text.value += cardText + ', ';
